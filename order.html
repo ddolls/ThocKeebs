@@ -1,0 +1,2227 @@
+<!doctype html>
+<!-- ThocKeebs Studio · Order Page -->
+<html lang="en" data-redirect-timezone="1" dir="ltr" class="dark-theme">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Order Tuning & Modding — ThocKeebs</title>
+  <meta name="description" content="Kalkulator Biaya & Booking Slot Pre-Order Jasa Lube Switch & Tuning Stabilizer Mechanical Keyboard Profesional ThocKeebs.">
+  <link rel="canonical" href="order.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style id="thockeebs-master-visibility">
+    :root, html, body {
+      background-color: #252526 !important;
+      color: rgb(240, 240, 241) !important;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    html.light-theme, body.light-theme {
+      background-color: #f0f0f1 !important;
+      color: rgb(37, 37, 38) !important;
+    }
+  
+/* --- LANGUAGE SELECTOR --- */
+/* --- LANGUAGE SELECTOR --- */
+.thoc-lang-slot {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 4px;
+  height: 100%;
+}
+.lang-toggle-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: #f0f0f1;
+  padding: 3px 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 14px;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+body.light-theme .lang-toggle-btn,
+html.light-theme .lang-toggle-btn {
+  border-color: rgba(37, 37, 38, 0.25) !important;
+  color: #252526 !important;
+}
+.lang-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+body.light-theme .lang-toggle-btn:hover,
+html.light-theme .lang-toggle-btn:hover {
+  background: rgba(0, 0, 0, 0.06) !important;
+  border-color: rgba(0, 0, 0, 0.35) !important;
+}
+.lang-dropdown-menu {
+  display: none !important;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2e2e2f;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  z-index: 1000;
+  min-width: 54px;
+  flex-direction: column;
+  gap: 2px;
+}
+.lang-dropdown-menu.show,
+.thoc-lang-slot:hover .lang-dropdown-menu {
+  display: flex !important;
+}
+body.light-theme .lang-dropdown-menu,
+html.light-theme .lang-dropdown-menu {
+  background: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+}
+.lang-opt-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 8px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: #f0f0f1;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  transition: all 0.15s ease;
+}
+body.light-theme .lang-opt-btn,
+html.light-theme .lang-opt-btn {
+  color: #252526 !important;
+}
+.lang-opt-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+body.light-theme .lang-opt-btn:hover,
+html.light-theme .lang-opt-btn:hover {
+  background: rgba(0, 0, 0, 0.06) !important;
+}
+.lang-opt-btn.active {
+  background: #ffffff !important;
+  color: #252526 !important;
+}
+body.light-theme .lang-opt-btn.active,
+html.light-theme .lang-opt-btn.active {
+  background: #252526 !important;
+  color: #ffffff !important;
+}
+/* --- END LANGUAGE SELECTOR --- */
+</style>
+
+  <style id="thockeebs-order-styles">
+    /* --- NAVIGATION PILL --- */
+    .thoc-nav-wrap {
+      position: fixed;
+      top: 24px;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+      padding: 0 16px;
+    }
+    .thoc-nav-container {
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1200px;
+    }
+    .thoc-nav-left {
+      display: flex;
+      align-items: center;
+    }
+    .thoc-home-btn {
+      width: 44px;
+      height: 44px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f0f0f1;
+      text-decoration: none;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    body.light-theme .thoc-home-btn {
+      background: #ffffff !important;
+      border-color: rgba(0, 0, 0, 0.1) !important;
+      color: #252526 !important;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .thoc-nav-pill {
+      background: #171717;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+    body.light-theme .thoc-nav-pill {
+      background: #ffffff !important;
+      border-color: rgba(0, 0, 0, 0.1) !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+    .thoc-nav-link {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(240, 240, 241, 0.7);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+    }
+    body.light-theme .thoc-nav-link {
+      color: rgba(37, 37, 38, 0.7) !important;
+    }
+    .thoc-nav-link:hover {
+      color: #f0f0f1;
+    }
+    body.light-theme .thoc-nav-link:hover {
+      color: #252526 !important;
+    }
+    .thoc-nav-link.active {
+      background: #2e2e2f;
+      color: #ffffff;
+      font-weight: 600;
+    }
+    body.light-theme .thoc-nav-link.active {
+      background: #252526 !important;
+      color: #ffffff !important;
+    }
+    .thoc-lang-slot {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 4px;
+    }
+    .lang-toggle-btn {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      color: #f0f0f1;
+      padding: 3px 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 14px;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+    body.light-theme .lang-toggle-btn {
+      border-color: rgba(37, 37, 38, 0.2) !important;
+      color: #252526 !important;
+    }
+    .lang-toggle-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+    body.light-theme .lang-toggle-btn:hover {
+      background: rgba(0, 0, 0, 0.06) !important;
+      border-color: rgba(0, 0, 0, 0.35) !important;
+    }
+    .lang-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #2e2e2f;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      padding: 4px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+      z-index: 1000;
+      min-width: 64px;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .lang-dropdown-menu.show {
+      display: flex !important;
+    }
+    body.light-theme .lang-dropdown-menu {
+      background: #ffffff !important;
+      border-color: rgba(0, 0, 0, 0.12) !important;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1) !important;
+    }
+    .lang-opt-btn {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 5px 8px;
+      border-radius: 6px;
+      border: none;
+      background: transparent;
+      color: #f0f0f1;
+      cursor: pointer;
+      text-align: center;
+      width: 100%;
+      transition: all 0.15s ease;
+    }
+    body.light-theme .lang-opt-btn {
+      color: #252526 !important;
+    }
+    .lang-opt-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+    body.light-theme .lang-opt-btn:hover {
+      background: rgba(0, 0, 0, 0.06) !important;
+    }
+    .lang-opt-btn.active {
+      background: #ffffff !important;
+      color: #252526 !important;
+    }
+    body.light-theme .lang-opt-btn.active {
+      background: #252526 !important;
+      color: #ffffff !important;
+    }
+
+    .thoc-theme-toggle-slot {
+      padding: 0 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .theme-toggle-btn {
+      width: 36px;
+      height: 20px;
+      background: rgb(60, 60, 61);
+      border: none;
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      outline: none;
+      padding: 0;
+      display: flex;
+      align-items: center;
+    }
+    .theme-toggle-btn span {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+      transition: left 0.2s cubic-bezier(.4,1.2,.6,1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+    .thoc-nav-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: rgba(240, 240, 241, 0.6);
+      letter-spacing: 0.02em;
+    }
+    body.light-theme .thoc-nav-meta {
+      color: rgba(37, 37, 38, 0.6) !important;
+    }
+
+    /* --- PAGE CONTENT LAYOUT --- */
+    .order-page-wrapper {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .thockeebs-order-main {
+      width: 100%;
+      max-width: 1200px;
+      margin: 120px auto 40px auto;
+      padding: 0 16px;
+      flex: 1 0 auto;
+    }
+    .order-hero-head {
+      text-align: center;
+      margin-bottom: 44px;
+    }
+    .order-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: inherit;
+      margin-bottom: 16px;
+    }
+    body.light-theme .order-badge-pill {
+      background: rgba(0, 0, 0, 0.05) !important;
+      border-color: rgba(0, 0, 0, 0.1) !important;
+    }
+    .order-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.8;
+      display: inline-block;
+    }
+    .order-title {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      margin: 0 0 12px 0;
+      color: inherit;
+      line-height: 1.1;
+    }
+    .order-subtitle {
+      max-width: 640px;
+      margin: 0 auto;
+      font-size: 15px;
+      line-height: 1.6;
+      opacity: 0.75;
+      color: inherit;
+    }
+
+    /* --- TWO COLUMN ORDER GRID --- */
+    .order-layout-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 960px) {
+      .order-layout-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* --- FORM SECTION CARDS --- */
+    .order-card-section {
+      background-color: #2e2e2f;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+      color: inherit;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+    body.light-theme .order-card-section {
+      background-color: #ffffff !important;
+      border-color: rgba(0, 0, 0, 0.08) !important;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .order-section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .order-step-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 14px;
+      padding: 4px 8px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      opacity: 0.8;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    body.light-theme .order-step-num {
+      border-color: rgba(0, 0, 0, 0.2) !important;
+    }
+    .order-section-title {
+      font-size: 17px;
+      font-weight: 600;
+      margin: 0 0 4px 0;
+      letter-spacing: -0.01em;
+    }
+    .order-section-desc {
+      font-size: 13px;
+      opacity: 0.65;
+      margin: 0;
+      line-height: 1.45;
+    }
+
+    /* --- STEP 1: PRESETS & SLIDER --- */
+    .order-presets-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .order-preset-btn {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      padding: 7px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    body.light-theme .order-preset-btn {
+      border-color: rgba(0, 0, 0, 0.15) !important;
+    }
+    .order-preset-btn:hover {
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+    body.light-theme .order-preset-btn:hover {
+      border-color: rgba(0, 0, 0, 0.4) !important;
+    }
+    .order-preset-btn.active {
+      background: #ffffff !important;
+      color: #252526 !important;
+      border-color: #ffffff !important;
+      font-weight: 600;
+    }
+    body.light-theme .order-preset-btn.active {
+      background: #252526 !important;
+      color: #ffffff !important;
+      border-color: #252526 !important;
+    }
+    .order-slider-wrap {
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    body.light-theme .order-slider-wrap {
+      background: rgba(0, 0, 0, 0.03) !important;
+      border-color: rgba(0, 0, 0, 0.05) !important;
+    }
+    .order-slider-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .order-slider-label {
+      font-size: 13px;
+      font-weight: 500;
+      opacity: 0.8;
+    }
+    .order-slider-val {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    body.light-theme .order-slider-val {
+      color: #252526 !important;
+    }
+    .order-range-input {
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.2);
+      outline: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+    }
+    body.light-theme .order-range-input {
+      background: rgba(0, 0, 0, 0.15) !important;
+    }
+    .order-range-input::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #ffffff;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+    body.light-theme .order-range-input::-webkit-slider-thumb {
+      background: #252526 !important;
+    }
+    .order-slider-ticks {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      opacity: 0.4;
+      margin-top: 8px;
+    }
+
+    /* --- STEP 2: PACKAGES GRID --- */
+    .order-packages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .order-choice-card {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: rgba(255, 255, 255, 0.02);
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+    }
+    body.light-theme .order-choice-card {
+      border-color: rgba(0, 0, 0, 0.08) !important;
+      background: rgba(0, 0, 0, 0.02) !important;
+    }
+    .order-choice-card:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+    body.light-theme .order-choice-card:hover {
+      border-color: rgba(0, 0, 0, 0.3) !important;
+    }
+    .order-choice-card.active {
+      border-color: #ffffff !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+      box-shadow: 0 0 0 1px #ffffff;
+    }
+    body.light-theme .order-choice-card.active {
+      border-color: #252526 !important;
+      background: rgba(0, 0, 0, 0.06) !important;
+      box-shadow: 0 0 0 1px #252526 !important;
+    }
+    .order-choice-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .order-choice-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      letter-spacing: 0.05em;
+    }
+    body.light-theme .order-choice-tag {
+      background: rgba(0, 0, 0, 0.08) !important;
+    }
+    .order-choice-price {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .order-choice-price small {
+      font-size: 10px;
+      font-weight: 400;
+      opacity: 0.7;
+    }
+    .order-choice-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0 0 6px 0;
+    }
+    .order-choice-desc {
+      font-size: 12px;
+      opacity: 0.65;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    /* --- STEP 3: SELECT & INPUTS --- */
+    .order-custom-select, .order-input {
+      width: 100%;
+      background: #1e1e1f;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: inherit;
+      font-family: inherit;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+    body.light-theme .order-custom-select,
+    body.light-theme .order-input {
+      background: #f0f0f1 !important;
+      border-color: rgba(0, 0, 0, 0.14) !important;
+      color: #252526 !important;
+    }
+    .order-custom-select:focus, .order-input:focus {
+      border-color: #ffffff;
+    }
+    body.light-theme .order-custom-select:focus,
+    body.light-theme .order-input:focus {
+      border-color: #252526 !important;
+    }
+
+    /* --- STEP 4: STABILIZERS --- */
+    .order-stabs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    /* --- STEP 5: ADDONS LIST --- */
+    .order-addons-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .order-checkbox-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.02);
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+    body.light-theme .order-checkbox-card {
+      border-color: rgba(0, 0, 0, 0.08) !important;
+      background: rgba(0, 0, 0, 0.02) !important;
+    }
+    .order-checkbox-card:hover {
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+    body.light-theme .order-checkbox-card:hover {
+      border-color: rgba(0, 0, 0, 0.25) !important;
+    }
+    .order-checkbox {
+      margin-top: 3px;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      accent-color: #ffffff;
+    }
+    body.light-theme .order-checkbox {
+      accent-color: #252526 !important;
+    }
+    .order-checkbox-info {
+      flex: 1;
+    }
+    .order-checkbox-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+    .order-checkbox-name {
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .order-checkbox-cost {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+    .order-checkbox-desc {
+      font-size: 12px;
+      opacity: 0.65;
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    /* --- STEP 6: CUSTOMER INPUTS GRID --- */
+    .order-inputs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 640px) {
+      .order-inputs-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .order-field.full-width {
+      grid-column: 1 / -1;
+    }
+    .order-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      opacity: 0.8;
+    }
+    .order-textarea {
+      resize: vertical;
+      min-height: 70px;
+    }
+
+    /* --- RIGHT COLUMN: STICKY SUMMARY CARD --- */
+    .order-summary-column {
+      position: sticky;
+      top: 96px;
+    }
+    .order-summary-card {
+      background-color: #2e2e2f;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 24px;
+      color: inherit;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+    body.light-theme .order-summary-card {
+      background-color: #ffffff !important;
+      border-color: rgba(0, 0, 0, 0.08) !important;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    }
+    .summary-top-head {
+      margin-bottom: 16px;
+    }
+    .summary-batch-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: inherit;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      margin-bottom: 8px;
+    }
+    body.light-theme .summary-batch-pill {
+      background: rgba(0, 0, 0, 0.05) !important;
+      color: inherit !important;
+      border-color: rgba(0, 0, 0, 0.12) !important;
+    }
+    .summary-batch-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.7;
+    }
+    .summary-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+    .summary-items-list {
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+    }
+    body.light-theme .summary-items-list {
+      border-bottom-color: rgba(0, 0, 0, 0.08) !important;
+    }
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+    }
+    .summary-line-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .summary-line-name {
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .summary-line-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      opacity: 0.55;
+    }
+    .summary-line-val {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .summary-total-box {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    body.light-theme .summary-total-box {
+      background: rgba(0, 0, 0, 0.03) !important;
+      border-color: rgba(0, 0, 0, 0.06) !important;
+    }
+    .summary-total-label-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+    .summary-total-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.7;
+    }
+    .summary-total-subtext {
+      font-size: 11px;
+      color: inherit;
+      opacity: 0.55;
+      margin-top: 2px;
+    }
+    .summary-total-amount {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 24px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    body.light-theme .summary-total-amount {
+      color: #252526 !important;
+    }
+    .summary-turnaround-box {
+      font-size: 12px;
+      line-height: 1.5;
+      padding: 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 16px;
+      opacity: 0.9;
+    }
+    body.light-theme .summary-turnaround-box {
+      background: rgba(0, 0, 0, 0.02) !important;
+      border-color: rgba(0, 0, 0, 0.06) !important;
+    }
+    .order-submit-btn {
+      width: 100%;
+      background: #ffffff;
+      color: #252526;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.15s ease;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    }
+    body.light-theme .order-submit-btn {
+      background: #252526 !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    }
+    .order-submit-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+    .order-submit-arrow {
+      font-size: 15px;
+      transition: transform 0.15s ease;
+    }
+    .order-submit-btn:hover .order-submit-arrow {
+      transform: translateX(3px);
+    }
+    .summary-perks {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    body.light-theme .summary-perks {
+      border-top-color: rgba(0, 0, 0, 0.08) !important;
+    }
+    .summary-perk-item {
+      font-size: 11px;
+      opacity: 0.65;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .perk-check {
+      color: inherit;
+      opacity: 0.85;
+      font-weight: bold;
+    }
+    .summary-direct-chat {
+      margin-top: 14px;
+      text-align: center;
+    }
+    .summary-chat-link {
+      font-size: 11px;
+      color: inherit;
+      opacity: 0.7;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: opacity 0.15s ease;
+    }
+    .summary-chat-link:hover {
+      opacity: 1;
+    }
+
+    /* --- RUNNING TEXT MARQUEE --- */
+    .thockeebs-ticker-wrapper {
+      width: 100%;
+      overflow: hidden;
+      user-select: none;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      padding: 24px 0 12px 0;
+      margin-top: 32px;
+      margin-bottom: 0px;
+      position: relative;
+      z-index: 5;
+      background: transparent !important;
+    }
+    .thockeebs-ticker-track {
+      display: flex;
+      width: max-content;
+      white-space: nowrap;
+      animation: thockeebs-ticker-marquee 36s linear infinite;
+      will-change: transform;
+    }
+    .thockeebs-ticker-content {
+      display: flex;
+      white-space: nowrap;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .thockeebs-ticker-content span {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 96px;
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: rgb(60, 60, 61);
+      padding-right: 48px;
+      display: inline-block;
+      transition: color 0.2s ease;
+    }
+    body.light-theme .thockeebs-ticker-content span,
+    html.light-theme .thockeebs-ticker-content span {
+      color: rgb(215, 215, 218) !important;
+    }
+    @keyframes thockeebs-ticker-marquee {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+    @media (max-width: 768px) {
+      .thockeebs-ticker-content span {
+        font-size: 56px;
+        padding-right: 32px;
+      }
+      .thockeebs-ticker-wrapper {
+        padding: 16px 0 8px 0;
+        margin-top: 20px;
+      }
+    }
+
+    /* --- FOOTER --- */
+    .thockeebs-footer-wrapper {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      padding: 0 16px 24px 16px;
+      margin-top: 24px !important;
+      position: relative;
+      z-index: 10;
+      background-color: transparent !important;
+    }
+    .thockeebs-footer-card {
+      width: 100%;
+      background-color: #2e2e2f !important;
+      border-radius: 12px !important;
+      padding: 24px 24px 16px 24px;
+      display: flex;
+      flex-direction: column;
+      color: #f0f0f1;
+      box-sizing: border-box;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    body.light-theme .thockeebs-footer-card,
+    html.light-theme .thockeebs-footer-card {
+      background-color: #ffffff !important;
+      color: #252526 !important;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .thockeebs-footer-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      width: 100%;
+    }
+    @media (max-width: 768px) {
+      .thockeebs-footer-nav {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+    .thockeebs-footer-column {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+    .thockeebs-footer-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      margin-bottom: 14px;
+    }
+    body.light-theme .thockeebs-footer-head {
+      border-bottom-color: rgba(0, 0, 0, 0.1) !important;
+    }
+    .thockeebs-footer-heading {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: inherit;
+    }
+    .thockeebs-footer-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: currentColor;
+      display: inline-block;
+    }
+    .thockeebs-footer-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      padding: 2px 6px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      color: inherit;
+      opacity: 0.8;
+      line-height: 14px;
+    }
+    body.light-theme .thockeebs-footer-num {
+      border-color: rgba(0, 0, 0, 0.2) !important;
+    }
+    .thockeebs-footer-links {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: center;
+    }
+    .thockeebs-footer-link {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: inherit;
+      text-decoration: none;
+      opacity: 0.85;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: opacity 0.15s ease;
+    }
+    .thockeebs-footer-link:hover {
+      opacity: 1;
+    }
+    .thockeebs-external-arrow {
+      font-size: 11px;
+      opacity: 0.8;
+    }
+    .thockeebs-footer-brand {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 28px 0 12px 0;
+      user-select: none;
+    }
+    .thockeebs-footer-brand svg {
+      width: 100%;
+      max-width: 1200px;
+      height: auto;
+      display: block;
+    }
+    .thockeebs-footer-bottom {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding-top: 8px;
+    }
+    .thockeebs-footer-credits {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: inherit;
+      opacity: 0.45;
+    }
+  
+
+/* --- CRITICAL: PREVENT CLIPPING OF DROPDOWN IN NAV --- */
+nav,
+nav.framer-yfoBI,
+.framer-yfoBI,
+.framer-1rw6cnj,
+.framer-1miupp3-container,
+.framer-8qYMR,
+.framer-vzzjgp-container,
+.thoc-nav-pill,
+.nav-pill,
+.thoc-header-nav-wrap,
+header.thoc-header {
+  overflow: visible !important;
+}
+
+.thoc-lang-slot {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 0 4px !important;
+  height: 100% !important;
+  overflow: visible !important;
+}
+
+.lang-dropdown-menu {
+  display: none !important;
+  position: absolute !important;
+  top: calc(100% + 8px) !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  background: #2e2e2f !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 8px !important;
+  padding: 4px !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5) !important;
+  z-index: 999999 !important;
+  min-width: 58px !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+
+.lang-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+}
+
+.lang-dropdown-menu.show,
+.thoc-lang-slot:hover .lang-dropdown-menu {
+  display: flex !important;
+}
+
+body.light-theme .lang-dropdown-menu,
+html.light-theme .lang-dropdown-menu {
+  background: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15) !important;
+}
+
+
+
+/* ==========================================================================
+   MOBILE & TABLET FLOATING BOTTOM NAVIGATION SYSTEM
+   ========================================================================== */
+
+.thoc-floating-bottom-dock {
+  position: fixed !important;
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 9999999 !important;
+  width: auto !important;
+  max-width: calc(100vw - 20px) !important;
+  display: flex !important;
+  justify-content: center !important;
+  pointer-events: auto !important;
+}
+
+@media (max-width: 1024px) {
+  body,
+  .order-page-wrapper,
+  .thockeebs-order-main,
+  .specs-container,
+  main {
+    padding-bottom: 96px !important;
+  }
+
+  .thockeebs-footer-wrapper {
+    padding-bottom: 84px !important;
+  }
+
+  .framer-pp1166,
+  .framer-1jxsex,
+  .framer-191rsai,
+  .framer-dab3n6,
+  .framer-1qeblen,
+  .framer-1h3wbzo,
+  .framer-1lqsopg,
+  .framer-ios6cf,
+  .framer-yfoBI .framer-onii75,
+  [data-framer-name="Toggle"].framer-pp1166,
+  .framer-vzzjgp-container .ssr-variant:not(:first-child) {
+    display: none !important;
+  }
+
+  .framer-vzzjgp-container .ssr-variant:first-child {
+    display: block !important;
+  }
+
+  .framer-vzzjgp-container .framer-1miupp3-container,
+  .framer-vzzjgp-container .framer-8qYMR {
+    display: none !important;
+  }
+
+  .framer-yfoBI.framer-1rw6cnj {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 12px 16px !important;
+    justify-content: space-between !important;
+    overflow: visible !important;
+  }
+
+  .framer-1rketen {
+    display: flex !important;
+    overflow: visible !important;
+  }
+
+  .thoc-floating-bottom-dock .framer-8qYMR,
+  .thoc-floating-bottom-dock .thoc-nav-pill,
+  .thoc-floating-bottom-dock .nav-pill {
+    background: rgba(30, 30, 32, 0.88) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+    border-radius: 9999px !important;
+    padding: 4px 6px !important;
+    gap: 3px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: auto !important;
+    margin: 0 !important;
+    overflow: visible !important;
+  }
+
+  body.light-theme .thoc-floating-bottom-dock .framer-8qYMR,
+  html.light-theme .thoc-floating-bottom-dock .framer-8qYMR,
+  body.light-theme .thoc-floating-bottom-dock .thoc-nav-pill,
+  html.light-theme .thoc-floating-bottom-dock .thoc-nav-pill,
+  body.light-theme .thoc-floating-bottom-dock .nav-pill,
+  html.light-theme .thoc-floating-bottom-dock .nav-pill {
+    background: rgba(255, 255, 255, 0.92) !important;
+    border-color: rgba(0, 0, 0, 0.12) !important;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .thoc-floating-bottom-dock .framer-1recba8-container,
+  .thoc-floating-bottom-dock .framer-1se3ac9-container,
+  .thoc-floating-bottom-dock .framer-wi4r6e-container,
+  .thoc-floating-bottom-dock .framer-zny3c4-container,
+  .thoc-floating-bottom-dock .thoc-nav-link,
+  .thoc-floating-bottom-dock .nav-link {
+    height: 34px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .thoc-floating-bottom-dock .framer-8qYMR a,
+  .thoc-floating-bottom-dock .thoc-nav-link,
+  .thoc-floating-bottom-dock .nav-link {
+    padding: 6px 11px !important;
+    --ewxefe: 6px 11px 6px 11px !important;
+    font-size: 11px !important;
+    border-radius: 9999px !important;
+    white-space: nowrap !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .thoc-floating-bottom-dock .thoc-lang-slot {
+    height: 34px !important;
+    padding: 0 2px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+
+  .thoc-floating-bottom-dock .lang-toggle-btn {
+    padding: 3px 6px !important;
+    font-size: 10px !important;
+    border-radius: 9999px !important;
+    line-height: 12px !important;
+  }
+
+  .thoc-floating-bottom-dock .lang-dropdown-menu {
+    top: auto !important;
+    bottom: calc(100% + 10px) !important;
+    box-shadow: 0 -10px 28px rgba(0, 0, 0, 0.5) !important;
+  }
+
+  .thoc-floating-bottom-dock .lang-dropdown-menu::before {
+    top: auto !important;
+    bottom: -12px !important;
+    height: 12px !important;
+  }
+
+  .thoc-floating-bottom-dock .framer-mlk3nv,
+  .thoc-floating-bottom-dock .thoc-theme-toggle-slot {
+    height: 34px !important;
+    padding: 0 4px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .thoc-floating-bottom-dock .theme-toggle-btn {
+    width: 32px !important;
+    height: 18px !important;
+  }
+
+  .thoc-floating-bottom-dock .theme-toggle-btn span {
+    width: 14px !important;
+    height: 14px !important;
+  }
+
+  body.light-theme .thoc-floating-bottom-dock .theme-toggle-btn span,
+  html.light-theme .thoc-floating-bottom-dock .theme-toggle-btn span {
+    left: 16px !important;
+  }
+
+  .order-layout-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+
+  .order-summary-column {
+    position: static !important;
+    width: 100% !important;
+  }
+
+  .order-hero-head {
+    margin-bottom: 28px !important;
+  }
+
+  .order-title {
+    font-size: clamp(1.8rem, 6.5vw, 2.5rem) !important;
+  }
+
+  .order-subtitle {
+    font-size: 13.5px !important;
+    padding: 0 8px !important;
+  }
+
+  .order-card-section {
+    padding: 18px 16px !important;
+  }
+
+  .order-presets-row {
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+  }
+
+  .order-preset-btn {
+    flex: 1 1 calc(33.333% - 6px) !important;
+    min-width: 80px !important;
+    padding: 8px 4px !important;
+    font-size: 11px !important;
+  }
+
+  .order-inputs-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .framer-9dzp8s {
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+
+  .framer-9dzp8s > .ssr-variant {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    min-width: 100% !important;
+  }
+
+  .framer-Dr0Bl,
+  .framer-1p3ue85 {
+    height: auto !important;
+    min-height: auto !important;
+    padding-top: 60px !important;
+  }
+
+  .thoc-header {
+    padding: 12px 16px !important;
+  }
+
+  .thoc-header-nav-wrap {
+    justify-content: space-between !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .thoc-floating-bottom-dock .framer-8qYMR a,
+  .thoc-floating-bottom-dock .thoc-nav-link,
+  .thoc-floating-bottom-dock .nav-link {
+    padding: 5px 8px !important;
+    --ewxefe: 5px 8px 5px 8px !important;
+    font-size: 10px !important;
+  }
+
+  .thoc-floating-bottom-dock .lang-toggle-btn {
+    padding: 2px 5px !important;
+    font-size: 9.5px !important;
+  }
+
+  .thoc-floating-bottom-dock .theme-toggle-btn {
+    width: 28px !important;
+    height: 16px !important;
+  }
+
+  .thoc-floating-bottom-dock .theme-toggle-btn span {
+    width: 12px !important;
+    height: 12px !important;
+  }
+
+  body.light-theme .thoc-floating-bottom-dock .theme-toggle-btn span,
+  html.light-theme .thoc-floating-bottom-dock .theme-toggle-btn span {
+    left: 14px !important;
+  }
+}
+</style>
+</head>
+<body class="dark-theme">
+
+  <div class="order-page-wrapper">
+    
+    <!-- TOP FLOATING NAVBAR -->
+    <header class="thoc-nav-wrap">
+      <div class="thoc-nav-container">
+        
+        <!-- Left Home Icon -->
+        <div class="thoc-nav-left">
+          <a href="index.html" class="thoc-home-btn" aria-label="Home">
+            <svg width="20" height="20" viewBox="0 0 21 20" fill="currentColor">
+              <path d="M 20.461 15.508 L 17.32 6.884 C 17.316 6.872 17.312 6.86 17.306 6.849 L 17.303 6.841 C 17.297 6.826 17.289 6.811 17.28 6.796 L 17.274 6.786 L 17.252 6.753 L 17.243 6.741 C 17.225 6.716 17.205 6.692 17.182 6.67 L 17.177 6.663 C 17.151 6.639 17.123 6.617 17.093 6.597 L 17.087 6.597 C 17.037 6.566 16.983 6.543 16.927 6.529 L 15.984 6.277 L 14.307 1.666 C 14.295 1.627 14.279 1.589 14.259 1.553 L 14.256 1.548 C 14.172 1.404 14.028 1.304 13.863 1.276 L 9.173 0.02 C 9.03 -0.019 8.878 0 8.748 0.073 L 3.338 3.109 L 3.335 3.109 C 3.316 3.12 3.297 3.132 3.279 3.146 L 3.264 3.158 C 3.249 3.171 3.234 3.184 3.219 3.198 L 3.209 3.207 C 3.193 3.223 3.178 3.241 3.164 3.26 L 3.154 3.275 C 3.14 3.294 3.126 3.316 3.115 3.338 C 3.103 3.359 3.094 3.381 3.085 3.404 L 3.085 3.408 L 0.034 11.784 C -0.045 12.002 0.016 12.245 0.188 12.4 L 8.45 19.856 L 8.461 19.866 C 8.471 19.872 8.478 19.88 8.487 19.886 C 8.492 19.891 8.498 19.895 8.505 19.899 C 8.513 19.905 8.522 19.911 8.531 19.916 L 8.551 19.928 L 8.577 19.943 L 8.605 19.955 L 8.626 19.965 C 8.665 19.979 8.704 19.989 8.745 19.996 L 8.764 19.996 C 8.784 19.996 8.806 20 8.826 20 L 8.831 20 C 8.893 20 8.954 19.99 9.012 19.97 L 20.105 16.238 C 20.251 16.19 20.371 16.084 20.437 15.946 C 20.504 15.807 20.511 15.648 20.458 15.504 L 20.461 15.509 Z M 13.846 3.722 L 14.645 5.916 L 13.35 5.569 Z M 9.102 1.176 L 13.067 2.239 L 12.107 5.823 C 12.025 6.126 12.205 6.437 12.507 6.519 L 15.403 7.296 L 16.092 7.48 L 15.031 11.437 L 10.319 14.082 L 4.396 3.819 L 9.103 1.176 Z M 3.733 4.944 L 9.498 14.929 L 8.534 18.399 L 1.232 11.813 Z M 9.669 18.555 L 10.596 15.232 L 15.799 12.311 C 15.933 12.236 16.031 12.11 16.07 11.962 L 16.873 8.965 L 19.196 15.349 Z"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Center Nav Pill -->
+        <nav class="thoc-nav-pill">
+          <div class="thoc-lang-slot" style="position:relative;display:flex;align-items:center;padding:0 4px;height:100%;">
+  <button type="button" class="lang-toggle-btn" aria-label="Select language" aria-expanded="false">
+    <span class="lang-current-label">EN</span>
+    <svg class="lang-chevron" width="8" height="8" viewBox="0 0 10 10" fill="currentColor" style="margin-left:4px;display:inline-block;transition:transform 0.2s;"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+  </button>
+  <div class="lang-dropdown-menu">
+    <button type="button" class="lang-opt-btn" data-lang="en">EN</button>
+    <button type="button" class="lang-opt-btn" data-lang="id">ID</button>
+  </div>
+</div>
+          <a href="index.html" class="thoc-nav-link" data-i18n="nav.home">Home</a>
+          <a href="works.html" class="thoc-nav-link" data-i18n="nav.works">Works</a>
+          <a href="order.html" class="thoc-nav-link active" data-i18n="nav.order">Order</a>
+          <a href="about.html" class="thoc-nav-link" data-i18n="nav.about">About</a>
+          
+          <div class="thoc-theme-toggle-slot">
+            <button type="button" aria-pressed="false" class="theme-toggle-btn" aria-label="Toggle theme">
+              <span>
+                <svg fill="#252526" width="12" height="12" viewBox="0 0 16 16">
+                  <path d="M2.34316 13.6569C5.46736 16.781 10.5327 16.781 13.6569 13.6569L2.34316 2.34315C-0.78103 5.46734 -0.78103 10.5327 2.34316 13.6569Z"/>
+                </svg>
+              </span>
+            </button>
+          </div>
+        </nav>
+
+        <!-- Right Clock -->
+        <div class="thoc-nav-meta">
+          Bandung, Indonesia. <span id="current-time">Nov 10</span>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- MAIN ORDER CONTENT -->
+    <main class="thockeebs-order-main">
+      
+      <!-- HERO HEADER -->
+      <div class="order-hero-head">
+        <h1 class="order-title" data-i18n="order.hero.title">Order Tuning & Modding</h1>
+        <p class="order-subtitle" data-i18n="order.hero.subtitle">Tentukan jumlah switch, paket pelumas Krytox, dan opsi modifikasi keyboard Anda. Estimasi biaya serta turnaround time terhitung otomatis secara realtime.</p>
+      </div>
+
+      <!-- INTERACTIVE ORDER GRID -->
+      <div class="order-layout-grid">
+        
+        <!-- LEFT COLUMN: Form & Configurator -->
+        <form id="preorder-form" class="order-form-column">
+          
+          <!-- STEP 1: SWITCH COUNT -->
+          <div class="order-card-section">
+            <div class="order-section-header">
+              <span class="order-step-num">01</span>
+              <div class="order-section-title-wrap">
+                <h3 class="order-section-title" data-i18n="order.step1.title">Jumlah Switch Keyboard</h3>
+                <p class="order-section-desc" data-i18n="order.step1.desc">Pilih preset layout keyboard Anda atau atur slider jumlah switch di bawah ini.</p>
+              </div>
+            </div>
+
+            <div class="order-presets-row">
+              <button type="button" class="order-preset-btn" data-preset-count="61">60% (61 pcs)</button>
+              <button type="button" class="order-preset-btn active" data-preset-count="68">65% (68 pcs)</button>
+              <button type="button" class="order-preset-btn" data-preset-count="82">75% (82 pcs)</button>
+              <button type="button" class="order-preset-btn" data-preset-count="87">TKL (87 pcs)</button>
+              <button type="button" class="order-preset-btn" data-preset-count="104">Full Size (104 pcs)</button>
+            </div>
+
+            <div class="order-slider-wrap">
+              <div class="order-slider-meta">
+                <span class="order-slider-label" data-i18n="order.step1.sliderlabel">Jumlah Switch:</span>
+                <span class="order-slider-val" id="switch-count-display">68 Switch</span>
+              </div>
+              <input type="range" id="switch-slider" min="20" max="120" value="68" step="1" class="order-range-input">
+              <div class="order-slider-ticks">
+                <span>20</span>
+                <span>40</span>
+                <span>60</span>
+                <span>80</span>
+                <span>100</span>
+                <span>120</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 2: LUBING PACKAGE -->
+          <div class="order-card-section">
+            <div class="order-section-header">
+              <span class="order-step-num">02</span>
+              <div class="order-section-title-wrap">
+                <h3 class="order-section-title" data-i18n="order.step2.title">Pilih Paket Lube Switch</h3>
+                <p class="order-section-desc" data-i18n="order.step2.desc">Setiap switch dibongkar teliti, dibersihkan ultrasonic, dan dilumasi presisi dengan kuas.</p>
+              </div>
+            </div>
+
+            <div class="order-packages-grid" style="grid-template-columns: 1fr;">
+              <!-- Package 1: Standar -->
+              <div class="order-choice-card active" data-package-card="standard" style="cursor: default;">
+                <div class="order-choice-top">
+                  <span class="order-choice-tag">READY STOCK</span>
+                  <span class="order-choice-price">Rp 2.000 <small>/pc</small></span>
+                </div>
+                <h4 class="order-choice-title" data-i18n="order.step2.pkgtitle">Lube Standar</h4>
+                <p class="order-choice-desc" data-i18n="order.step2.pkgdesc">Stem slider, bottom housing rails, dan spring bag-lubing dengan Krytox 205g0 &amp; GPL 105.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3: LUBE FORMULA SELECTION -->
+          <div class="order-card-section">
+            <div class="order-section-header">
+              <span class="order-step-num">03</span>
+              <div class="order-section-title-wrap">
+                <h3 class="order-section-title" data-i18n="order.step3.title">Pilihan Formula Lube</h3>
+                <p class="order-section-desc" data-i18n="order.step3.desc">Pilih karakter akustik dan feel ketukan yang Anda inginkan.</p>
+              </div>
+            </div>
+
+            <select id="lube-type-select" class="order-custom-select">
+              <option value="Krytox GPL 205g0 + GPL 105 (Rekomendasi — Deep Acoustic Thock)">Krytox GPL 205g0 + GPL 105 (Rekomendasi — Deep Acoustic Thock)</option>
+              <option value="Krytox GPL 205g0 Full (Stem, Housing &amp; Spring)">Krytox GPL 205g0 Full (Stem, Housing &amp; Spring)</option>
+              <option value="Krytox GPL 105 (Oil Lubing)">Krytox GPL 105 (Oil Lubing)</option>
+            </select>
+          </div>
+
+          <!-- STEP 4: STABILIZER TUNING -->
+          <div class="order-card-section">
+            <div class="order-section-header">
+              <span class="order-step-num">04</span>
+              <div class="order-section-title-wrap">
+                <h3 class="order-section-title" data-i18n="order.step4.title">Tuning Stabilizer Keyboard</h3>
+                <p class="order-section-desc" data-i18n="order.step4.desc">Wire balancing presisi di atas ceramic surface, clipping, and rattle-free dampening.</p>
+              </div>
+            </div>
+
+            <div class="order-stabs-grid">
+              <div class="order-choice-card active" data-stabs-card="plate">
+                <div class="order-choice-top">
+                  <span class="order-choice-tag">FULLSET</span>
+                  <span class="order-choice-price">Rp 35.000</span>
+                </div>
+                <h4 class="order-choice-title">Plate-Mount Stabs</h4>
+                <p class="order-choice-desc">1 Board Fullset (Wire balancing, stem clipping, housing lube Krytox 205g0 + XHT-BDZ wire).</p>
+              </div>
+
+              <div class="order-choice-card" data-stabs-card="screwin">
+                <div class="order-choice-top">
+                  <span class="order-choice-tag">FULLSET</span>
+                  <span class="order-choice-price">Rp 45.000</span>
+                </div>
+                <h4 class="order-choice-title">Screw-In / PCB Stabs</h4>
+                <p class="order-choice-desc">1 Board Fullset Screw-In (Precision wire straightening, washer dampening, and high-temp grease).</p>
+              </div>
+
+              <div class="order-choice-card" data-stabs-card="none">
+                <div class="order-choice-top">
+                  <span class="order-choice-tag">SKIP</span>
+                  <span class="order-choice-price">Rp 0</span>
+                </div>
+                <h4 class="order-choice-title" data-i18n="order.step4.none.title">Tanpa Stabilizer</h4>
+                <p class="order-choice-desc" data-i18n="order.step4.none.desc">Hanya kirim switch lepasan tanpa board atau stabilizer keyboard.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 5: EXTRA ADD-ON MODS -->
+          <div class="order-card-section">
+            <div class="order-section-header">
+              <span class="order-step-num">05</span>
+              <div class="order-section-title-wrap">
+                <h3 class="order-section-title" data-i18n="order.step5.title">Extra Modding (Opsional)</h3>
+                <p class="order-section-desc" data-i18n="order.step5.desc">Modifikasi akustik tambahan untuk kesempurnaan suara dan feeling ketukan.</p>
+              </div>
+            </div>
+
+            <div class="order-addons-list">
+              <label class="order-checkbox-card">
+                <input type="checkbox" id="mod-holee" checked class="order-checkbox">
+                <div class="order-checkbox-info">
+                  <div class="order-checkbox-title-row">
+                    <span class="order-checkbox-name" data-i18n="order.step5.holee.title">Holee Mod Anti-Rattle Fullset</span>
+                    <span class="order-checkbox-cost">+Rp 10.000</span>
+                  </div>
+                  <p class="order-checkbox-desc" data-i18n="order.step5.holee.desc">Pemasangan micropore/teflon strips di dalam stem slider stabs untuk spacebar bebas rattle.</p>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- STEP 6: CUSTOMER & KEYBOARD INFO -->
+          <div class="order-card-section">
+            <div class="order-section-header">
+              <span class="order-step-num">06</span>
+              <div class="order-section-title-wrap">
+                <h3 class="order-section-title" data-i18n="order.step6.title">Informasi Pemesan &amp; Keyboard</h3>
+                <p class="order-section-desc" data-i18n="order.step6.desc">Data detail untuk pelabelan workshop dan konfirmasi WhatsApp.</p>
+              </div>
+            </div>
+
+            <div class="order-inputs-grid">
+              <div class="order-field">
+                <label for="cust-name" class="order-label" data-i18n="order.step6.name">Nama Lengkap *</label>
+                <input type="text" id="cust-name" required data-i18n-ph="order.ph.name" placeholder="Contoh: Dimas Arya" class="order-input">
+              </div>
+
+              <div class="order-field">
+                <label for="cust-phone" class="order-label" data-i18n="order.step6.phone">Nomor WhatsApp Aktif *</label>
+                <input type="tel" id="cust-phone" required data-i18n-ph="order.ph.phone" placeholder="Contoh: 081234567890" class="order-input">
+              </div>
+
+              <div class="order-field">
+                <label for="cust-keyboard-model" class="order-label" data-i18n="order.step6.keyboard">Tipe Keyboard</label>
+                <input type="text" id="cust-keyboard-model" data-i18n-ph="order.ph.keyboard" placeholder="Contoh: Aula F75 / Leobog Hi75 / Zoom75" class="order-input">
+              </div>
+
+              <div class="order-field">
+                <label for="cust-switch-model" class="order-label" data-i18n="order.step6.switch">Merk &amp; Tipe Switch *</label>
+                <input type="text" id="cust-switch-model" required data-i18n-ph="order.ph.switch" placeholder="Contoh: Gateron Milky Yellow / Vertex V1" class="order-input">
+              </div>
+
+              <div class="order-field full-width">
+                <label for="cust-notes" class="order-label" data-i18n="order.step6.notes">Catatan Suara / Custom Request (Opsional)</label>
+                <input type="text" id="cust-notes" data-i18n-ph="order.ph.notes" placeholder="Contoh: Pengen acoustic profile deep thock dan spacebar empuk zero-rattle" class="order-input">
+              </div>
+
+              <div class="order-field full-width">
+                <label for="cust-address" class="order-label" data-i18n="order.step6.address">Alamat Pengiriman Balik (Untuk estimasi ongkir)</label>
+                <textarea id="cust-address" rows="2" data-i18n-ph="order.ph.address" placeholder="Nama Jalan, Kelurahan, Kecamatan, Kota, Kode Pos" class="order-input order-textarea"></textarea>
+              </div>
+            </div>
+          </div>
+
+        </form>
+
+        <!-- RIGHT COLUMN: Sticky Summary & Checkout Card -->
+        <div class="order-summary-column">
+          <div class="order-summary-card">
+            
+            <div class="summary-top-head">
+              <div class="summary-batch-pill">
+                <span class="summary-batch-dot"></span>
+                <span data-i18n="order.batch.badge">• BATCH #14 • PRE-ORDER OPEN</span>
+              </div>
+              <h3 class="summary-title" data-i18n="order.summary.title">Ringkasan Pesanan</h3>
+            </div>
+
+            <div class="summary-items-list">
+              <!-- Switch lubing line -->
+              <div class="summary-line">
+                <div class="summary-line-left">
+                  <span class="summary-line-name" id="sum-switch-count">68 Switch (Lube Standar)</span>
+                  <span class="summary-line-meta" id="sum-switch-rate">@ Rp 2.000</span>
+                </div>
+                <span class="summary-line-val" id="sum-switch-total">Rp 136.000</span>
+              </div>
+
+              <!-- Stabilizer tuning line -->
+              <div class="summary-line">
+                <div class="summary-line-left">
+                  <span class="summary-line-name">Tuning Stabilizer</span>
+                  <span class="summary-line-meta" id="sum-stabs-detail">Fullset Plate-Mount</span>
+                </div>
+                <span class="summary-line-val" id="sum-stabs-total">Rp 35.000</span>
+              </div>
+
+              <!-- Add-ons line -->
+              <div class="summary-line" id="sum-addons-row">
+                <div class="summary-line-left">
+                  <span class="summary-line-name">Extra Modding</span>
+                  <span class="summary-line-meta" id="sum-addons-detail">Holee Mod Anti-Rattle</span>
+                </div>
+                <span class="summary-line-val" id="sum-addons-total">Rp 10.000</span>
+              </div>
+            </div>
+
+            <!-- Total Estimasi -->
+            <div class="summary-total-box">
+              <div class="summary-total-label-wrap">
+                <span class="summary-total-label" data-i18n="order.summary.total">Total Estimasi</span>
+                <span class="summary-total-subtext" data-i18n="order.summary.subtext">Belum termasuk ongkir balik</span>
+              </div>
+              <div class="summary-total-amount" id="sum-grand-total">Rp 181.000</div>
+            </div>
+
+            <!-- Turnaround Badge -->
+            <div class="summary-turnaround-box" id="eta-detail-text">
+              Switch dibawah 100 pcs selesai teliti dalam <strong>0.5 – 1 Hari</strong> sesuai katalog ThocKeebs.
+            </div>
+
+            <!-- Submit CTA -->
+            <button type="submit" form="preorder-form" class="order-submit-btn">
+              <span data-i18n="order.summary.cta">Kirim Booking via WhatsApp</span>
+              <span class="order-submit-arrow">→</span>
+            </button>
+
+            <!-- Perks list -->
+            <div class="summary-perks">
+              <div class="summary-perk-item">
+                <span class="perk-check">✓</span>
+                <span data-i18n="order.summary.perk1">Free video/sound test sebelum dikirim balik</span>
+              </div>
+              <div class="summary-perk-item">
+                <span class="perk-check">✓</span>
+                <span data-i18n="order.summary.perk2">Packing ekstra bubble wrap tebal anti rusak</span>
+              </div>
+              <div class="summary-perk-item">
+                <span class="perk-check">✓</span>
+                <span data-i18n="order.summary.perk3">Konsultasi gratis sound profile &amp; switch tuning</span>
+              </div>
+            </div>
+
+            <!-- Direct Chat Link -->
+            <div class="summary-direct-chat">
+              <a href="https://wa.me/6285722333327?text=Halo%20Admin%20ThocKeebs%2C%20mau%20konsultasi%20jasa%20lube%20keyboard" target="_blank" rel="noopener noreferrer" class="summary-chat-link">
+                <span data-i18n="order.summary.chat">Mau konsultasi dulu tanpa form? Chat Admin WhatsApp ↗</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- RUNNING TEXT MARQUEE -->
+    <div class="thockeebs-ticker-wrapper" aria-hidden="true">
+      <div class="thockeebs-ticker-track">
+        <div class="thockeebs-ticker-content">
+          <span>Every keyboard should have a story to tell.</span>
+          <span>Every keyboard should have a story to tell.</span>
+          <span>Every keyboard should have a story to tell.</span>
+          <span>Every keyboard should have a story to tell.</span>
+        </div>
+        <div class="thockeebs-ticker-content" aria-hidden="true">
+          <span>Every keyboard should have a story to tell.</span>
+          <span>Every keyboard should have a story to tell.</span>
+          <span>Every keyboard should have a story to tell.</span>
+          <span>Every keyboard should have a story to tell.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLEAN FOOTER -->
+    <footer class="thockeebs-footer-wrapper">
+      <div class="thockeebs-footer-card">
+        <div class="thockeebs-footer-nav">
+          <div class="thockeebs-footer-column">
+            <div class="thockeebs-footer-head">
+              <div class="thockeebs-footer-heading">
+                <span class="thockeebs-footer-dot"></span>
+                <span data-i18n="footer.info">Info</span>
+              </div>
+              <span class="thockeebs-footer-num">01</span>
+            </div>
+            <div class="thockeebs-footer-links">
+              <a href="works.html" class="thockeebs-footer-link">Works</a>
+              <a href="about.html" class="thockeebs-footer-link">About</a>
+              <a href="order.html" class="thockeebs-footer-link">Order</a>
+            </div>
+          </div>
+
+          <div class="thockeebs-footer-column">
+            <div class="thockeebs-footer-head">
+              <div class="thockeebs-footer-heading">
+                <span class="thockeebs-footer-dot"></span>
+                <span data-i18n="footer.social">Social</span>
+              </div>
+              <span class="thockeebs-footer-num">02</span>
+            </div>
+            <div class="thockeebs-footer-links">
+              <a href="https://tiktok.com/@itsmickeymontana" target="_blank" rel="noopener noreferrer" class="thockeebs-footer-link">
+                <span>TikTok</span>
+                <span class="thockeebs-external-arrow">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="thockeebs-footer-brand">
+          <svg viewBox="0 0 1200 280" xmlns="http://www.w3.org/2000/svg">
+            <text x="50%" y="78%" text-anchor="middle" font-family="'Inter', -apple-system, BlinkMacSystemFont, sans-serif" font-weight="800" font-size="230" letter-spacing="-6px" fill="currentColor">thockeebs</text>
+          </svg>
+        </div>
+
+        <div class="thockeebs-footer-bottom">
+          <span class="thockeebs-footer-credits" data-i18n="footer.rights">ALL RIGHTS RESERVED © 2026 THOCKEEBS</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ORDER CALCULATOR LOGIC & THEME ENGINE -->
+  <script src="config.js"></script>
+  <script id="thockeebs-theme-engine">
+  (function() {
+    function applyTheme(theme) {
+      var isLight = theme === 'light';
+      if (isLight) {
+        document.documentElement.classList.add('light-theme');
+        document.documentElement.classList.remove('dark-theme');
+        document.body.classList.add('light-theme');
+        document.body.classList.remove('dark-theme');
+        document.documentElement.setAttribute('toggle-theme', 'light');
+        document.body.setAttribute('toggle-theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark-theme');
+        document.documentElement.classList.remove('light-theme');
+        document.body.classList.add('dark-theme');
+        document.body.classList.remove('light-theme');
+        document.documentElement.setAttribute('toggle-theme', 'dark');
+        document.body.setAttribute('toggle-theme', 'dark');
+      }
+
+      var buttons = document.querySelectorAll('.theme-toggle-btn');
+      buttons.forEach(function(btn) {
+        btn.setAttribute('aria-pressed', isLight ? 'true' : 'false');
+        btn.style.background = isLight ? '#252526' : 'rgb(60, 60, 61)';
+        var knob = btn.querySelector('span');
+        if (knob) {
+          knob.style.left = isLight ? '18px' : '2px';
+          knob.style.background = '#FFFFFF';
+        }
+      });
+    }
+
+    var savedTheme = localStorage.getItem('thockeebs-theme') || 'dark';
+    applyTheme(savedTheme);
+
+    document.addEventListener('DOMContentLoaded', function() {
+      applyTheme(localStorage.getItem('thockeebs-theme') || 'dark');
+    });
+
+    document.addEventListener('click', function(e) {
+      var toggleBtn = e.target.closest('.theme-toggle-btn');
+      if (toggleBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        var current = (document.documentElement.classList.contains('light-theme') || document.body.classList.contains('light-theme')) ? 'light' : 'dark';
+        var next = current === 'light' ? 'dark' : 'light';
+        localStorage.setItem('thockeebs-theme', next);
+        applyTheme(next);
+      }
+    }, true);
+  })();
+  </script>
+
+  <script id="thockeebs-calculator-engine">
+  (function() {
+    var prices = {
+      switchLubeStandard: 2000,
+      stabsPlateMount: 35000,
+      stabsScrewIn: 45000,
+      holeeModAddon: 10000
+    };
+
+    var switchCount = 68;
+    var selectedPackage = 'standard';
+    var selectedLubeType = 'Krytox GPL 205g0 + GPL 105 (Rekomendasi — Deep Acoustic Thock)';
+    var selectedStabs = 'plate';
+    var holeeModActive = true;
+
+    var slider = document.getElementById('switch-slider');
+    var countDisplay = document.getElementById('switch-count-display');
+    var presetButtons = document.querySelectorAll('[data-preset-count]');
+    var packageCards = document.querySelectorAll('[data-package-card]');
+    var lubeTypeSelect = document.getElementById('lube-type-select');
+    var stabsCards = document.querySelectorAll('[data-stabs-card]');
+    var holeeCheck = document.getElementById('mod-holee');
+
+    var summarySwitchCount = document.getElementById('sum-switch-count');
+    var summarySwitchRate = document.getElementById('sum-switch-rate');
+    var summarySwitchTotal = document.getElementById('sum-switch-total');
+    var summaryStabsDetail = document.getElementById('sum-stabs-detail');
+    var summaryStabsTotal = document.getElementById('sum-stabs-total');
+    var summaryAddonsRow = document.getElementById('sum-addons-row');
+    var summaryAddonsDetail = document.getElementById('sum-addons-detail');
+    var summaryAddonsTotal = document.getElementById('sum-addons-total');
+    var summaryGrandTotal = document.getElementById('sum-grand-total');
+    var etaDetailText = document.getElementById('eta-detail-text');
+
+    function calculate() {
+      var ratePerSwitch = prices.switchLubeStandard;
+      var currentLang = (window.ThocLang && window.ThocLang.get) ? window.ThocLang.get() : "id";
+      var isEn = currentLang === "en";
+      var packageName = isEn ? "Standard Lube" : "Lube Standar";
+      var switchTotal = switchCount * ratePerSwitch;
+
+      var stabsPrice = 0;
+      var stabsName = isEn ? "No Stabilizer Tuning" : "Tanpa Tuning Stabilizer";
+      if (selectedStabs === 'plate') {
+        stabsPrice = prices.stabsPlateMount;
+        stabsName = "Fullset Plate-Mount";
+      } else if (selectedStabs === 'screwin') {
+        stabsPrice = prices.stabsScrewIn;
+        stabsName = "Fullset Screw-In / PCB";
+      }
+
+      var addonsTotal = 0;
+      var addonNames = [];
+      if (selectedStabs !== 'none') {
+        if (holeeModActive) {
+          addonsTotal += prices.holeeModAddon;
+          addonNames.push("Holee Mod Anti-Rattle");
+        }
+      }
+
+      var grandTotal = switchTotal + stabsPrice + addonsTotal;
+      var etaString = switchCount <= 100 ? (isEn ? "0.5 – 1 Day" : "0.5 – 1 Hari") : (isEn ? "1 – 2 Business Days" : "1 – 2 Hari Kerja");
+
+      if (countDisplay) countDisplay.textContent = switchCount + " Switch";
+      if (summarySwitchCount) summarySwitchCount.textContent = switchCount + " Switch (" + packageName + ")";
+      if (summarySwitchRate) summarySwitchRate.textContent = "@ Rp " + ratePerSwitch.toLocaleString('id-ID');
+      if (summarySwitchTotal) summarySwitchTotal.textContent = "Rp " + switchTotal.toLocaleString('id-ID');
+
+      if (summaryStabsDetail) summaryStabsDetail.textContent = stabsName;
+      if (summaryStabsTotal) summaryStabsTotal.textContent = "Rp " + stabsPrice.toLocaleString('id-ID');
+
+      if (summaryAddonsRow) {
+        if (addonNames.length > 0) {
+          summaryAddonsRow.style.display = 'flex';
+          if (summaryAddonsDetail) summaryAddonsDetail.textContent = addonNames.join(" + ");
+          if (summaryAddonsTotal) summaryAddonsTotal.textContent = "Rp " + addonsTotal.toLocaleString('id-ID');
+        } else {
+          summaryAddonsRow.style.display = 'none';
+        }
+      }
+
+      if (summaryGrandTotal) summaryGrandTotal.textContent = "Rp " + grandTotal.toLocaleString('id-ID');
+      if (etaDetailText) {
+        if (isEn) {
+          etaDetailText.innerHTML = switchCount <= 100
+            ? 'Switches under 100 pcs completed with precision in <strong>0.5 – 1 Day</strong> according to ThocKeebs catalog.'
+            : 'Switches over 100 pcs completed with precision in <strong>1 – 2 Business Days</strong>.';
+        } else {
+          etaDetailText.innerHTML = switchCount <= 100
+            ? 'Switch dibawah 100 pcs selesai teliti dalam <strong>0.5 – 1 Hari</strong> sesuai katalog ThocKeebs.'
+            : 'Switch diatas 100 pcs selesai teliti dalam <strong>1 – 2 Hari Kerja</strong>.';
+        }
+      }
+
+      return {
+        switchCount: switchCount,
+        packageName: packageName,
+        ratePerSwitch: ratePerSwitch,
+        switchTotal: switchTotal,
+        selectedLubeType: selectedLubeType,
+        selectedStabs: selectedStabs,
+        stabsName: stabsName,
+        stabsPrice: stabsPrice,
+        addonNames: addonNames,
+        addonsTotal: addonsTotal,
+        grandTotal: grandTotal,
+        etaString: etaString
+      };
+    }
+
+    function syncPresetButtons(count) {
+      presetButtons.forEach(function(btn) {
+        var pCount = parseInt(btn.getAttribute('data-preset-count'), 10);
+        if (pCount === count) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    if (slider) {
+      function onSliderChange(e) {
+        switchCount = parseInt(e.target.value, 10);
+        syncPresetButtons(switchCount);
+        calculate();
+      }
+      slider.addEventListener('input', onSliderChange);
+      slider.addEventListener('change', onSliderChange);
+    }
+
+    presetButtons.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        presetButtons.forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        switchCount = parseInt(btn.getAttribute('data-preset-count'), 10);
+        if (slider) slider.value = switchCount;
+        calculate();
+      });
+    });
+
+    packageCards.forEach(function(card) {
+      card.addEventListener('click', function() {
+        packageCards.forEach(function(c) { c.classList.remove('active'); });
+        card.classList.add('active');
+        selectedPackage = card.getAttribute('data-package-card');
+        calculate();
+      });
+    });
+
+    if (lubeTypeSelect) {
+      lubeTypeSelect.addEventListener('change', function(e) {
+        selectedLubeType = e.target.value;
+        calculate();
+      });
+    }
+
+    stabsCards.forEach(function(card) {
+      card.addEventListener('click', function() {
+        stabsCards.forEach(function(c) { c.classList.remove('active'); });
+        card.classList.add('active');
+        selectedStabs = card.getAttribute('data-stabs-card');
+        calculate();
+      });
+    });
+
+    if (holeeCheck) {
+      holeeCheck.addEventListener('change', function(e) {
+        holeeModActive = e.target.checked;
+        calculate();
+      });
+    }
+
+    // Form Submit to WhatsApp
+    var orderForm = document.getElementById('preorder-form');
+    if (orderForm) {
+      orderForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var name = document.getElementById('cust-name').value.trim();
+        var phone = document.getElementById('cust-phone').value.trim();
+        var switchModel = document.getElementById('cust-switch-model').value.trim();
+        var keyboardModel = document.getElementById('cust-keyboard-model') ? document.getElementById('cust-keyboard-model').value.trim() : '';
+        var notes = document.getElementById('cust-notes') ? document.getElementById('cust-notes').value.trim() : '';
+        var returnAddress = document.getElementById('cust-address') ? document.getElementById('cust-address').value.trim() : '';
+
+        var orderData = calculate();
+
+        var waLines = [
+          "Halo ThocKeebs, saya ingin booking slot pre-order layanan tuning keyboard:\n",
+          "• Nama: " + name,
+          "• WhatsApp: " + phone,
+          "• Keyboard: " + (keyboardModel || "-"),
+          "• Switch: " + switchModel + " (" + orderData.switchCount + " pcs)",
+          "• Paket Lube: " + orderData.packageName + " (@ Rp " + orderData.ratePerSwitch.toLocaleString('id-ID') + ")",
+          "• Formula Lube: " + orderData.selectedLubeType,
+          "• Tuning Stabilizer: " + orderData.stabsName + " (Rp " + orderData.stabsPrice.toLocaleString('id-ID') + ")",
+          (orderData.addonNames.length ? ("• Extra Mods: " + orderData.addonNames.join(', ') + " (Rp " + orderData.addonsTotal.toLocaleString('id-ID') + ")") : ""),
+          "• Catatan: " + (notes || "-"),
+          "• Alamat Pengiriman Balik: " + (returnAddress || "-"),
+          "\n💰 TOTAL ESTIMASI: Rp " + orderData.grandTotal.toLocaleString('id-ID'),
+          "Turnaround: " + orderData.etaString
+        ];
+        var waMessage = waLines.filter(function(line) { return line !== ""; }).join("\n");
+
+        var waNumber = (window.THOC_CONFIG && window.THOC_CONFIG.whatsappNumber) ? window.THOC_CONFIG.whatsappNumber : '6285722333327';
+        var waUrl = "https://wa.me/" + waNumber + "?text=" + encodeURIComponent(waMessage);
+        window.open(waUrl, '_blank');
+      });
+    }
+    document.addEventListener('thockeebs-lang-changed', function() {
+      calculate();
+    });
+
+    calculate();
+  })();
+  </script>
+  <script src="lang.js"></script>
+</body>
+</html>

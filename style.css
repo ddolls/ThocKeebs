@@ -1,0 +1,1187 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   ThocKeebs x Biipmk (biipmk.com) Design System
+   Iconic Mechanical Keyboard Portfolio & Studio Aesthetic
+   Primary Font: IBM Plex Mono
+   Palette: Monochromatic Pitch Black (#000000), Graphite (#171717), Borders (#2e2e2f)
+   ========================================================================== */
+
+:root {
+  --biip-bg: #000000;
+  --biip-bg-surface: #0e0e10;
+  --biip-card-bg: #171717;
+  --biip-card-hover: #1f1f20;
+  --biip-border: #2e2e2f;
+  --biip-border-light: #3e3e40;
+  --biip-text-main: #ffffff;
+  --biip-text-muted: #8a8a8c;
+  --biip-text-dim: #636365;
+  --biip-accent: #a855f7;
+  --biip-accent-glow: rgba(168, 85, 247, 0.25);
+  --biip-pill-bg: #222224;
+
+  --font-mono: 'IBM Plex Mono', monospace;
+  --site-padding: clamp(1.25rem, 4vw, 3.5rem);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--biip-bg);
+  color: var(--biip-text-main);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-mono);
+  background-color: var(--biip-bg);
+  color: var(--biip-text-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--biip-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--biip-border);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--biip-text-muted);
+}
+
+/* ==========================================================================
+   Biip Floating Top Navigation Bar
+   ========================================================================== */
+.biip-navbar-wrap {
+  position: fixed;
+  top: 1.25rem;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  padding: 0 var(--site-padding);
+  pointer-events: none;
+}
+
+.biip-navbar {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 76rem;
+  background: rgba(23, 23, 23, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--biip-border);
+  border-radius: 9999px;
+  padding: 0.5rem 1.25rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.biip-navbar:hover {
+  border-color: var(--biip-border-light);
+}
+
+.biip-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--biip-text-main);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  letter-spacing: -0.02em;
+}
+
+.biip-logo img {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--biip-border);
+}
+
+.biip-nav-links {
+  display: none;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+@media (min-width: 860px) {
+  .biip-nav-links {
+    display: flex;
+  }
+}
+
+.biip-nav-link {
+  color: var(--biip-text-muted);
+  text-decoration: none;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.biip-nav-link:hover, .biip-nav-link.active {
+  color: var(--biip-text-main);
+}
+
+.biip-live-clock {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--biip-text-muted);
+}
+
+.biip-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  opacity: 0.8;
+}
+
+/* ==========================================================================
+   Biip Hero Section
+   ========================================================================== */
+.biip-hero {
+  padding-top: clamp(8rem, 16vh, 12rem);
+  padding-bottom: clamp(4rem, 8vh, 6rem);
+  padding-left: var(--site-padding);
+  padding-right: var(--site-padding);
+  max-width: 76rem;
+  margin: 0 auto;
+}
+
+/* Spaced-out Monospace Heading (Iconic Biip Typography) */
+.biip-spaced-title {
+  font-size: clamp(2rem, 5.5vw, 4.25rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1.25;
+  color: var(--biip-text-main);
+  margin: 0 0 1.5rem 0;
+  text-transform: none;
+}
+
+.biip-spaced-title span.accent {
+  color: var(--biip-accent);
+}
+
+.biip-hero-desc {
+  font-size: clamp(0.9375rem, 1.8vw, 1.25rem);
+  color: var(--biip-text-muted);
+  max-width: 46rem;
+  line-height: 1.7;
+  margin: 0 0 2.5rem 0;
+}
+
+.biip-hero-desc strong {
+  color: var(--biip-text-main);
+}
+
+.biip-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Biip Pill Buttons */
+.biip-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--biip-card-bg);
+  color: var(--biip-text-main);
+  text-decoration: none;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0.75rem 1.35rem;
+  border-radius: 9999px;
+  border: 1px solid var(--biip-border);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.biip-pill-btn:hover {
+  background-color: var(--biip-card-hover);
+  border-color: var(--biip-border-light);
+  transform: translateY(-1px);
+}
+
+.biip-pill-btn.primary {
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+  font-weight: 600;
+}
+
+.biip-pill-btn.primary:hover {
+  background-color: #e5e5e5;
+  border-color: #e5e5e5;
+}
+
+.biip-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.4rem 0.85rem;
+  border-radius: 9999px;
+}
+
+/* ==========================================================================
+   Section Headers (S e l e c t e d  w o r k s)
+   ========================================================================== */
+.biip-section {
+  padding-top: clamp(4rem, 8vh, 7rem);
+  padding-bottom: clamp(4rem, 8vh, 7rem);
+  padding-left: var(--site-padding);
+  padding-right: var(--site-padding);
+  max-width: 76rem;
+  margin: 0 auto;
+}
+
+.biip-section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--biip-border);
+  padding-bottom: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.biip-section-title {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: var(--biip-text-main);
+  margin: 0;
+  text-transform: none;
+}
+
+.biip-section-tag {
+  font-size: 0.75rem;
+  color: var(--biip-text-muted);
+}
+
+/* ==========================================================================
+   Biip Works / Services Card Grid (Exact Biipmk Card Anatomy)
+   ========================================================================== */
+.biip-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .biip-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.biip-work-card {
+  background-color: var(--biip-card-bg);
+  border: 1px solid var(--biip-border);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+  position: relative;
+}
+
+.biip-work-card:hover {
+  border-color: var(--biip-border-light);
+  transform: translateY(-3px);
+}
+
+.biip-card-top {
+  padding: 1.5rem 1.75rem 1rem 1.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.biip-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--biip-text-main);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.biip-card-tag {
+  font-size: 0.6875rem;
+  color: var(--biip-text-muted);
+  border: 1px solid var(--biip-border);
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  background-color: #121212;
+}
+
+.biip-card-media {
+  position: relative;
+  width: calc(100% - 2.5rem);
+  margin: 0 1.25rem 1.25rem 1.25rem;
+  height: 13rem;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #0c0c0d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.biip-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.biip-work-card:hover .biip-card-media img {
+  transform: scale(1.04);
+}
+
+/* 3-Column Metadata Table (Exact biipmk signature) */
+.biip-card-meta-table {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 1rem 1.75rem 1.5rem 1.75rem;
+  border-top: 1px solid var(--biip-border);
+  gap: 1rem;
+}
+
+.biip-meta-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.biip-meta-label {
+  font-size: 0.6875rem;
+  color: var(--biip-text-dim);
+  margin-bottom: 0.25rem;
+}
+
+.biip-meta-value {
+  font-size: 0.8125rem;
+  color: var(--biip-text-main);
+  font-weight: 500;
+}
+
+.biip-card-footer {
+  padding: 0 1.75rem 1.5rem 1.75rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ==========================================================================
+   Biip Bento Cards (About / Values)
+   ========================================================================== */
+.biip-bento-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 860px) {
+  .biip-bento-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.biip-bento-card {
+  background-color: var(--biip-card-bg);
+  border: 1px solid var(--biip-border);
+  border-radius: 20px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color 0.3s ease;
+}
+
+.biip-bento-card:hover {
+  border-color: var(--biip-border-light);
+}
+
+.biip-bento-index {
+  font-size: 0.75rem;
+  color: var(--biip-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.biip-bento-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--biip-text-main);
+  margin: 0 0 0.75rem 0;
+}
+
+.biip-bento-desc {
+  font-size: 0.8125rem;
+  color: var(--biip-text-muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Biip Sound Laboratory (Keycap Clicker)
+   ========================================================================== */
+.biip-sound-lab {
+  background-color: var(--biip-card-bg);
+  border: 1px solid var(--biip-border);
+  border-radius: 20px;
+  padding: clamp(1.5rem, 4vw, 3rem);
+}
+
+.biip-sound-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  margin-bottom: 2.5rem;
+}
+
+.biip-sound-tab {
+  background-color: #121214;
+  border: 1px solid var(--biip-border);
+  color: var(--biip-text-muted);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.biip-sound-tab.active, .biip-sound-tab:hover {
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+/* Keycaps row */
+.biip-key-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.biip-keycap {
+  background-color: #202022;
+  border: 1px solid #333336;
+  color: #ffffff;
+  padding: 0.875rem 1.25rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.08s ease, background-color 0.15s ease;
+}
+
+.biip-keycap:active, .biip-keycap.pressed {
+  transform: translateY(4px);
+  background-color: var(--biip-accent);
+  color: #ffffff;
+}
+
+.sound-bar {
+  width: 3px;
+  background-color: var(--biip-text-main);
+  border-radius: 1px;
+  transition: height 0.06s ease;
+}
+
+/* ==========================================================================
+   Biip Pre-Order Calculator & Order Form
+   ========================================================================== */
+.biip-calc-card {
+  background-color: var(--biip-card-bg);
+  border: 1px solid var(--biip-border);
+  border-radius: 20px;
+  padding: clamp(1.5rem, 3.5vw, 2.5rem);
+}
+
+.biip-preset-pill {
+  background-color: #1a1a1c;
+  border: 1px solid var(--biip-border);
+  color: var(--biip-text-muted);
+  padding: 0.5rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.biip-preset-pill.active, .biip-preset-pill:hover {
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+  font-weight: 600;
+}
+
+.biip-input {
+  width: 100%;
+  background-color: #121214;
+  border: 1px solid var(--biip-border);
+  color: #ffffff;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  transition: border-color 0.2s ease;
+}
+
+.biip-input:focus {
+  outline: none;
+  border-color: #ffffff;
+}
+
+/* ==========================================================================
+   Biip Footer (Exact biipmk Footer Anatomy)
+   ========================================================================== */
+.biip-footer {
+  border-top: 1px solid var(--biip-border);
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  padding-left: var(--site-padding);
+  padding-right: var(--site-padding);
+  max-width: 76rem;
+  margin: 0 auto;
+}
+
+.biip-footer-top {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 3.5rem;
+}
+
+.biip-footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  padding-bottom: 3.5rem;
+  border-bottom: 1px solid var(--biip-border);
+}
+
+@media (min-width: 768px) {
+  .biip-footer-grid {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+}
+
+.biip-footer-heading {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--biip-text-main);
+  margin-bottom: 1.25rem;
+}
+
+.biip-footer-link {
+  display: block;
+  color: var(--biip-text-muted);
+  text-decoration: none;
+  font-size: 0.8125rem;
+  margin-bottom: 0.75rem;
+  transition: color 0.2s ease;
+}
+
+.biip-footer-link:hover {
+  color: var(--biip-text-main);
+}
+
+.biip-footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 2rem;
+  font-size: 0.75rem;
+  color: var(--biip-text-dim);
+}
+
+
+/* ==========================================================================
+   Language Switcher (EN / ID)
+   ========================================================================== */
+/* --- LANGUAGE SELECTOR --- */
+.thoc-lang-slot {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 4px;
+  height: 100%;
+}
+.lang-toggle-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: #f0f0f1;
+  padding: 3px 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 14px;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+body.light-theme .lang-toggle-btn,
+html.light-theme .lang-toggle-btn {
+  border-color: rgba(37, 37, 38, 0.25) !important;
+  color: #252526 !important;
+}
+.lang-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+body.light-theme .lang-toggle-btn:hover,
+html.light-theme .lang-toggle-btn:hover {
+  background: rgba(0, 0, 0, 0.06) !important;
+  border-color: rgba(0, 0, 0, 0.35) !important;
+}
+.lang-dropdown-menu {
+  display: none !important;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2e2e2f;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  z-index: 1000;
+  min-width: 54px;
+  flex-direction: column;
+  gap: 2px;
+}
+.lang-dropdown-menu.show,
+.thoc-lang-slot:hover .lang-dropdown-menu {
+  display: flex !important;
+}
+body.light-theme .lang-dropdown-menu,
+html.light-theme .lang-dropdown-menu {
+  background: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+}
+.lang-opt-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 8px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: #f0f0f1;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  transition: all 0.15s ease;
+}
+body.light-theme .lang-opt-btn,
+html.light-theme .lang-opt-btn {
+  color: #252526 !important;
+}
+.lang-opt-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+body.light-theme .lang-opt-btn:hover,
+html.light-theme .lang-opt-btn:hover {
+  background: rgba(0, 0, 0, 0.06) !important;
+}
+.lang-opt-btn.active {
+  background: #ffffff !important;
+  color: #252526 !important;
+}
+body.light-theme .lang-opt-btn.active,
+html.light-theme .lang-opt-btn.active {
+  background: #252526 !important;
+  color: #ffffff !important;
+}
+
+ #252526 !important;
+  color: #ffffff !important;
+}
+
+
+/* --- CRITICAL: PREVENT CLIPPING OF DROPDOWN IN NAV --- */
+nav,
+nav.framer-yfoBI,
+.framer-yfoBI,
+.framer-1rw6cnj,
+.framer-1miupp3-container,
+.framer-8qYMR,
+.framer-vzzjgp-container,
+.thoc-nav-pill,
+.nav-pill,
+.thoc-header-nav-wrap,
+header.thoc-header {
+  overflow: visible !important;
+}
+
+.thoc-lang-slot {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 0 4px !important;
+  height: 100% !important;
+  overflow: visible !important;
+}
+
+.lang-dropdown-menu {
+  display: none !important;
+  position: absolute !important;
+  top: calc(100% + 8px) !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  background: #2e2e2f !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 8px !important;
+  padding: 4px !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5) !important;
+  z-index: 999999 !important;
+  min-width: 58px !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+
+.lang-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+}
+
+.lang-dropdown-menu.show,
+.thoc-lang-slot:hover .lang-dropdown-menu {
+  display: flex !important;
+}
+
+body.light-theme .lang-dropdown-menu,
+html.light-theme .lang-dropdown-menu {
+  background: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15) !important;
+}
+
+
+/* ==========================================================================
+   MOBILE & TABLET FLOATING BOTTOM NAVIGATION SYSTEM
+   ========================================================================== */
+
+.thoc-floating-bottom-dock {
+  position: fixed !important;
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 9999999 !important;
+  width: auto !important;
+  max-width: calc(100vw - 20px) !important;
+  display: flex !important;
+  justify-content: center !important;
+  pointer-events: auto !important;
+}
+
+@media (max-width: 1024px) {
+  body,
+  .order-page-wrapper,
+  .thockeebs-order-main,
+  .specs-container,
+  main {
+    padding-bottom: 96px !important;
+  }
+
+  .thockeebs-footer-wrapper {
+    padding-bottom: 84px !important;
+  }
+
+  .framer-pp1166,
+  .framer-1jxsex,
+  .framer-191rsai,
+  .framer-dab3n6,
+  .framer-1qeblen,
+  .framer-1h3wbzo,
+  .framer-1lqsopg,
+  .framer-ios6cf,
+  .framer-yfoBI .framer-onii75,
+  [data-framer-name="Toggle"].framer-pp1166,
+  .framer-vzzjgp-container .ssr-variant:not(:first-child) {
+    display: none !important;
+  }
+
+  .framer-vzzjgp-container .ssr-variant:first-child {
+    display: block !important;
+  }
+
+  .framer-vzzjgp-container .framer-1miupp3-container,
+  .framer-vzzjgp-container .framer-8qYMR {
+    display: none !important;
+  }
+
+  .framer-yfoBI.framer-1rw6cnj {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 12px 16px !important;
+    justify-content: space-between !important;
+    overflow: visible !important;
+  }
+
+  .framer-1rketen {
+    display: flex !important;
+    overflow: visible !important;
+  }
+
+  .thoc-floating-bottom-dock .framer-8qYMR,
+  .thoc-floating-bottom-dock .thoc-nav-pill,
+  .thoc-floating-bottom-dock .nav-pill {
+    background: rgba(30, 30, 32, 0.88) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+    border-radius: 9999px !important;
+    padding: 4px 6px !important;
+    gap: 3px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: auto !important;
+    margin: 0 !important;
+    overflow: visible !important;
+  }
+
+  body.light-theme .thoc-floating-bottom-dock .framer-8qYMR,
+  html.light-theme .thoc-floating-bottom-dock .framer-8qYMR,
+  body.light-theme .thoc-floating-bottom-dock .thoc-nav-pill,
+  html.light-theme .thoc-floating-bottom-dock .thoc-nav-pill,
+  body.light-theme .thoc-floating-bottom-dock .nav-pill,
+  html.light-theme .thoc-floating-bottom-dock .nav-pill {
+    background: rgba(255, 255, 255, 0.92) !important;
+    border-color: rgba(0, 0, 0, 0.12) !important;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .thoc-floating-bottom-dock .framer-1recba8-container,
+  .thoc-floating-bottom-dock .framer-1se3ac9-container,
+  .thoc-floating-bottom-dock .framer-wi4r6e-container,
+  .thoc-floating-bottom-dock .framer-zny3c4-container,
+  .thoc-floating-bottom-dock .thoc-nav-link,
+  .thoc-floating-bottom-dock .nav-link {
+    height: 34px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .thoc-floating-bottom-dock .framer-8qYMR a,
+  .thoc-floating-bottom-dock .thoc-nav-link,
+  .thoc-floating-bottom-dock .nav-link {
+    padding: 6px 11px !important;
+    --ewxefe: 6px 11px 6px 11px !important;
+    font-size: 11px !important;
+    border-radius: 9999px !important;
+    white-space: nowrap !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .thoc-floating-bottom-dock .thoc-lang-slot {
+    height: 34px !important;
+    padding: 0 2px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+
+  .thoc-floating-bottom-dock .lang-toggle-btn {
+    padding: 3px 6px !important;
+    font-size: 10px !important;
+    border-radius: 9999px !important;
+    line-height: 12px !important;
+  }
+
+  .thoc-floating-bottom-dock .lang-dropdown-menu {
+    top: auto !important;
+    bottom: calc(100% + 10px) !important;
+    box-shadow: 0 -10px 28px rgba(0, 0, 0, 0.5) !important;
+  }
+
+  .thoc-floating-bottom-dock .lang-dropdown-menu::before {
+    top: auto !important;
+    bottom: -12px !important;
+    height: 12px !important;
+  }
+
+  .thoc-floating-bottom-dock .framer-mlk3nv,
+  .thoc-floating-bottom-dock .thoc-theme-toggle-slot {
+    height: 34px !important;
+    padding: 0 4px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .thoc-floating-bottom-dock .theme-toggle-btn {
+    width: 32px !important;
+    height: 18px !important;
+  }
+
+  .thoc-floating-bottom-dock .theme-toggle-btn span {
+    width: 14px !important;
+    height: 14px !important;
+  }
+
+  body.light-theme .thoc-floating-bottom-dock .theme-toggle-btn span,
+  html.light-theme .thoc-floating-bottom-dock .theme-toggle-btn span {
+    left: 16px !important;
+  }
+
+  .order-layout-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+
+  .order-summary-column {
+    position: static !important;
+    width: 100% !important;
+  }
+
+  .order-hero-head {
+    margin-bottom: 28px !important;
+  }
+
+  .order-title {
+    font-size: clamp(1.8rem, 6.5vw, 2.5rem) !important;
+  }
+
+  .order-subtitle {
+    font-size: 13.5px !important;
+    padding: 0 8px !important;
+  }
+
+  .order-card-section {
+    padding: 18px 16px !important;
+  }
+
+  .order-presets-row {
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+  }
+
+  .order-preset-btn {
+    flex: 1 1 calc(33.333% - 6px) !important;
+    min-width: 80px !important;
+    padding: 8px 4px !important;
+    font-size: 11px !important;
+  }
+
+  .order-inputs-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .framer-9dzp8s {
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+
+  .framer-9dzp8s > .ssr-variant {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    min-width: 100% !important;
+  }
+
+  .framer-Dr0Bl,
+  .framer-1p3ue85 {
+    height: auto !important;
+    min-height: auto !important;
+    padding-top: 60px !important;
+  }
+
+  .thoc-header {
+    padding: 12px 16px !important;
+  }
+
+  .thoc-header-nav-wrap {
+    justify-content: space-between !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .thoc-floating-bottom-dock .framer-8qYMR a,
+  .thoc-floating-bottom-dock .thoc-nav-link,
+  .thoc-floating-bottom-dock .nav-link {
+    padding: 5px 8px !important;
+    --ewxefe: 5px 8px 5px 8px !important;
+    font-size: 10px !important;
+  }
+
+  .thoc-floating-bottom-dock .lang-toggle-btn {
+    padding: 2px 5px !important;
+    font-size: 9.5px !important;
+  }
+
+  .thoc-floating-bottom-dock .theme-toggle-btn {
+    width: 28px !important;
+    height: 16px !important;
+  }
+
+  .thoc-floating-bottom-dock .theme-toggle-btn span {
+    width: 12px !important;
+    height: 12px !important;
+  }
+
+  body.light-theme .thoc-floating-bottom-dock .theme-toggle-btn span,
+  html.light-theme .thoc-floating-bottom-dock .theme-toggle-btn span {
+    left: 14px !important;
+  }
+}
+
+
+/* --- INTRO ABOUT ME COLLISION FIX --- */
+@media (max-width: 1279.98px) {
+  .framer-Dr0Bl .framer-1t2gjy8,
+  .framer-1t2gjy8 {
+    flex-direction: column !important;
+    gap: 20px !important;
+    padding: 48px 16px !important;
+  }
+  .framer-Dr0Bl .framer-szw1x1-container,
+  .framer-szw1x1-container {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: auto !important;
+    height: auto !important;
+    margin-bottom: 8px !important;
+  }
+  .framer-Dr0Bl .framer-sbufwg,
+  .framer-sbufwg {
+    width: 100% !important;
+    margin-top: 0 !important;
+  }
+}
+
+
+/* --- THOC WORKS TABLE & HEADER --- */
+.thoc-works-container {
+  width: 100% !important;
+  display: block !important;
+}
+
+.thoc-works-header {
+  display: flex !important;
+  flex-flow: row !important;
+  align-items: center !important;
+  gap: 16px !important;
+  width: 100% !important;
+  padding: 12px 0 14px 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+  font-family: 'IBM Plex Mono', monospace !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  color: var(--extracted-tcooor, rgb(157, 157, 159)) !important;
+  text-transform: uppercase !important;
+  box-sizing: border-box !important;
+  margin-bottom: 4px !important;
+}
+
+body.light-theme .thoc-works-header,
+html.light-theme .thoc-works-header {
+  border-bottom-color: rgba(0, 0, 0, 0.12) !important;
+  color: #71717a !important;
+}
+
+.thoc-wh-col {
+  height: min-content !important;
+}
+
+.thoc-wh-name {
+  flex: 1 0 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  text-align: left !important;
+}
+
+.thoc-wh-status {
+  flex: 1 0 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  text-align: left !important;
+}
+
+.thoc-wh-date {
+  flex: 1 0 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  text-align: left !important;
+}
+
+.framer-3Qz7O.framer-1g8niic {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 1024px) {
+  .framer-1cfpugz {
+    padding-top: 48px !important;
+  }
+  .framer-191pew {
+    padding-top: 60px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .thoc-works-header {
+    font-size: 9.5px !important;
+    gap: 8px !important;
+    padding: 10px 0 !important;
+  }
+  .framer-1g8niic {
+    gap: 8px !important;
+    padding: 12px 0 !important;
+  }
+  .framer-4rjn7p h2 {
+    font-size: 13.5px !important;
+  }
+  .framer-82ks48 .framer-text,
+  .framer-31ht2t .framer-text {
+    font-size: 10px !important;
+  }
+}
