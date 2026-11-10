@@ -85,6 +85,25 @@
       .replace(/'/g, "&#039;");
   }
 
+  function parseDateLocation(rawDate, rawLocation) {
+    let date = String(rawDate || "").trim();
+    let location = String(rawLocation || "").trim();
+
+    if (date.includes("/")) {
+      const parts = date.split("/");
+      date = parts[0].trim();
+      if (!location || location === rawDate || location === "-") {
+        location = parts[1] ? parts[1].trim() : "Bandung, Indonesia";
+      }
+    }
+
+    if (!location || location === "-" || location === date) {
+      location = "Bandung, Indonesia";
+    }
+
+    return { date: date || "November 2026", location: location || "Bandung, Indonesia" };
+  }
+
   // --- RENDER WORKS.HTML (TABLE LIST) ---
   function renderWorksList(items) {
     const container = document.getElementById("thoc-dynamic-works-list");
@@ -94,7 +113,8 @@
     items.forEach((item, index) => {
       const title = item.title || `Project #${items.length - index}`;
       const status = item.status || "Finished";
-      const date = item.date || "";
+      const dateLoc = parseDateLocation(item.date, item.location);
+      const date = dateLoc.date;
 
       // Link langsung ke halaman detail penuh (Clean URL)
       const detailUrl = `works-project?id=${index}`;
@@ -149,7 +169,8 @@
     selectedItems.forEach((item, index) => {
       const title = item.title || `Project #${total - index}`;
       const status = item.status || "Finished";
-      const date = item.date || "November 2026";
+      const dateLoc = parseDateLocation(item.date, item.location);
+      const date = dateLoc.date;
       const itemType = (item.type && item.type.trim() !== '-' && item.type.trim() !== '')
         ? item.type.trim()
         : (item.specs ? item.specs.trim() : "Lube Switch, Stab and Modding");

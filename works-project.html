@@ -598,12 +598,33 @@
         return urlParams.get(name);
       }
 
+      function parseDateLocation(rawDate, rawLocation) {
+        let date = String(rawDate || "").trim();
+        let location = String(rawLocation || "").trim();
+
+        if (date.includes("/")) {
+          const parts = date.split("/");
+          date = parts[0].trim();
+          if (!location || location === rawDate || location === "-") {
+            location = parts[1] ? parts[1].trim() : "Bandung, Indonesia";
+          }
+        }
+
+        if (!location || location === "-" || location === date) {
+          location = "Bandung, Indonesia";
+        }
+
+        return { date: date || "November 2026", location: location || "Bandung, Indonesia" };
+      }
+
       function renderProject(item, index, total) {
         if (!item) return;
 
+        const dateLoc = parseDateLocation(item.date, item.location);
+
         document.getElementById('page-title').textContent = `${item.title} — ThocKeebs`;
         document.getElementById('project-title').textContent = item.title;
-        document.getElementById('project-year').textContent = item.date || "2026";
+        document.getElementById('project-year').textContent = dateLoc.date;
         document.getElementById('project-status').textContent = item.status || "Finished";
 
         // Dynamic Type (ambil dari kolom Type jika ada, fallback ke specs jika kosong / '-')
@@ -618,9 +639,7 @@
         // Dynamic Location (ambil dari kolom Location jika ada, fallback ke Bandung, Indonesia)
         const locEl = document.getElementById('project-location');
         if (locEl) {
-          locEl.textContent = (item.location && item.location.trim() !== '-' && item.location.trim() !== '')
-            ? item.location.trim()
-            : "Bandung, Indonesia";
+          locEl.textContent = dateLoc.location;
         }
 
         const numVal = total ? String(total - index).padStart(2, '0') : String(index + 1).padStart(2, '0');

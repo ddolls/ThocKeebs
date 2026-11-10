@@ -24,7 +24,8 @@ function doGet(e) {
     const ss = SpreadsheetApp.getActiveSpreadsheet();
     // Prioritaskan sheet bernama 'Katalog Web', atau pakai sheet aktif pertama jika tidak ada
     const sheet = ss.getSheetByName("Katalog Web") || ss.getActiveSheet();
-    const data = sheet.getDataRange().getValues();
+    // Gunakan getDisplayValues() agar format tanggal & teks terbaca rapi persis seperti di layar spreadsheet
+    const data = sheet.getDataRange().getDisplayValues();
 
     if (!data || data.length < 2) {
       return responseJSON([]);
@@ -49,7 +50,17 @@ function doGet(e) {
     const idxType = findCol(["type", "tipe", "kategori", "category"], -1);
     const idxStatus = findCol(["status"], 2);
     const idxDate = findCol(["date", "tanggal", "year", "tahun"], 3);
-    const idxLocation = findCol(["location", "lokasi", "kota", "city"], -1);
+
+    // idxLocation HANYA dicari jika BUKAN kolom gabungan date/location
+    let idxLocation = -1;
+    for (let i = 0; i < headers.length; i++) {
+      const h = headers[i];
+      if ((h.includes("location") || h.includes("lokasi") || h.includes("kota") || h.includes("city")) && !h.includes("date") && !h.includes("tanggal")) {
+        idxLocation = i;
+        break;
+      }
+    }
+
     const idxThumbnail = findCol(["thumbnail", "foto", "photo", "image", "gambar", "url"], 4);
     const idxPublish = findCol(["publish", "publikasi", "centang", "tampil", "show"], headers.length - 1);
 
@@ -84,16 +95,18 @@ function doGet(e) {
       let dateVal = rawDateLoc;
       let locVal = "Bandung, Indonesia";
 
-      // Jika ada kolom Location tersendiri:
-      if (idxLocation >= 0 && row[idxLocation] && String(row[idxLocation]).trim() !== "-") {
-        locVal = String(row[idxLocation]).trim();
-      } else if (rawDateLoc.includes("/")) {
-        // Jika formatnya digabung dengan slash, misal: "November, 9 2026 / Bandung, Indonesia"
+      // Jika format di kolom Date / Location digabung dengan garis miring, misal: "November, 9 2026 / Malang"
+      if (rawDateLoc.includes("/")) {
         const parts = rawDateLoc.split("/");
         dateVal = parts[0].trim();
         if (parts[1] && parts[1].trim() && parts[1].trim() !== "-") {
           locVal = parts[1].trim();
         }
+      }
+
+      // Jika ada kolom Location tersendiri di luar Date / Location:
+      if (idxLocation >= 0 && row[idxLocation] && String(row[idxLocation]).trim() !== "-") {
+        locVal = String(row[idxLocation]).trim();
       }
 
       const statusVal = idxStatus >= 0 ? String(row[idxStatus] || "Finished").trim() : "Finished";
@@ -120,3 +133,4 @@ function responseJSON(data) {
   return ContentService.createTextOutput(JSON.stringify(data))
     .setMimeType(ContentService.MimeType.JSON);
 }
+
