@@ -15,21 +15,21 @@
   // Proyek dasar / fallback jika sheet offline (urutan kronologis mundur)
   const DEFAULT_WORKS = [
     {
-      title: "Lube Project #2",
-      type: "Lube Switch, Stab and Modding",
-      specs: "Krytox GPL 205g0, GPL 105 spring oil, Holee Mod on Plate Stabs",
+      title: "Lube Project #2 - Pharita",
+      type: "Lube Switch, Stab & Modding",
+      specs: "Lube Akko Green Fog 81 pcs\nLube KTT Raw Coconut Latte 80 pcs\nLube & Tuning + Holee Mod Leobog Hi75C Pro All Stab\nLube & Tuning + Holee Mod Weikav WK75 All Stab\nAdd Poron foam to Leobog Hi75C Pro\nAdd Poron foam to Weikav WK75",
       status: "Finished",
-      date: "November 2026",
-      location: "Bandung, Indonesia",
+      date: "November, 02 2026",
+      location: "Bandung",
       thumbnail: "Photo/photo1.png"
     },
     {
-      title: "Lube Project #1",
-      type: "Lube Switch, Stab and Modding",
-      specs: "Krytox GPL 205g0 brush lube, Stabilizer Wire Balancing & Tuning",
+      title: "Lube Project #1 - Deliabluu",
+      type: "Lube Switch",
+      specs: "Lube Keygeek Hachiware 35 pcs\nLube Jerrzi Misty 30 pcs\nLube BSUN Blue Feather 20 pcs",
       status: "Finished",
-      date: "October 2026",
-      location: "Bandung, Indonesia",
+      date: "October, 24 2026",
+      location: "Malang",
       thumbnail: "Photo/Project 1/02.png"
     }
   ];
@@ -49,15 +49,20 @@
   function mergeWorks(sheetItems) {
     if (!Array.isArray(sheetItems)) return DEFAULT_WORKS;
 
-    // Di Google Sheets, input baru biasanya di baris paling bawah.
-    // Kita reverse agar baris paling baru berada di urutan teratas (paling atas).
     const reversedSheet = [...sheetItems].reverse();
-
     const finalItems = [...reversedSheet];
-    const existingTitles = new Set(sheetItems.map(i => String(i.title || '').trim().toLowerCase()));
 
     DEFAULT_WORKS.forEach(def => {
-      if (!existingTitles.has(def.title.toLowerCase())) {
+      const defMatch = (def.title || '').match(/#(\d+)/);
+      const isAlreadyInSheet = sheetItems.some(i => {
+        const itemMatch = (i.title || '').match(/#(\d+)/);
+        if (defMatch && itemMatch) {
+          return defMatch[1] === itemMatch[1];
+        }
+        return (i.title || '').trim().toLowerCase() === def.title.toLowerCase();
+      });
+
+      if (!isAlreadyInSheet) {
         finalItems.push(def);
       }
     });
