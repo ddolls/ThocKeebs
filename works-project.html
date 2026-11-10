@@ -430,7 +430,7 @@
         </div>
         <div class="meta-item">
           <span class="meta-label">Location</span>
-          <span class="meta-val">Bandung, Indonesia</span>
+          <span class="meta-val" id="project-location">Bandung, Indonesia</span>
         </div>
       </div>
     </header>
@@ -550,16 +550,20 @@
       const DEFAULT_WORKS = [
         {
           title: "Lube Project #2",
+          type: "Lube Switch, Stab and Modding",
           specs: "Krytox GPL 205g0, GPL 105 spring oil, Holee Mod on Plate Stabs",
           status: "Finished",
           date: "November 2026",
+          location: "Bandung, Indonesia",
           thumbnail: "Photo/photo1.png"
         },
         {
           title: "Lube Project #1",
+          type: "Lube Switch, Stab and Modding",
           specs: "Krytox GPL 205g0 brush lube, Stabilizer Wire Balancing & Tuning",
           status: "Finished",
           date: "October 2026",
+          location: "Bandung, Indonesia",
           thumbnail: "Photo/Project 1/02.png"
         }
       ];
@@ -601,6 +605,23 @@
         document.getElementById('project-title').textContent = item.title;
         document.getElementById('project-year').textContent = item.date || "2026";
         document.getElementById('project-status').textContent = item.status || "Finished";
+
+        // Dynamic Type (ambil dari kolom Type jika ada, fallback ke specs jika kosong / '-')
+        const typeEl = document.getElementById('project-type');
+        if (typeEl) {
+          const resolvedType = (item.type && item.type.trim() !== '-' && item.type.trim() !== '')
+            ? item.type.trim()
+            : (item.specs ? item.specs.trim() : "Lube Switch, Stab and Modding");
+          typeEl.textContent = resolvedType;
+        }
+
+        // Dynamic Location (ambil dari kolom Location jika ada, fallback ke Bandung, Indonesia)
+        const locEl = document.getElementById('project-location');
+        if (locEl) {
+          locEl.textContent = (item.location && item.location.trim() !== '-' && item.location.trim() !== '')
+            ? item.location.trim()
+            : "Bandung, Indonesia";
+        }
 
         const numVal = total ? String(total - index).padStart(2, '0') : String(index + 1).padStart(2, '0');
         document.getElementById('project-num').textContent = numVal;

@@ -16,16 +16,20 @@
   const DEFAULT_WORKS = [
     {
       title: "Lube Project #2",
+      type: "Lube Switch, Stab and Modding",
       specs: "Krytox GPL 205g0, GPL 105 spring oil, Holee Mod on Plate Stabs",
       status: "Finished",
       date: "November 2026",
+      location: "Bandung, Indonesia",
       thumbnail: "Photo/photo1.png"
     },
     {
       title: "Lube Project #1",
+      type: "Lube Switch, Stab and Modding",
       specs: "Krytox GPL 205g0 brush lube, Stabilizer Wire Balancing & Tuning",
       status: "Finished",
       date: "October 2026",
+      location: "Bandung, Indonesia",
       thumbnail: "Photo/Project 1/02.png"
     }
   ];
@@ -146,6 +150,9 @@
       const title = item.title || `Project #${total - index}`;
       const status = item.status || "Finished";
       const date = item.date || "November 2026";
+      const itemType = (item.type && item.type.trim() !== '-' && item.type.trim() !== '')
+        ? item.type.trim()
+        : (item.specs ? item.specs.trim() : "Lube Switch, Stab and Modding");
       const imgUrl = normalizeImageUrl(item.thumbnail);
       const numVal = String(total - index).padStart(2, '0');
       const detailUrl = `works-project?id=${index}`;
@@ -192,8 +199,8 @@
                       <div class="framer-irdjlh" data-framer-name="Type" data-framer-component-type="RichTextContainer" style="justify-content:center;transform:none">
                         <div class="framer-text framer-styles-preset-2m3oxe" data-styles-preset="cH7EZUIF7" style="text-align:left">Type</div>
                       </div>
-                      <div class="framer-1jpvidd" data-framer-name="Lube Switch, Stab and Modding" data-framer-component-type="RichTextContainer" style="justify-content:center;transform:none">
-                        <div class="framer-text framer-styles-preset-2m3oxe" data-styles-preset="cH7EZUIF7" style="text-align:left;color:rgb(157, 157, 159)">Lube Switch, Stab and Modding</div>
+                      <div class="framer-1jpvidd" data-framer-name="${escapeHtml(itemType)}" data-framer-component-type="RichTextContainer" style="justify-content:center;transform:none">
+                        <div class="framer-text framer-styles-preset-2m3oxe" data-styles-preset="cH7EZUIF7" style="text-align:left;color:rgb(157, 157, 159)">${escapeHtml(itemType)}</div>
                       </div>
                       <div class="framer-ehvpa8" data-framer-name="Background" style="background-color:rgb(210, 210, 210)"></div>
                     </div>
