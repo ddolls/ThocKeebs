@@ -1186,7 +1186,198 @@ html.light-theme .thoc-works-header {
   }
 }
 
-/* --- WORKS PROJECT MODAL --- */
+/* --- UNIVERSAL MARQUEE TICKER & FOOTER --- */
+.thockeebs-ticker-wrapper {
+  width: 100%;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  padding: 24px 0 12px 0;
+  margin-top: 32px;
+  margin-bottom: 0px;
+  position: relative;
+  z-index: 5;
+  background: transparent !important;
+}
+.thockeebs-ticker-track {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  animation: thockeebs-ticker-marquee 36s linear infinite;
+  will-change: transform;
+}
+.thockeebs-ticker-content {
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+  flex-shrink: 0;
+}
+.thockeebs-ticker-content span {
+  font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 96px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: rgb(60, 60, 61);
+  padding-right: 48px;
+  display: inline-block;
+  transition: color 0.2s ease;
+}
+body.light-theme .thockeebs-ticker-content span,
+html.light-theme .thockeebs-ticker-content span {
+  color: rgb(215, 215, 218) !important;
+}
+@keyframes thockeebs-ticker-marquee {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+@media (max-width: 768px) {
+  .thockeebs-ticker-content span {
+    font-size: 56px;
+    padding-right: 32px;
+  }
+}
+
+.thockeebs-footer-wrapper {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0 16px 24px 16px;
+  margin-top: 48px;
+  position: relative;
+  z-index: 10;
+}
+.thockeebs-footer-card {
+  width: 100%;
+  background-color: #252526;
+  border-radius: 12px;
+  padding: 24px 24px 16px 24px;
+  display: flex;
+  flex-direction: column;
+  color: #f0f0f1;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+body.light-theme .thockeebs-footer-card {
+  background-color: #ffffff !important;
+  color: #252526 !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.thockeebs-footer-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .thockeebs-footer-nav {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+.thockeebs-footer-column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.thockeebs-footer-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  margin-bottom: 14px;
+}
+body.light-theme .thockeebs-footer-head {
+  border-bottom-color: rgba(0, 0, 0, 0.1) !important;
+}
+.thockeebs-footer-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: inherit;
+}
+.thockeebs-footer-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  display: inline-block;
+}
+.thockeebs-footer-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2px 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: inherit;
+  opacity: 0.8;
+  line-height: 14px;
+}
+body.light-theme .thockeebs-footer-num {
+  border-color: rgba(0, 0, 0, 0.2) !important;
+}
+.thockeebs-footer-links {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+}
+.thockeebs-footer-link {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.85;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: opacity 0.15s ease;
+}
+.thockeebs-footer-link:hover {
+  opacity: 1;
+}
+.thockeebs-external-arrow {
+  font-size: 11px;
+  opacity: 0.8;
+}
+.thockeebs-footer-brand {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 28px 0 12px 0;
+  user-select: none;
+}
+.thockeebs-footer-brand svg {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  display: block;
+}
+.thockeebs-footer-bottom {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 8px;
+}
+.thockeebs-footer-credits {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: inherit;
+  opacity: 0.45;
+}
+
 .thoc-modal-overlay {
   position: fixed;
   inset: 0;

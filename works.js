@@ -1,16 +1,18 @@
 /**
- * ThocKeebs - Dynamic Works List from Google Sheets
- * Otomatis mengambil katalog project dari Google Apps Script API tanpa perlu rebuild/redeploy web.
+ * ThocKeebs - Dynamic Works Engine
+ * 1. Menampilkan daftar works di works.html (klik langsung buka halaman detail works-project.html)
+ * 2. Menampilkan card Selected Works di index.html (Home) secara dinamis dari Google Sheets
  */
 
 (function () {
+  console.log("[works.js] Starting engine...");
   const API_URL = (typeof THOC_CONFIG !== 'undefined' && THOC_CONFIG.worksSheetApi)
     ? THOC_CONFIG.worksSheetApi
     : "https://script.google.com/macros/s/AKfycby-lUbeLyTLZQyMU4ZRaw0GNdfuHV4SYyg4-4ZBk8_zzmlvVmAIF44M1Ge9ea9LBGFe/exec";
 
   const CACHE_KEY = "thoc_works_cache_data";
 
-  // Proyek default/fallback jika sheet kosong atau sedang offline
+  // Proyek dasar / fallback
   const DEFAULT_WORKS = [
     {
       title: "Lube Project #2",
@@ -28,129 +30,14 @@
     }
   ];
 
-  let modalOverlay = null;
-
   function normalizeImageUrl(url) {
-    if (!url) return "";
+    if (!url) return "Photo/photo1.png";
     url = url.trim();
-
-    // Auto-convert Google Drive sharing links to direct Google CDN image URL
-    // Format: https://drive.google.com/file/d/FILE_ID/view -> https://lh3.googleusercontent.com/d/FILE_ID
     const gDriveMatch = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) || url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
     if (gDriveMatch && gDriveMatch[1]) {
       return `https://lh3.googleusercontent.com/d/${gDriveMatch[1]}`;
     }
-
     return url;
-  }
-
-  function initModal() {
-    if (document.getElementById("thoc-project-modal")) return;
-
-    modalOverlay = document.createElement("div");
-    modalOverlay.id = "thoc-project-modal";
-    modalOverlay.className = "thoc-modal-overlay";
-    modalOverlay.setAttribute("role", "dialog");
-    modalOverlay.setAttribute("aria-modal", "true");
-    modalOverlay.innerHTML = `
-      <div class="thoc-modal-card">
-        <button type="button" class="thoc-modal-close" aria-label="Close modal">&times;</button>
-        <div class="thoc-modal-thumb-wrap" id="thoc-modal-thumb-wrap" style="display:none;">
-          <img id="thoc-modal-img" src="" alt="Project Thumbnail" class="thoc-modal-img" loading="lazy" />
-        </div>
-        <div class="thoc-modal-body">
-          <div class="thoc-modal-meta">
-            <span id="thoc-modal-status" class="thoc-modal-badge status">FINISHED</span>
-            <span id="thoc-modal-date" class="thoc-modal-badge date">NOVEMBER 2026</span>
-          </div>
-          <h2 id="thoc-modal-title" class="thoc-modal-title">Project Title</h2>
-          
-          <div class="thoc-modal-specs-wrap">
-            <div class="thoc-modal-specs-label" data-i18n="works.modal.specs_label">TUNING SPECIFICATIONS & BUILD DETAIL</div>
-            <div id="thoc-modal-specs" class="thoc-modal-specs-content">No specifications provided.</div>
-          </div>
-
-          <div class="thoc-modal-actions">
-            <a id="thoc-modal-wa-btn" href="#" target="_blank" rel="noopener noreferrer" class="thoc-modal-btn wa">
-              <span data-i18n="works.modal.wa_btn">Konsultasi Build Ini via WhatsApp &rarr;</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    `;
-
-    document.body.appendChild(modalOverlay);
-
-    // Event listeners for close
-    modalOverlay.querySelector(".thoc-modal-close").addEventListener("click", closeModal);
-    modalOverlay.addEventListener("click", function (e) {
-      if (e.target === modalOverlay) closeModal();
-    });
-
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && modalOverlay.classList.contains("active")) {
-        closeModal();
-      }
-    });
-
-    const imgEl = document.getElementById("thoc-modal-img");
-    const imgWrap = document.getElementById("thoc-modal-thumb-wrap");
-    if (imgEl && imgWrap) {
-      imgEl.onerror = function () {
-        imgWrap.style.display = "none";
-      };
-    }
-  }
-
-  function openModal(item) {
-    initModal();
-    if (!modalOverlay) return;
-
-    const imgWrap = document.getElementById("thoc-modal-thumb-wrap");
-    const imgEl = document.getElementById("thoc-modal-img");
-    const titleEl = document.getElementById("thoc-modal-title");
-    const statusEl = document.getElementById("thoc-modal-status");
-    const dateEl = document.getElementById("thoc-modal-date");
-    const specsEl = document.getElementById("thoc-modal-specs");
-    const waBtn = document.getElementById("thoc-modal-wa-btn");
-
-    titleEl.textContent = item.title || "Custom Project";
-    statusEl.textContent = (item.status || "FINISHED").toUpperCase();
-    dateEl.textContent = item.date || "";
-    specsEl.textContent = item.specs || "-";
-
-    const cleanedImg = normalizeImageUrl(item.thumbnail);
-    if (cleanedImg && cleanedImg.length > 0) {
-      imgWrap.style.display = "block";
-      imgEl.src = cleanedImg;
-    } else {
-      imgWrap.style.display = "none";
-    }
-
-    const waNum = (typeof THOC_CONFIG !== 'undefined' && THOC_CONFIG.whatsappNumber)
-      ? THOC_CONFIG.whatsappNumber
-      : "6285722333327";
-
-    const isId = (localStorage.getItem("thockeebs-lang") || "id") === "id";
-    const waText = isId
-      ? `Halo Admin ThocKeebs! Saya lihat katalog project "${item.title || 'Custom Build'}" di website. Saya mau tanya / pesan jasa modding serupa.`
-      : `Hello ThocKeebs Admin! I saw the "${item.title || 'Custom Build'}" project on your website. I would like to consult or order a similar tuning build.`;
-
-    waBtn.href = `https://wa.me/${waNum}?text=${encodeURIComponent(waText)}`;
-
-    // Re-apply translations if lang helper exists
-    if (window.ThocLang && typeof window.ThocLang.applyTranslations === 'function') {
-      window.ThocLang.applyTranslations();
-    }
-
-    modalOverlay.classList.add("active");
-    document.body.style.overflow = "hidden";
-  }
-
-  function closeModal() {
-    if (!modalOverlay) return;
-    modalOverlay.classList.remove("active");
-    document.body.style.overflow = "";
   }
 
   function mergeWorks(sheetItems) {
@@ -167,7 +54,18 @@
     return finalItems;
   }
 
-  function renderRows(items) {
+  function escapeHtml(str) {
+    if (!str) return "";
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  // --- RENDER WORKS.HTML (TABLE LIST) ---
+  function renderWorksList(items) {
     const container = document.getElementById("thoc-dynamic-works-list");
     if (!container || !Array.isArray(items) || items.length === 0) return;
 
@@ -177,9 +75,12 @@
       const status = item.status || "Finished";
       const date = item.date || "";
 
+      // Detail page URL
+      const detailUrl = `works-project.html?id=${index}`;
+
       html += `
-        <div class="thoc-works-row-wrap" style="position:relative; width:100%;" data-project-idx="${index}">
-          <div class="framer-3Qz7O framer-kVt48 framer-5GVCp framer-1g8niic framer-v-1g8niic framer-1wugrm9 thoc-clickable-project-row" role="button" tabindex="0" style="width:100%;will-change:transform;opacity:1;transform:none;cursor:pointer;">
+        <div class="thoc-works-row-wrap" style="position:relative; width:100%;">
+          <a class="framer-3Qz7O framer-kVt48 framer-5GVCp framer-1g8niic framer-v-1g8niic framer-1wugrm9" href="${detailUrl}" style="width:100%;will-change:transform;opacity:1;transform:none;text-decoration:none;">
             <div class="framer-4rjn7p">
               <div class="framer-nfi2sh" data-framer-name="Title" data-framer-component-type="RichTextContainer" style="justify-content:center;--framer-paragraph-spacing:0px;transform:none">
                 <h2 class="framer-text framer-styles-preset-1lmekgs" data-styles-preset="eMBLL3bFK">${escapeHtml(title)}</h2>
@@ -206,49 +107,119 @@
             </div>
             <div class="framer-zozh7o" data-framer-name="Background" style="background-color:var(--token-9a61cb06-3a3a-4375-8be8-66b9dda45d4e, rgb(46, 46, 47))"></div>
             <div class="framer-1sge75u" data-framer-name="Background" style="background-color:var(--token-f56b1214-00aa-4536-9ffd-154101bb6be0, rgb(210, 210, 210))"></div>
-          </div>
+          </a>
         </div>
       `;
     });
 
     container.innerHTML = html;
-
-    // Attach click events
-    container.querySelectorAll(".thoc-works-row-wrap").forEach(wrap => {
-      wrap.addEventListener("click", function () {
-        const idx = parseInt(this.getAttribute("data-project-idx"), 10);
-        if (!isNaN(idx) && items[idx]) {
-          openModal(items[idx]);
-        }
-      });
-    });
   }
 
-  function escapeHtml(str) {
-    if (!str) return "";
-    return String(str)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
+  // --- RENDER INDEX.HTML (SELECTED WORKS GRID ON HOME) ---
+  function renderHomeSelectedWorks(items) {
+    const homeContainer = document.getElementById("thoc-home-selected-works") || document.querySelector(".framer-9dzp8s");
+    if (!homeContainer || !Array.isArray(items) || items.length === 0) return;
+
+    // Ambil maksimal 4 project terbaru untuk di home
+    const selectedItems = items.slice(0, 4);
+    const total = items.length;
+
+    let html = "";
+    selectedItems.forEach((item, index) => {
+      const title = item.title || `Project #${index + 1}`;
+      const status = item.status || "Finished";
+      const date = item.date || "November 2026";
+      const imgUrl = normalizeImageUrl(item.thumbnail);
+      const numVal = String(total - index).padStart(2, '0');
+      const detailUrl = `works-project.html?id=${index}`;
+
+      html += `
+        <div class="ssr-variant" style="flex:1 1 48%;min-width:300px;box-sizing:border-box;">
+          <div class="framer-1d2jjle-container" style="width:100%;">
+            <a class="framer-omK0L framer-VygiK framer-izi8dx framer-v-izi8dx framer-ft9m12" href="${detailUrl}" style="width:100%;display:flex;flex-direction:column;will-change:transform;opacity:1;transform:none;text-decoration:none;">
+              <div class="framer-1xtagle" data-border="true" data-framer-name="Head" style="--border-bottom-width:1px;--border-color:var(--border-subtle, rgb(77, 77, 79));--border-left-width:0px;--border-right-width:0px;--border-style:solid;--border-top-width:0px">
+                <div class="framer-1o46wmv" data-framer-name="Ellipse" style="background-color:rgb(46, 46, 47);border-radius:100%;"></div>
+                <div class="framer-1uahsye" data-framer-name="Title" data-framer-component-type="RichTextContainer" style="justify-content:center;transform:none">
+                  <h3 class="framer-text framer-styles-preset-1eexksg" data-styles-preset="C2pMtMY9A">${escapeHtml(title)}</h3>
+                </div>
+                <div class="framer-191dfzc" data-border="true" data-framer-name="N°" style="border:1px solid rgb(77, 77, 79);border-radius:4px;">
+                  <div class="framer-2mfta6" data-framer-name="${numVal}" data-framer-component-type="RichTextContainer" style="justify-content:center;transform:none">
+                    <p class="framer-text" style="font-family:'IBM Plex Mono', monospace;font-size:10px;font-weight:500;letter-spacing:0.02em;line-height:16px;text-align:center;color:rgb(138, 138, 140);text-transform:uppercase">${numVal}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="framer-yjv5zx" data-framer-name="Content">
+                <div class="framer-1wihtfr" data-framer-name="Thumbnail">
+                  <figure as="figure" class="framer-s3erso" data-framer-name="Work-Thumbnail" style="transform:translateX(-50%)">
+                    <div style="position:absolute;inset:0" data-framer-background-image-wrapper="true">
+                      <img decoding="async" loading="lazy" src="${escapeHtml(imgUrl)}" alt="${escapeHtml(title)}" style="display:block;width:100%;height:100%;object-position:center;object-fit:cover" onerror="this.src='Photo/photo1.png'">
+                    </div>
+                  </figure>
+                  <div data-framer-name="Corner Cross" class="framer-tTCNk framer-1ds41wu"></div>
+                  <div data-framer-name="Corner Cross" class="framer-tTCNk framer-1typ5j5"></div>
+                  <div data-framer-name="Corner Cross" class="framer-tTCNk framer-13ud3op"></div>
+                  <div data-framer-name="Corner Cross" class="framer-tTCNk framer-162s4ob"></div>
+                </div>
+                <div class="framer-o0h0x6-container">
+                  <div class="framer-G49qC framer-5GVCp framer-l7z7yz framer-v-l7z7yz" data-framer-name="Variant 1" data-highlight="true" style="width:100%;will-change:transform;opacity:1;transform:none">
+                    <div class="framer-153syd6" data-framer-name="Year">
+                      <div class="framer-1ee2oe" data-framer-name="Year" data-framer-component-type="RichTextContainer" style="justify-content:center;transform:none">
+                        <div class="framer-text framer-styles-preset-2m3oxe" data-styles-preset="cH7EZUIF7" style="text-align:left">Year</div>
+                      </div>
+                      <div class="framer-1jxoivx" data-framer-name="${escapeHtml(date)}" data-framer-component-type="RichTextContainer" style="justify-content:center;transform:none">
+                        <div class="framer-text framer-styles-preset-2m3oxe" data-styles-preset="cH7EZUIF7" style="text-align:left;color:rgb(157, 157, 159)">${escapeHtml(date)}</div>
+                      </div>
+                      <div class="framer-14ugevt" data-framer-name="Background" style="background-color:rgb(210, 210, 210)"></div>
+                    </div>
+                    <div class="framer-cduy0i" data-framer-name="Type">
+                      <div class="framer-irdjlh" data-framer-name="Type" data-framer-component-type="RichTextContainer" style="justify-content:center;transform:none">
+                        <div class="framer-text framer-styles-preset-2m3oxe" data-styles-preset="cH7EZUIF7" style="text-align:left">Type</div>
+                      </div>
+                      <div class="framer-1jpvidd" data-framer-name="Lube Switch, Stab and Modding" data-framer-component-type="RichTextContainer" style="justify-content:center;transform:none">
+                        <div class="framer-text framer-styles-preset-2m3oxe" data-styles-preset="cH7EZUIF7" style="text-align:left;color:rgb(157, 157, 159)">Lube Switch, Stab and Modding</div>
+                      </div>
+                      <div class="framer-ehvpa8" data-framer-name="Background" style="background-color:rgb(210, 210, 210)"></div>
+                    </div>
+                    <div class="framer-1g0806u" data-framer-name="Status">
+                      <div class="framer-1rhqjfy" data-framer-name="Status" data-framer-component-type="RichTextContainer" style="justify-content:center;transform:none">
+                        <div class="framer-text framer-styles-preset-2m3oxe" data-styles-preset="cH7EZUIF7" style="text-align:left">Status</div>
+                      </div>
+                      <div class="framer-3w4trz" data-framer-name="${escapeHtml(status)}" data-framer-component-type="RichTextContainer" style="justify-content:center;transform:none">
+                        <div class="framer-text framer-styles-preset-2m3oxe" data-styles-preset="cH7EZUIF7" style="text-align:left;color:rgb(157, 157, 159)">${escapeHtml(status)}</div>
+                      </div>
+                      <div class="framer-75v1ea" data-framer-name="Background" style="position:absolute;bottom:0;left:0;width:0;height:1px;background-color:rgb(210, 210, 210)"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      `;
+    });
+
+    homeContainer.innerHTML = html;
+  }
+
+  function applyAll(items) {
+    const merged = mergeWorks(items);
+    renderWorksList(merged);
+    renderHomeSelectedWorks(merged);
   }
 
   async function fetchWorks() {
-    initModal();
-
-    // 1. Initial render from cache or defaults
+    // 1. Render dari cache dulu agar instant 0ms
     const cached = localStorage.getItem(CACHE_KEY);
     if (cached) {
       try {
         const parsed = JSON.parse(cached);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          renderRows(mergeWorks(parsed));
+          applyAll(parsed);
         }
       } catch (e) {}
     }
 
-    // 2. Fetch fresh live data from Google Apps Script
+    // 2. Ambil data terbaru dari Google Apps Script
     try {
       const res = await fetch(API_URL);
       if (!res.ok) throw new Error("HTTP error " + res.status);
@@ -256,44 +227,16 @@
 
       if (Array.isArray(data) && data.length > 0) {
         localStorage.setItem(CACHE_KEY, JSON.stringify(data));
-        renderRows(mergeWorks(data));
+        applyAll(data);
       }
     } catch (err) {
       console.warn("[ThocKeebs Works] Using cached or default works:", err);
     }
   }
 
-  // Bind initial click handler for pre-rendered fallback items
-  function bindFallbackClicks() {
-    initModal();
-    const container = document.getElementById("thoc-dynamic-works-list");
-    if (!container) return;
-
-    container.querySelectorAll(".thoc-works-row-wrap").forEach(wrap => {
-      wrap.addEventListener("click", function (e) {
-        if (e.target.closest("a[href*='tiktok.com']")) return;
-        
-        const titleEl = wrap.querySelector("h2");
-        const title = titleEl ? titleEl.textContent.trim() : "";
-        const item = DEFAULT_WORKS.find(d => d.title === title) || {
-          title: title,
-          specs: "Custom Krytox Lube & Tuning Build",
-          status: "Finished",
-          date: "November 2026",
-          thumbnail: "Photo/photo1.png"
-        };
-        openModal(item);
-      });
-    });
-  }
-
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function () {
-      bindFallbackClicks();
-      fetchWorks();
-    });
+    document.addEventListener("DOMContentLoaded", fetchWorks);
   } else {
-    bindFallbackClicks();
     fetchWorks();
   }
 })();
