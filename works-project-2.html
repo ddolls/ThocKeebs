@@ -11,6 +11,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   
+  <script>
+    (function(){
+      var t = localStorage.getItem('thockeebs-theme') || 'light';
+      if (t === 'light') {
+        document.documentElement.classList.add('light-theme');
+        document.documentElement.classList.remove('dark-theme');
+      } else {
+        document.documentElement.classList.add('dark-theme');
+        document.documentElement.classList.remove('light-theme');
+      }
+    })();
+  </script>
+
   <style>
     :root {
       --bg-page: rgb(37, 37, 38);
@@ -20,6 +33,7 @@
       --border-color: rgb(77, 77, 79);
       --accent: rgb(240, 240, 241);
     }
+    html.light-theme,
     body.light-theme {
       --bg-page: rgb(240, 240, 241);
       --bg-card: rgb(255, 255, 255);
@@ -986,7 +1000,7 @@ html.light-theme .lang-dropdown-menu {
 }
 </style>
 </head>
-<body class="dark-theme">
+<body>
 
   <!-- Nav -->
   <header class="nav-wrap">
@@ -1165,82 +1179,7 @@ html.light-theme .lang-dropdown-menu {
 </footer>
 
 
-  <script>
-    (function() {
-      function applyTheme(theme) {
-        if (theme === 'light') {
-          document.body.classList.add('light-theme');
-          document.body.classList.remove('dark-theme');
-        } else {
-          document.body.classList.add('dark-theme');
-          document.body.classList.remove('light-theme');
-        }
-      }
-      var saved = localStorage.getItem('thockeebs-theme') || 'dark';
-      applyTheme(saved);
-
-      document.querySelector('.theme-toggle-btn').addEventListener('click', function() {
-        var current = document.body.classList.contains('light-theme') ? 'light' : 'dark';
-        var next = current === 'light' ? 'dark' : 'light';
-        localStorage.setItem('thockeebs-theme', next);
-        applyTheme(next);
-      });
-    })();
-  </script>
-
-<script id="thockeebs-theme-engine">
-(function() {
-  function applyTheme(theme) {
-    var isLight = theme === 'light';
-    if (isLight) {
-      document.documentElement.classList.add('light-theme');
-      document.documentElement.classList.remove('dark-theme');
-      document.body.classList.add('light-theme');
-      document.body.classList.remove('dark-theme');
-      document.documentElement.setAttribute('toggle-theme', 'light');
-      document.body.setAttribute('toggle-theme', 'light');
-    } else {
-      document.documentElement.classList.add('dark-theme');
-      document.documentElement.classList.remove('light-theme');
-      document.body.classList.add('dark-theme');
-      document.body.classList.remove('light-theme');
-      document.documentElement.setAttribute('toggle-theme', 'dark');
-      document.body.setAttribute('toggle-theme', 'dark');
-    }
-
-    var buttons = document.querySelectorAll('button[aria-pressed], [data-framer-name="Theme Toggle"] button, .framer-mlk3nv button, .framer-pp1166 button, .framer-1qp33iv-container button, .framer-1afh5j9-container button, .theme-toggle-btn');
-    buttons.forEach(function(btn) {
-      btn.setAttribute('aria-pressed', isLight ? 'true' : 'false');
-      btn.style.background = isLight ? '#252526' : 'rgb(60, 60, 61)';
-      var knob = btn.querySelector('span');
-      if (knob) {
-        knob.style.left = isLight ? '18px' : '2px';
-        knob.style.background = '#FFFFFF';
-      }
-    });
-  }
-
-  var savedTheme = localStorage.getItem('thockeebs-theme') || 'dark';
-  applyTheme(savedTheme);
-
-  document.addEventListener('DOMContentLoaded', function() {
-    applyTheme(localStorage.getItem('thockeebs-theme') || 'dark');
-  });
-
-  // Global capture click listener for theme toggle
-  document.addEventListener('click', function(e) {
-    var toggleBtn = e.target.closest('[data-framer-name="Theme Toggle"], .framer-mlk3nv, .framer-pp1166, .framer-1qp33iv-container, .framer-1afh5j9-container, button[aria-pressed], .theme-toggle-btn');
-    if (toggleBtn) {
-      e.preventDefault();
-      e.stopPropagation();
-      var current = (document.documentElement.classList.contains('light-theme') || document.body.classList.contains('light-theme')) ? 'light' : 'dark';
-      var next = current === 'light' ? 'dark' : 'light';
-      localStorage.setItem('thockeebs-theme', next);
-      applyTheme(next);
-    }
-  }, true);
-})();
-</script>
+  <script src="theme.js"></script>
   <script src="lang.js"></script>
 </body>
 </html>

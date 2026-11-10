@@ -1,18 +1,18 @@
 /**
  * ThocKeebs - Dynamic Works Engine
- * 1. Menampilkan daftar works di works.html (klik langsung buka halaman detail works-project.html)
- * 2. Menampilkan card Selected Works di index.html (Home) secara dinamis dari Google Sheets
+ * 1. Menampilkan daftar works di works.html (urutan terbaru di atas)
+ * 2. Menampilkan card Selected Works di index.html (Home) secara dinamis
+ * 3. Membuka halaman detail penuh (works-project.html) dengan data lengkap
  */
 
 (function () {
-  console.log("[works.js] Starting engine...");
   const API_URL = (typeof THOC_CONFIG !== 'undefined' && THOC_CONFIG.worksSheetApi)
     ? THOC_CONFIG.worksSheetApi
     : "https://script.google.com/macros/s/AKfycby-lUbeLyTLZQyMU4ZRaw0GNdfuHV4SYyg4-4ZBk8_zzmlvVmAIF44M1Ge9ea9LBGFe/exec";
 
   const CACHE_KEY = "thoc_works_cache_data";
 
-  // Proyek dasar / fallback
+  // Proyek dasar / fallback jika sheet offline (urutan kronologis mundur)
   const DEFAULT_WORKS = [
     {
       title: "Lube Project #2",
@@ -40,15 +40,32 @@
     return url;
   }
 
+  // Penggabungan data dengan aturan:
+  // Data baru yang diinput di Google Sheets (baris terbawah) HARUS muncul paling atas (terbaru)
   function mergeWorks(sheetItems) {
     if (!Array.isArray(sheetItems)) return DEFAULT_WORKS;
-    const finalItems = [...sheetItems];
+
+    // Di Google Sheets, input baru biasanya di baris paling bawah.
+    // Kita reverse agar baris paling baru berada di urutan teratas (paling atas).
+    const reversedSheet = [...sheetItems].reverse();
+
+    const finalItems = [...reversedSheet];
     const existingTitles = new Set(sheetItems.map(i => String(i.title || '').trim().toLowerCase()));
 
     DEFAULT_WORKS.forEach(def => {
       if (!existingTitles.has(def.title.toLowerCase())) {
         finalItems.push(def);
       }
+    });
+
+    // Urutkan paling baru di atas (jika ada nomor project #X, urutkan descending; jika tidak, urutan input terbaru di atas)
+    finalItems.sort((a, b) => {
+      const matchA = (a.title || '').match(/#(\d+)/);
+      const matchB = (b.title || '').match(/#(\d+)/);
+      if (matchA && matchB) {
+        return parseInt(matchB[1], 10) - parseInt(matchA[1], 10);
+      }
+      return 0;
     });
 
     return finalItems;
@@ -71,11 +88,11 @@
 
     let html = "";
     items.forEach((item, index) => {
-      const title = item.title || `Project #${index + 1}`;
+      const title = item.title || `Project #${items.length - index}`;
       const status = item.status || "Finished";
       const date = item.date || "";
 
-      // Detail page URL
+      // Link langsung ke halaman detail penuh
       const detailUrl = `works-project.html?id=${index}`;
 
       html += `
@@ -126,7 +143,7 @@
 
     let html = "";
     selectedItems.forEach((item, index) => {
-      const title = item.title || `Project #${index + 1}`;
+      const title = item.title || `Project #${total - index}`;
       const status = item.status || "Finished";
       const date = item.date || "November 2026";
       const imgUrl = normalizeImageUrl(item.thumbnail);

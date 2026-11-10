@@ -11,6 +11,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   
+  <script>
+    (function(){
+      var t = localStorage.getItem('thockeebs-theme') || 'light';
+      if (t === 'light') {
+        document.documentElement.classList.add('light-theme');
+        document.documentElement.classList.remove('dark-theme');
+      } else {
+        document.documentElement.classList.add('dark-theme');
+        document.documentElement.classList.remove('light-theme');
+      }
+    })();
+  </script>
+
   <style>
     :root {
       --bg-page: rgb(37, 37, 38);
@@ -20,6 +33,7 @@
       --border-color: rgb(77, 77, 79);
       --accent: rgb(240, 240, 241);
     }
+    html.light-theme,
     body.light-theme {
       --bg-page: rgb(240, 240, 241);
       --bg-card: rgb(255, 255, 255);
@@ -321,7 +335,7 @@
     }
   </style>
 </head>
-<body class="dark-theme">
+<body>
 
   <!-- Desktop Navigation Bar -->
   <header class="nav-wrap">
@@ -341,11 +355,13 @@
       <a href="order.html" class="nav-link" data-i18n="nav.order">Order</a>
       <a href="about.html" class="nav-link" data-i18n="nav.about">About</a>
       
-      <button type="button" class="theme-toggle-btn" aria-label="Toggle light/dark theme">
-        <span>
-          <svg fill="#252526" width="12" height="12" viewBox="0 0 16 16">
-            <path d="M2.34316 13.6569C5.46736 16.781 10.5327 16.781 13.6569 13.6569L2.34316 2.34315C-0.78103 5.46734 -0.78103 10.5327 2.34316 13.6569Z"/>
-          </svg>
+      <button type="button" aria-pressed="false" class="theme-toggle-btn" aria-label="Toggle light/dark theme" style="width:36px;height:20px;background:rgb(60, 60, 61);border:none;border-radius:10px;position:relative;cursor:pointer;transition:background 0.2s;box-shadow:0 2px 8px rgba(0,0,0,0.10);outline:none;padding:0;display:flex;align-items:center;">
+        <span style="position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#FFFFFF;box-shadow:0 1px 4px rgba(0,0,0,0.15);transition:left 0.2s cubic-bezier(.4,1.2,.6,1);display:flex;align-items:center;justify-content:center;z-index:10">
+          <div style="width:10px;height:10px;display:flex;align-items:center;justify-content:center">
+            <svg fill="#252526" width="12" height="12" viewBox="0 0 16 16">
+              <path d="M2.34316 13.6569C5.46736 16.781 10.5327 16.781 13.6569 13.6569L2.34316 2.34315C-0.78103 5.46734 -0.78103 10.5327 2.34316 13.6569Z"/>
+            </svg>
+          </div>
         </span>
       </button>
     </nav>
@@ -487,6 +503,7 @@
 
   <!-- Scripts -->
   <script src="config.js"></script>
+  <script src="theme.js"></script>
   <script src="lang.js"></script>
   <script>
     (function () {
@@ -516,6 +533,31 @@
           thumbnail: "Photo/Project 1/02.png"
         }
       ];
+
+      function mergeWorks(sheetItems) {
+        if (!Array.isArray(sheetItems)) return DEFAULT_WORKS;
+        const reversedSheet = [...sheetItems].reverse();
+        const finalItems = [...reversedSheet];
+        const existingTitles = new Set(sheetItems.map(i => String(i.title || '').trim().toLowerCase()));
+
+        DEFAULT_WORKS.forEach(def => {
+          if (!existingTitles.has(def.title.toLowerCase())) {
+            finalItems.push(def);
+          }
+        });
+
+        // Urutkan paling baru di atas
+        finalItems.sort((a, b) => {
+          const matchA = (a.title || '').match(/#(\d+)/);
+          const matchB = (b.title || '').match(/#(\d+)/);
+          if (matchA && matchB) {
+            return parseInt(matchB[1], 10) - parseInt(matchA[1], 10);
+          }
+          return 0;
+        });
+
+        return finalItems;
+      }
 
       function getUrlParam(name) {
         const urlParams = new URLSearchParams(window.location.search);
@@ -580,19 +622,13 @@
         const titleParam = getUrlParam('title');
 
         // Check local storage
-        let allItems = [];
+        let allItems = DEFAULT_WORKS;
         try {
           const cached = JSON.parse(localStorage.getItem('thoc_works_cache_data') || '[]');
           if (Array.isArray(cached) && cached.length > 0) {
-            allItems = [...cached];
+            allItems = mergeWorks(cached);
           }
         } catch (e) {}
-
-        DEFAULT_WORKS.forEach(def => {
-          if (!allItems.some(i => i.title.toLowerCase() === def.title.toLowerCase())) {
-            allItems.push(def);
-          }
-        });
 
         let targetIndex = 0;
         if (idParam !== null && !isNaN(parseInt(idParam, 10))) {
@@ -605,19 +641,18 @@
         const item = allItems[targetIndex] || allItems[0] || DEFAULT_WORKS[0];
         renderProject(item, targetIndex, allItems.length);
 
-        // Fetch fresh in background if cache was empty
-        if (allItems.length <= 2 && typeof THOC_CONFIG !== 'undefined' && THOC_CONFIG.worksSheetApi) {
+        // Fetch fresh in background
+        if (typeof THOC_CONFIG !== 'undefined' && THOC_CONFIG.worksSheetApi) {
           fetch(THOC_CONFIG.worksSheetApi)
             .then(r => r.json())
             .then(data => {
               if (Array.isArray(data) && data.length > 0) {
                 localStorage.setItem('thoc_works_cache_data', JSON.stringify(data));
-                const freshAll = [...data];
-                DEFAULT_WORKS.forEach(def => {
-                  if (!freshAll.some(i => i.title.toLowerCase() === def.title.toLowerCase())) {
-                    freshAll.push(def);
-                  }
-                });
+                const freshAll = mergeWorks(data);
+                if (titleParam) {
+                  const fIdx = freshAll.findIndex(i => i.title.toLowerCase() === decodeURIComponent(titleParam).toLowerCase());
+                  if (fIdx !== -1) targetIndex = fIdx;
+                }
                 const freshItem = freshAll[targetIndex] || freshAll[0];
                 renderProject(freshItem, targetIndex, freshAll.length);
               }
