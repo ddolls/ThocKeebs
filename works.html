@@ -376,6 +376,7 @@
   }
 </style>
 
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 	
@@ -421,73 +422,75 @@
       <div class="thoc-wh-col thoc-wh-name"><span data-i18n="works.col.name">Project Name</span></div>
       <div class="thoc-wh-col thoc-wh-status"><span data-i18n="works.col.status">Status</span></div>
       <div class="thoc-wh-col thoc-wh-date"><span data-i18n="works.col.date">Date</span></div>
-      
     </div>
 
-    <!-- WORK 1: LUBE PROJECT #2 (NEWEST - NOVEMBER 2026) -->
-    <div class="thoc-works-row-wrap" style="position:relative; width:100%;">
-      <a class="framer-3Qz7O framer-kVt48 framer-5GVCp framer-1g8niic framer-v-1g8niic framer-1wugrm9" data-framer-appear-id="1g8niic" data-framer-name="Variant 1" data-highlight="true" href="works-project-2.html" style="width:100%;will-change:transform;opacity:1;transform:none">
-        <div class="framer-4rjn7p">
-          <div class="framer-nfi2sh" data-framer-name="Title" data-framer-component-type="RichTextContainer" style="justify-content:center;--framer-paragraph-spacing:0px;transform:none">
-            <h2 class="framer-text framer-styles-preset-1lmekgs" data-styles-preset="eMBLL3bFK">Lube Project #2</h2>
+    <!-- DYNAMIC WORKS CONTAINER -->
+    <div id="thoc-dynamic-works-list" style="display:flex; flex-direction:column; gap:12px; width:100%;">
+      <!-- WORK 1: LUBE PROJECT #2 (NEWEST - NOVEMBER 2026) -->
+      <div class="thoc-works-row-wrap" style="position:relative; width:100%;">
+        <a class="framer-3Qz7O framer-kVt48 framer-5GVCp framer-1g8niic framer-v-1g8niic framer-1wugrm9" data-framer-appear-id="1g8niic" data-framer-name="Variant 1" data-highlight="true" href="works-project-2.html" style="width:100%;will-change:transform;opacity:1;transform:none">
+          <div class="framer-4rjn7p">
+            <div class="framer-nfi2sh" data-framer-name="Title" data-framer-component-type="RichTextContainer" style="justify-content:center;--framer-paragraph-spacing:0px;transform:none">
+              <h2 class="framer-text framer-styles-preset-1lmekgs" data-styles-preset="eMBLL3bFK">Lube Project #2</h2>
+            </div>
           </div>
-        </div>
-        <div class="framer-82ks48">
-          <div class="framer-xiurvb" data-framer-name="Title" data-framer-component-type="RichTextContainer" style="justify-content:center;--extracted-tcooor:var(--token-d752c2e3-4387-4d99-8931-9ec888af3ba1, rgb(157, 157, 159));--framer-paragraph-spacing:0px;transform:none">
-            <div class="framer-text framer-styles-preset-2m3oxe" data-styles-preset="cH7EZUIF7" style="--framer-text-color:var(--extracted-tcooor, var(--token-d752c2e3-4387-4d99-8931-9ec888af3ba1, rgb(157, 157, 159)))">Finished</div>
+          <div class="framer-82ks48">
+            <div class="framer-xiurvb" data-framer-name="Title" data-framer-component-type="RichTextContainer" style="justify-content:center;--extracted-tcooor:var(--token-d752c2e3-4387-4d99-8931-9ec888af3ba1, rgb(157, 157, 159));--framer-paragraph-spacing:0px;transform:none">
+              <div class="framer-text framer-styles-preset-2m3oxe" data-styles-preset="cH7EZUIF7" style="--framer-text-color:var(--extracted-tcooor, var(--token-d752c2e3-4387-4d99-8931-9ec888af3ba1, rgb(157, 157, 159)))">Finished</div>
+            </div>
           </div>
-        </div>
-        <div class="framer-31ht2t">
-          <div class="framer-1fa9jq5" data-framer-name="Title" data-framer-component-type="RichTextContainer" style="justify-content:center;--extracted-tcooor:var(--token-d752c2e3-4387-4d99-8931-9ec888af3ba1, rgb(157, 157, 159));--framer-paragraph-spacing:0px;transform:none">
-            <div class="framer-text framer-styles-preset-2m3oxe" data-styles-preset="cH7EZUIF7" style="--framer-text-color:var(--extracted-tcooor, var(--token-d752c2e3-4387-4d99-8931-9ec888af3ba1, rgb(157, 157, 159)))">November 2026</div>
+          <div class="framer-31ht2t">
+            <div class="framer-1fa9jq5" data-framer-name="Title" data-framer-component-type="RichTextContainer" style="justify-content:center;--extracted-tcooor:var(--token-d752c2e3-4387-4d99-8931-9ec888af3ba1, rgb(157, 157, 159));--framer-paragraph-spacing:0px;transform:none">
+              <div class="framer-text framer-styles-preset-2m3oxe" data-styles-preset="cH7EZUIF7" style="--framer-text-color:var(--extracted-tcooor, var(--token-d752c2e3-4387-4d99-8931-9ec888af3ba1, rgb(157, 157, 159)))">November 2026</div>
+            </div>
           </div>
-        </div>
-        <div class="framer-17la0sa" data-framer-name="Icon" style="transform:translateY(-50%); z-index: 10;">
-          <div class="framer-9jw2q0" data-framer-name="Bounding-Box">
-            <div data-framer-component-type="SVG" class="framer-zmzq8k" aria-hidden="true" style="image-rendering:pixelated;flex-shrink:0">
-              <div class="svgContainer" style="width:100%;height:100%;aspect-ratio:inherit">
-                <svg style="width:100%;height:100%;overflow: visible;"><use href="#svg-249169180_429"/></svg>
+          <div class="framer-17la0sa" data-framer-name="Icon" style="transform:translateY(-50%); z-index: 10;">
+            <div class="framer-9jw2q0" data-framer-name="Bounding-Box">
+              <div data-framer-component-type="SVG" class="framer-zmzq8k" aria-hidden="true" style="image-rendering:pixelated;flex-shrink:0">
+                <div class="svgContainer" style="width:100%;height:100%;aspect-ratio:inherit">
+                  <svg style="width:100%;height:100%;overflow: visible;"><use href="#svg-249169180_429"/></svg>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="framer-zozh7o" data-framer-name="Background" style="background-color:var(--token-9a61cb06-3a3a-4375-8be8-66b9dda45d4e, rgb(46, 46, 47))"></div>
-        <div class="framer-1sge75u" data-framer-name="Background" style="background-color:var(--token-f56b1214-00aa-4536-9ffd-154101bb6be0, rgb(210, 210, 210))"></div>
-      </a>
-      <a href="https://vt.tiktok.com/ZSpUv18Pb/" target="_blank" rel="noopener noreferrer" title="Watch on TikTok" onclick="event.stopPropagation();" style="position:absolute; right:16px; top:50%; transform:translateY(-50%); width:44px; height:44px; z-index:20; display:flex; align-items:center; justify-content:center; cursor:pointer;" aria-label="Watch on TikTok"></a>
-    </div>
+          <div class="framer-zozh7o" data-framer-name="Background" style="background-color:var(--token-9a61cb06-3a3a-4375-8be8-66b9dda45d4e, rgb(46, 46, 47))"></div>
+          <div class="framer-1sge75u" data-framer-name="Background" style="background-color:var(--token-f56b1214-00aa-4536-9ffd-154101bb6be0, rgb(210, 210, 210))"></div>
+        </a>
+        <a href="https://vt.tiktok.com/ZSpUv18Pb/" target="_blank" rel="noopener noreferrer" title="Watch on TikTok" onclick="event.stopPropagation();" style="position:absolute; right:16px; top:50%; transform:translateY(-50%); width:44px; height:44px; z-index:20; display:flex; align-items:center; justify-content:center; cursor:pointer;" aria-label="Watch on TikTok"></a>
+      </div>
 
-    <!-- WORK 2: LUBE PROJECT #1 (OCTOBER 2026) -->
-    <div class="thoc-works-row-wrap" style="position:relative; width:100%;">
-      <a class="framer-3Qz7O framer-kVt48 framer-5GVCp framer-1g8niic framer-v-1g8niic framer-1wugrm9" data-framer-appear-id="1g8niic" data-framer-name="Variant 1" data-highlight="true" href="works-project-1.html" style="width:100%;will-change:transform;opacity:1;transform:none">
-        <div class="framer-4rjn7p">
-          <div class="framer-nfi2sh" data-framer-name="Title" data-framer-component-type="RichTextContainer" style="justify-content:center;--framer-paragraph-spacing:0px;transform:none">
-            <h2 class="framer-text framer-styles-preset-1lmekgs" data-styles-preset="eMBLL3bFK">Lube Project #1</h2>
+      <!-- WORK 2: LUBE PROJECT #1 (OCTOBER 2026) -->
+      <div class="thoc-works-row-wrap" style="position:relative; width:100%;">
+        <a class="framer-3Qz7O framer-kVt48 framer-5GVCp framer-1g8niic framer-v-1g8niic framer-1wugrm9" data-framer-appear-id="1g8niic" data-framer-name="Variant 1" data-highlight="true" href="works-project-1.html" style="width:100%;will-change:transform;opacity:1;transform:none">
+          <div class="framer-4rjn7p">
+            <div class="framer-nfi2sh" data-framer-name="Title" data-framer-component-type="RichTextContainer" style="justify-content:center;--framer-paragraph-spacing:0px;transform:none">
+              <h2 class="framer-text framer-styles-preset-1lmekgs" data-styles-preset="eMBLL3bFK">Lube Project #1</h2>
+            </div>
           </div>
-        </div>
-        <div class="framer-82ks48">
-          <div class="framer-xiurvb" data-framer-name="Title" data-framer-component-type="RichTextContainer" style="justify-content:center;--extracted-tcooor:var(--token-d752c2e3-4387-4d99-8931-9ec888af3ba1, rgb(157, 157, 159));--framer-paragraph-spacing:0px;transform:none">
-            <div class="framer-text framer-styles-preset-2m3oxe" data-styles-preset="cH7EZUIF7" style="--framer-text-color:var(--extracted-tcooor, var(--token-d752c2e3-4387-4d99-8931-9ec888af3ba1, rgb(157, 157, 159)))">Finished</div>
+          <div class="framer-82ks48">
+            <div class="framer-xiurvb" data-framer-name="Title" data-framer-component-type="RichTextContainer" style="justify-content:center;--extracted-tcooor:var(--token-d752c2e3-4387-4d99-8931-9ec888af3ba1, rgb(157, 157, 159));--framer-paragraph-spacing:0px;transform:none">
+              <div class="framer-text framer-styles-preset-2m3oxe" data-styles-preset="cH7EZUIF7" style="--framer-text-color:var(--extracted-tcooor, var(--token-d752c2e3-4387-4d99-8931-9ec888af3ba1, rgb(157, 157, 159)))">Finished</div>
+            </div>
           </div>
-        </div>
-        <div class="framer-31ht2t">
-          <div class="framer-1fa9jq5" data-framer-name="Title" data-framer-component-type="RichTextContainer" style="justify-content:center;--extracted-tcooor:var(--token-d752c2e3-4387-4d99-8931-9ec888af3ba1, rgb(157, 157, 159));--framer-paragraph-spacing:0px;transform:none">
-            <div class="framer-text framer-styles-preset-2m3oxe" data-styles-preset="cH7EZUIF7" style="--framer-text-color:var(--extracted-tcooor, var(--token-d752c2e3-4387-4d99-8931-9ec888af3ba1, rgb(157, 157, 159)))">October 2026</div>
+          <div class="framer-31ht2t">
+            <div class="framer-1fa9jq5" data-framer-name="Title" data-framer-component-type="RichTextContainer" style="justify-content:center;--extracted-tcooor:var(--token-d752c2e3-4387-4d99-8931-9ec888af3ba1, rgb(157, 157, 159));--framer-paragraph-spacing:0px;transform:none">
+              <div class="framer-text framer-styles-preset-2m3oxe" data-styles-preset="cH7EZUIF7" style="--framer-text-color:var(--extracted-tcooor, var(--token-d752c2e3-4387-4d99-8931-9ec888af3ba1, rgb(157, 157, 159)))">October 2026</div>
+            </div>
           </div>
-        </div>
-        <div class="framer-17la0sa" data-framer-name="Icon" style="transform:translateY(-50%); z-index: 10;">
-          <div class="framer-9jw2q0" data-framer-name="Bounding-Box">
-            <div data-framer-component-type="SVG" class="framer-zmzq8k" aria-hidden="true" style="image-rendering:pixelated;flex-shrink:0">
-              <div class="svgContainer" style="width:100%;height:100%;aspect-ratio:inherit">
-                <svg style="width:100%;height:100%;overflow: visible;"><use href="#svg-249169180_429"/></svg>
+          <div class="framer-17la0sa" data-framer-name="Icon" style="transform:translateY(-50%); z-index: 10;">
+            <div class="framer-9jw2q0" data-framer-name="Bounding-Box">
+              <div data-framer-component-type="SVG" class="framer-zmzq8k" aria-hidden="true" style="image-rendering:pixelated;flex-shrink:0">
+                <div class="svgContainer" style="width:100%;height:100%;aspect-ratio:inherit">
+                  <svg style="width:100%;height:100%;overflow: visible;"><use href="#svg-249169180_429"/></svg>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="framer-zozh7o" data-framer-name="Background" style="background-color:var(--token-9a61cb06-3a3a-4375-8be8-66b9dda45d4e, rgb(46, 46, 47))"></div>
-        <div class="framer-1sge75u" data-framer-name="Background" style="background-color:var(--token-f56b1214-00aa-4536-9ffd-154101bb6be0, rgb(210, 210, 210))"></div>
-      </a>
-      <a href="https://vt.tiktok.com/ZSpUfwdK5/" target="_blank" rel="noopener noreferrer" title="Watch on TikTok" onclick="event.stopPropagation();" style="position:absolute; right:16px; top:50%; transform:translateY(-50%); width:44px; height:44px; z-index:20; display:flex; align-items:center; justify-content:center; cursor:pointer;" aria-label="Watch on TikTok"></a>
+          <div class="framer-zozh7o" data-framer-name="Background" style="background-color:var(--token-9a61cb06-3a3a-4375-8be8-66b9dda45d4e, rgb(46, 46, 47))"></div>
+          <div class="framer-1sge75u" data-framer-name="Background" style="background-color:var(--token-f56b1214-00aa-4536-9ffd-154101bb6be0, rgb(210, 210, 210))"></div>
+        </a>
+        <a href="https://vt.tiktok.com/ZSpUfwdK5/" target="_blank" rel="noopener noreferrer" title="Watch on TikTok" onclick="event.stopPropagation();" style="position:absolute; right:16px; top:50%; transform:translateY(-50%); width:44px; height:44px; z-index:20; display:flex; align-items:center; justify-content:center; cursor:pointer;" aria-label="Watch on TikTok"></a>
+      </div>
     </div>
 
   </div>
@@ -1548,6 +1551,8 @@ html.light-theme .thoc-works-header {
 })();
 </script>
 
+  <script src="config.js"></script>
   <script src="lang.js"></script>
+  <script src="works.js"></script>
 </body>
 </html>

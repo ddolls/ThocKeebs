@@ -89,6 +89,9 @@ const THOC_CONFIG = {
     }
   ],
 
+  // Google Apps Script API endpoint untuk data katalog works otomatis
+  worksSheetApi: "https://script.google.com/macros/s/AKfycby-lUbeLyTLZQyMU4ZRaw0GNdfuHV4SYyg4-4ZBk8_zzmlvVmAIF44M1Ge9ea9LBGFe/exec",
+
   // Akun Sosial Media & Marketplace
   socials: {
     instagram: "https://instagram.com/thockeebs",

@@ -1185,3 +1185,244 @@ html.light-theme .thoc-works-header {
     font-size: 10px !important;
   }
 }
+
+/* --- WORKS PROJECT MODAL --- */
+.thoc-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  box-sizing: border-box;
+}
+
+.thoc-modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.thoc-modal-card {
+  background: #252526;
+  color: #f0f0f1;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 560px;
+  max-height: 88vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  transform: translateY(16px) scale(0.97);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.thoc-modal-overlay.active .thoc-modal-card {
+  transform: translateY(0) scale(1);
+}
+
+body.light-theme .thoc-modal-card,
+html.light-theme .thoc-modal-card {
+  background: #ffffff;
+  color: #252526;
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.15);
+}
+
+.thoc-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.4);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 20px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.thoc-modal-close:hover {
+  background: rgba(0, 0, 0, 0.7);
+  transform: scale(1.08);
+}
+
+body.light-theme .thoc-modal-close,
+html.light-theme .thoc-modal-close {
+  background: rgba(255, 255, 255, 0.85);
+  color: #252526;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.thoc-modal-thumb-wrap {
+  width: 100%;
+  max-height: 320px;
+  overflow: hidden;
+  background: #1a1a1a;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  position: relative;
+}
+
+.thoc-modal-img {
+  width: 100%;
+  height: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
+.thoc-modal-body {
+  padding: 24px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+.thoc-modal-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.thoc-modal-badge {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 9999px;
+}
+
+.thoc-modal-badge.status {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+body.light-theme .thoc-modal-badge.status,
+html.light-theme .thoc-modal-badge.status {
+  background: rgba(16, 185, 129, 0.1);
+  color: #059669;
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+.thoc-modal-badge.date {
+  background: rgba(255, 255, 255, 0.08);
+  color: #9d9d9f;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+body.light-theme .thoc-modal-badge.date,
+html.light-theme .thoc-modal-badge.date {
+  background: rgba(0, 0, 0, 0.05);
+  color: #666666;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.thoc-modal-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.thoc-modal-specs-wrap {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+body.light-theme .thoc-modal-specs-wrap,
+html.light-theme .thoc-modal-specs-wrap {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.thoc-modal-specs-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #888888;
+  margin-bottom: 6px;
+}
+
+body.light-theme .thoc-modal-specs-label,
+html.light-theme .thoc-modal-specs-label {
+  color: #777777;
+}
+
+.thoc-modal-specs-content {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #e0e0e0;
+}
+
+body.light-theme .thoc-modal-specs-content,
+html.light-theme .thoc-modal-specs-content {
+  color: #333333;
+}
+
+.thoc-modal-actions {
+  margin-top: 6px;
+}
+
+.thoc-modal-btn.wa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #f0f0f1;
+  color: #1a1a1a;
+  padding: 12px 20px;
+  border-radius: 9999px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.thoc-modal-btn.wa:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+body.light-theme .thoc-modal-btn.wa,
+html.light-theme .thoc-modal-btn.wa {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+.thoc-clickable-project-row:hover {
+  opacity: 0.88;
+}
+

@@ -59,6 +59,8 @@
     'works.col.name': { en: 'Project Name', id: 'Project Name' },
     'works.col.status': { en: 'Status', id: 'Status' },
     'works.col.date': { en: 'Date', id: 'Date' },
+    'works.modal.specs_label': { en: 'TUNING SPECIFICATIONS & BUILD DETAIL', id: 'SPESIFIKASI TUNING & DETAIL BUILD' },
+    'works.modal.wa_btn': { en: 'Consult This Build via WhatsApp →', id: 'Konsultasi Build Ini via WhatsApp →' },
 
     // --- Order Page ---
     'order.hero.title': { en: 'Order Tuning & Modding', id: 'Order Tuning & Modding' },
