@@ -233,7 +233,7 @@
         if (Array.isArray(parsed) && parsed.length > 0) {
           applyAll(parsed);
         }
-      } catch (e) {}
+      } catch (e) { }
     }
 
     // 2. Ambil data terbaru dari Google Apps Script

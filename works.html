@@ -39,6 +39,14 @@
       }
     })();
   </script>
+	<style id="thoc-base-theme-init">
+		html, body {
+			background-color: #f0f0f1 !important;
+		}
+		html.dark-theme, body.dark-theme {
+			background-color: #252526 !important;
+		}
+	</style>
 	
 	<!-- Start of headStart -->
     <!-- Snippet: legacy-headStart -->
@@ -669,8 +677,18 @@
   body.light-theme [data-framer-name="Description"] div,
   body.light-theme .framer-1a6q2h0,
   body.light-theme .framer-1a6q2h0 div,
-  body.light-theme .framer-1a6q2h0 span {
+  body.light-theme .framer-1a6q2h0 span,
+  body.light-theme h2,
+  body.light-theme .framer-styles-preset-1lmekgs,
+  body.light-theme .framer-4rjn7p,
+  body.light-theme .framer-4rjn7p *,
+  body.light-theme .framer-82ks48,
+  body.light-theme .framer-82ks48 *,
+  body.light-theme .framer-31ht2t,
+  body.light-theme .framer-31ht2t * {
     color: rgb(37, 37, 38) !important;
+    --text-color: rgb(37, 37, 38) !important;
+    --framer-text-color: rgb(37, 37, 38) !important;
   }
 
   /* Point 2: Horizontal footer links (Info & Social) */
@@ -929,10 +947,29 @@
 
   /* --- SEAMLESS FOOTER BACKGROUND & CARD ELEVATION --- */
   :root, html, body {
+    background-color: #f0f0f1 !important;
+  }
+  html.dark-theme, body.dark-theme {
     background-color: #252526 !important;
   }
   html.light-theme, body.light-theme {
     background-color: #f0f0f1 !important;
+  }
+  body.light-theme .framer-4rjn7p h2,
+  html.light-theme .framer-4rjn7p h2 {
+    color: #18181b !important;
+  }
+  body.light-theme .framer-82ks48 .framer-text,
+  html.light-theme .framer-82ks48 .framer-text,
+  body.light-theme .framer-31ht2t .framer-text,
+  html.light-theme .framer-31ht2t .framer-text {
+    color: #52525b !important;
+  }
+  body.light-theme .framer-17la0sa svg,
+  html.light-theme .framer-17la0sa svg,
+  body.light-theme .framer-17la0sa svg * {
+    stroke: #18181b !important;
+    color: #18181b !important;
   }
   #main {
     background-color: transparent !important;

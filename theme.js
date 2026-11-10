@@ -76,6 +76,91 @@
     applyTheme(localStorage.getItem('thockeebs-theme') || 'light');
   });
 
+  // --- INJECT GLOBAL TRANSITION & BASE THEME STYLES ---
+  (function injectTransitionStyles() {
+    if (typeof document === 'undefined') return;
+    var styleId = 'thoc-universal-transition-style';
+    if (!document.getElementById(styleId)) {
+      var style = document.createElement('style');
+      style.id = styleId;
+      style.textContent = [
+        '@view-transition { navigation: auto; }',
+        '::view-transition-old(root) { animation: 160ms cubic-bezier(0.4, 0, 0.2, 1) both thocViewFadeOut; }',
+        '::view-transition-new(root) { animation: 200ms cubic-bezier(0.0, 0, 0.2, 1) both thocViewFadeIn; }',
+        '@keyframes thocViewFadeOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-4px); } }',
+        '@keyframes thocViewFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }',
+        'html { background-color: #f0f0f1; }',
+        'body { background-color: #f0f0f1; transition: opacity 0.18s cubic-bezier(0.25, 1, 0.5, 1), transform 0.18s cubic-bezier(0.25, 1, 0.5, 1); }',
+        'html.dark-theme, body.dark-theme { background-color: #252526 !important; }',
+        'html.light-theme, body.light-theme { background-color: #f0f0f1 !important; }',
+        'html.light-theme body, body.light-theme {',
+        '  --token-a58b3a81-59cc-45f7-ae05-091785ff903e: #ffffff !important;',
+        '  --token-9a61cb06-3a3a-4375-8be8-66b9dda45d4e: #18181b !important;',
+        '  --token-b3a4db72-7cd5-441a-86c3-f810b7cadc92: #f0f0f1 !important;',
+        '  --token-d752c2e3-4387-4d99-8931-9ec888af3ba1: #71717a !important;',
+        '  --token-bc378e3e-7ff2-44fd-a6d1-b4984d382cfe: #52525b !important;',
+        '  --token-cd0db9f3-e04f-469f-bf1c-a192982ebe5f: #71717a !important;',
+        '  --framer-text-color: #18181b !important;',
+        '}',
+        'body.light-theme .framer-4rjn7p h2, html.light-theme .framer-4rjn7p h2 { color: #18181b !important; }',
+        'body.light-theme .framer-82ks48 .framer-text, html.light-theme .framer-82ks48 .framer-text { color: #52525b !important; }',
+        'body.light-theme .framer-31ht2t .framer-text, html.light-theme .framer-31ht2t .framer-text { color: #52525b !important; }',
+        'body.thoc-page-leaving { opacity: 0 !important; transform: translateY(-4px) !important; pointer-events: none !important; }',
+        'body.thoc-page-entering { animation: thocEnterAnim 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards; }',
+        '@keyframes thocEnterAnim { 0% { opacity: 0; transform: translateY(6px); } 100% { opacity: 1; transform: translateY(0); } }'
+      ].join('\n');
+      (document.head || document.documentElement).appendChild(style);
+    }
+  })();
+
+  // --- PAGE TRANSITION MANAGER ---
+  // Intercept local link clicks to animate out before navigation, eliminating black flicker
+  function handleLinkClick(e) {
+    var link = e.target.closest('a[href]');
+    if (!link) return;
+
+    var href = link.getAttribute('href');
+    if (!href) return;
+
+    // Ignore anchors on current page, javascript, mailto, tel, target="_blank", or modifier keys
+    if (href.startsWith('#') || href.startsWith('javascript:') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+    if (link.getAttribute('target') === '_blank' || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+
+    // Ignore external URLs
+    try {
+      var targetUrl = new URL(href, window.location.href);
+      if (targetUrl.origin !== window.location.origin) return;
+      if (targetUrl.pathname === window.location.pathname && targetUrl.search === window.location.search) {
+        if (targetUrl.hash) return; // Same page anchor jump
+      }
+    } catch (err) {
+      return;
+    }
+
+    // Smooth page exit animation
+    e.preventDefault();
+    if (document.body) {
+      document.body.classList.add('thoc-page-leaving');
+    }
+
+    setTimeout(function () {
+      window.location.href = href;
+    }, 150);
+  }
+
+  document.addEventListener('click', handleLinkClick, false);
+
+  // Restore page visibility if user uses browser Back / Forward (bfcache)
+  window.addEventListener('pageshow', function (e) {
+    if (document.body) {
+      document.body.classList.remove('thoc-page-leaving');
+      document.body.classList.add('thoc-page-entering');
+      setTimeout(function () {
+        document.body.classList.remove('thoc-page-entering');
+      }, 250);
+    }
+  });
+
   // Global click listener for all theme toggle buttons
   document.addEventListener('click', function (e) {
     var toggleBtn = e.target.closest('[data-framer-name="Theme Toggle"], .framer-mlk3nv, .framer-pp1166, .framer-1qp33iv-container, .framer-1afh5j9-container, button[aria-pressed], .theme-toggle-btn');
