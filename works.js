@@ -242,9 +242,14 @@
       if (!res.ok) throw new Error("HTTP error " + res.status);
       const data = await res.json();
 
-      if (Array.isArray(data) && data.length > 0) {
-        localStorage.setItem(CACHE_KEY, JSON.stringify(data));
-        applyAll(data);
+      if (Array.isArray(data)) {
+        if (data.length > 0) {
+          localStorage.setItem(CACHE_KEY, JSON.stringify(data));
+          applyAll(data);
+        } else {
+          localStorage.removeItem(CACHE_KEY);
+          applyAll([]);
+        }
       }
     } catch (err) {
       console.warn("[ThocKeebs Works] Using cached or default works:", err);

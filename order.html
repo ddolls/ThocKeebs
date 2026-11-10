@@ -1,6 +1,6 @@
 <!doctype html>
 <!-- ThocKeebs Studio · Order Page -->
-<html lang="en" data-redirect-timezone="1" dir="ltr">
+<html lang="en" class="light-theme" data-theme="light" data-redirect-timezone="1" dir="ltr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,13 +10,15 @@
 
   <script>
     (function(){
-      var t = localStorage.getItem('thockeebs-theme') || 'light';
-      if (t === 'light') {
+      var t = localStorage.getItem('thockeebs-theme');
+      if (t === 'dark') {
+        document.documentElement.classList.remove('light-theme');
+        document.documentElement.classList.add('dark-theme');
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
         document.documentElement.classList.add('light-theme');
         document.documentElement.classList.remove('dark-theme');
-      } else {
-        document.documentElement.classList.add('dark-theme');
-        document.documentElement.classList.remove('light-theme');
+        document.documentElement.setAttribute('data-theme', 'light');
       }
     })();
   </script>
@@ -45,6 +47,14 @@
     html.light-theme, body.light-theme {
       background-color: #f0f0f1 !important;
       color: rgb(37, 37, 38) !important;
+    }
+    @media (prefers-color-scheme: dark) {
+      html:not(.dark-theme),
+      html:not(.dark-theme) body,
+      body:not(.dark-theme) {
+        background-color: #f0f0f1 !important;
+        color: rgb(37, 37, 38) !important;
+      }
     }
   
 /* --- LANGUAGE SELECTOR --- */
@@ -1558,7 +1568,7 @@ html.light-theme .lang-dropdown-menu {
 }
 </style>
 </head>
-<body>
+<body class="light-theme" data-theme="light" toggle-theme="light">
 
   <div class="order-page-wrapper">
     

@@ -1,7 +1,7 @@
 <!doctype html>
 <!-- Made in Framer · framer.com -->
 <!-- Published Nov 9, 2026, 2:02 PM UTC -->
-<html lang="en" data-redirect-timezone="1" dir="ltr">
+<html lang="en" class="light-theme" data-theme="light" data-redirect-timezone="1" dir="ltr">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
@@ -29,22 +29,45 @@
 	<script>try{if(localStorage.getItem("__framer_force_showing_editorbar_since")){const n=document.createElement("link");n.rel="modulepreload";n.href="https://framer.com/edit/init.mjs";document.head.appendChild(n)}}catch(e){}</script>
 	<script>
     (function(){
-      var t = localStorage.getItem('thockeebs-theme') || 'light';
-      if (t === 'light') {
+      var t = localStorage.getItem('thockeebs-theme');
+      if (t === 'dark') {
+        document.documentElement.classList.remove('light-theme');
+        document.documentElement.classList.add('dark-theme');
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
         document.documentElement.classList.add('light-theme');
         document.documentElement.classList.remove('dark-theme');
-      } else {
-        document.documentElement.classList.add('dark-theme');
-        document.documentElement.classList.remove('light-theme');
+        document.documentElement.setAttribute('data-theme', 'light');
       }
     })();
   </script>
-	<style id="thoc-base-theme-init">
-		html, body {
+	<style id="thoc-instant-light-default">
+		:root, html, body {
 			background-color: #f0f0f1 !important;
+			color: rgb(37, 37, 38) !important;
 		}
 		html.dark-theme, body.dark-theme {
 			background-color: #252526 !important;
+			color: rgb(240, 240, 241) !important;
+		}
+		@media (prefers-color-scheme: dark) {
+			html:not(.dark-theme),
+			html:not(.dark-theme) body,
+			body:not(.dark-theme) {
+				--token-a58b3a81-59cc-45f7-ae05-091785ff903e: #ffffff !important;
+				--token-9a61cb06-3a3a-4375-8be8-66b9dda45d4e: #18181b !important;
+				--token-1ef64e56-8935-4468-b341-7e1dc51bb63d: rgba(255, 255, 255, 0.6) !important;
+				--token-b3a4db72-7cd5-441a-86c3-f810b7cadc92: #f0f0f1 !important;
+				--token-f56b1214-00aa-4536-9ffd-154101bb6be0: #d2d2d2 !important;
+				--token-63ff77c2-576f-40e9-b4c2-5caf21c4f1e9: #bcbcbd !important;
+				--token-d752c2e3-4387-4d99-8931-9ec888af3ba1: #71717a !important;
+				--token-bc378e3e-7ff2-44fd-a6d1-b4984d382cfe: #52525b !important;
+				--token-8a478efd-d44a-4177-9d88-c7291b9d6b8f: #6d6d6f !important;
+				--token-cd0db9f3-e04f-469f-bf1c-a192982ebe5f: #71717a !important;
+				--framer-text-color: #18181b !important;
+				background-color: #f0f0f1 !important;
+				color: #18181b !important;
+			}
 		}
 	</style>
 	
@@ -328,6 +351,10 @@
 
 <style id="thockeebs-master-visibility">
   :root, html, body {
+    background-color: #f0f0f1 !important;
+    color: rgb(37, 37, 38) !important;
+  }
+  html.dark-theme, body.dark-theme {
     background-color: #252526 !important;
     color: rgb(240, 240, 241) !important;
   }
@@ -545,7 +572,7 @@
 </style>
 
 </head>
-<body>
+<body class="light-theme" data-theme="light" toggle-theme="light">
 	
 	<!-- Start of bodyStart -->
     
@@ -1170,6 +1197,9 @@
 
   /* --- SEAMLESS FOOTER BACKGROUND & CARD ELEVATION --- */
   :root, html, body {
+    background-color: #f0f0f1 !important;
+  }
+  html.dark-theme, body.dark-theme {
     background-color: #252526 !important;
   }
   html.light-theme, body.light-theme {

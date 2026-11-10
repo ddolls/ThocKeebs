@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light-theme" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,22 +13,35 @@
   
   <script>
     (function(){
-      var t = localStorage.getItem('thockeebs-theme') || 'light';
-      if (t === 'light') {
+      var t = localStorage.getItem('thockeebs-theme');
+      if (t === 'dark') {
+        document.documentElement.classList.remove('light-theme');
+        document.documentElement.classList.add('dark-theme');
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
         document.documentElement.classList.add('light-theme');
         document.documentElement.classList.remove('dark-theme');
-      } else {
-        document.documentElement.classList.add('dark-theme');
-        document.documentElement.classList.remove('light-theme');
+        document.documentElement.setAttribute('data-theme', 'light');
       }
     })();
   </script>
-  <style id="thoc-base-theme-init">
-    html, body {
+  <style id="thoc-instant-light-default">
+    :root, html, body {
       background-color: #f0f0f1 !important;
+      color: rgb(37, 37, 38) !important;
     }
     html.dark-theme, body.dark-theme {
       background-color: #252526 !important;
+      color: rgb(240, 240, 241) !important;
+    }
+    @media (prefers-color-scheme: dark) {
+      html:not(.dark-theme),
+      html:not(.dark-theme) body,
+      body:not(.dark-theme) {
+        --token-b3a4db72-7cd5-441a-86c3-f810b7cadc92: #f0f0f1 !important;
+        background-color: #f0f0f1 !important;
+        color: #18181b !important;
+      }
     }
   </style>
 
@@ -638,7 +651,7 @@
 
   /* --- SEAMLESS FOOTER BACKGROUND & CARD ELEVATION --- */
   :root, html, body {
-    background-color: #252526 !important;
+    background-color: #f0f0f1 !important;
   }
   html.light-theme, body.light-theme {
     background-color: #f0f0f1 !important;
@@ -1017,7 +1030,7 @@ html.light-theme .lang-dropdown-menu {
 }
 </style>
 </head>
-<body>
+<body class="light-theme" data-theme="light" toggle-theme="light">
 
   <!-- Nav -->
   <header class="nav-wrap">
@@ -1068,11 +1081,11 @@ html.light-theme .lang-dropdown-menu {
       <div class="project-meta-grid">
         <div class="meta-item">
           <span class="meta-label">Year</span>
-          <span class="meta-val">October 2026</span>
+          <span class="meta-val">12 October 2026</span>
         </div>
         <div class="meta-item">
           <span class="meta-label">Type</span>
-          <span class="meta-val">Lubed Switch</span>
+          <span class="meta-val">Lube Switch</span>
         </div>
         <div class="meta-item">
           <span class="meta-label">Status</span>
