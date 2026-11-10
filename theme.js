@@ -1,10 +1,29 @@
 /**
- * ThocKeebs Universal Theme Engine
- * Defaults to: 'light' mode
+ * ThocKeebs Universal Theme & Navigation Engine
+ * 1. Defaults to: 'light' mode
+ * 2. Clean URLs: Cleans /index.html and .html from address bar without reload
  */
 (function () {
   'use strict';
 
+  // --- CLEAN URL MANAGER ---
+  // Menghilangkan /index.html dan ekstensi .html dari address bar browser tanpa reload
+  if (typeof window !== 'undefined' && window.location && window.history && window.history.replaceState) {
+    try {
+      if (window.location.protocol.startsWith('http')) {
+        var path = window.location.pathname;
+        if (path === '/index.html' || path.endsWith('/index.html')) {
+          var cleanPath = path.replace(/\/index\.html$/, '') || '/';
+          window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
+        } else if (path.endsWith('.html')) {
+          var cleanPath = path.slice(0, -5);
+          window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
+        }
+      }
+    } catch (e) {}
+  }
+
+  // --- THEME ENGINE ---
   function applyTheme(theme) {
     var isLight = theme === 'light';
     if (isLight) {

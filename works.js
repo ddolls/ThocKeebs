@@ -92,8 +92,8 @@
       const status = item.status || "Finished";
       const date = item.date || "";
 
-      // Link langsung ke halaman detail penuh
-      const detailUrl = `works-project.html?id=${index}`;
+      // Link langsung ke halaman detail penuh (Clean URL)
+      const detailUrl = `works-project?id=${index}`;
 
       html += `
         <div class="thoc-works-row-wrap" style="position:relative; width:100%;">
@@ -148,7 +148,7 @@
       const date = item.date || "November 2026";
       const imgUrl = normalizeImageUrl(item.thumbnail);
       const numVal = String(total - index).padStart(2, '0');
-      const detailUrl = `works-project.html?id=${index}`;
+      const detailUrl = `works-project?id=${index}`;
 
       html += `
         <div class="ssr-variant" style="flex:1 1 48%;min-width:300px;box-sizing:border-box;">
