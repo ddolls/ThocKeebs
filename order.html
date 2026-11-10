@@ -1731,15 +1731,6 @@ html.light-theme .lang-dropdown-menu {
                 <p class="order-choice-desc">1 Board Fullset (Wire balancing, stem clipping, housing lube Krytox 205g0 + XHT-BDZ wire).</p>
               </div>
 
-              <div class="order-choice-card" data-stabs-card="screwin">
-                <div class="order-choice-top">
-                  <span class="order-choice-tag">FULLSET</span>
-                  <span class="order-choice-price">Rp 45.000</span>
-                </div>
-                <h4 class="order-choice-title">Screw-In / PCB Stabs</h4>
-                <p class="order-choice-desc">1 Board Fullset Screw-In (Precision wire straightening, washer dampening, and high-temp grease).</p>
-              </div>
-
               <div class="order-choice-card" data-stabs-card="none">
                 <div class="order-choice-top">
                   <span class="order-choice-tag">SKIP</span>
@@ -1987,7 +1978,6 @@ html.light-theme .lang-dropdown-menu {
     var prices = {
       switchLubeStandard: 2000,
       stabsPlateMount: 35000,
-      stabsScrewIn: 45000,
       holeeModAddon: 10000
     };
 
@@ -2028,9 +2018,6 @@ html.light-theme .lang-dropdown-menu {
       if (selectedStabs === 'plate') {
         stabsPrice = prices.stabsPlateMount;
         stabsName = "Fullset Plate-Mount";
-      } else if (selectedStabs === 'screwin') {
-        stabsPrice = prices.stabsScrewIn;
-        stabsName = "Fullset Screw-In / PCB";
       }
 
       var addonsTotal = 0;

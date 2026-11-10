@@ -87,7 +87,6 @@
     'order.step4.title': { en: 'Keyboard Stabilizer Tuning', id: 'Tuning Stabilizer Keyboard' },
     'order.step4.desc': { en: 'Precision wire balancing on ceramic surface, clipping, and rattle-free dampening.', id: 'Wire balancing presisi di atas ceramic surface, clipping, dan rattle-free dampening.' },
     'order.step4.plate.desc': { en: '1 Board Fullset (Wire balancing, stem clipping, housing lube Krytox 205g0 + XHT-BDZ wire).', id: '1 Board Fullset (Wire balancing, stem clipping, housing lube Krytox 205g0 + XHT-BDZ wire).' },
-    'order.step4.screwin.desc': { en: '1 Board Fullset Screw-In (Precision wire straightening, washer dampening, and high-temp grease).', id: '1 Board Fullset Screw-In (Precision wire straightening, washer dampening, and high-temp grease).' },
     'order.step4.none.title': { en: 'No Stabilizer Tuning', id: 'Tanpa Stabilizer' },
     'order.step4.none.desc': { en: 'Send loose switches only without keyboard board or stabilizers.', id: 'Hanya kirim switch lepasan tanpa board atau stabilizer keyboard.' },
 

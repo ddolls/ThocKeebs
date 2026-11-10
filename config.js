@@ -43,7 +43,6 @@ const THOC_CONFIG = {
     
     // Stabilizer Tuning
     stabsPlateMount: 35000,        // 1 Board Fullset Plate-Mount Stabs (Wire balancing + Lube)
-    stabsScrewIn: 45000,           // 1 Board Fullset Screw-in / PCB Mount Stabs
     stabsPerWire: 8000,            // Per-wire stabilizer tuning
     
     // Add-on Mods
@@ -70,7 +69,7 @@ const THOC_CONFIG = {
       customerName: "Rian Pratama",
       phoneTail: "7762",
       switchModel: "Vertex V1 (90 pcs)",
-      packageName: "Lube + Deskeys Film + Screw-In Stabs",
+      packageName: "Lube + Deskeys Film + Plate-Mount Stabs",
       statusStep: 3,
       statusText: "Sedang Dikerjakan (Lubing & Filming)",
       notes: "Proses pengerjaan stem dan housing rails.",

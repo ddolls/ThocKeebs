@@ -361,7 +361,6 @@ function initOrderCalculator() {
     switchLubeFilm: 2800,
     switchLubeFullMod: 3500,
     stabsPlateMount: 35000,
-    stabsScrewIn: 45000,
     holeeModAddon: 10000,
     bandaidPcbMod: 8000,
     desolderPerSwitch: 1500
@@ -420,9 +419,6 @@ function initOrderCalculator() {
     if (selectedStabs === 'plate') {
       stabsPrice = prices.stabsPlateMount;
       stabsName = "Fullset Plate-Mount";
-    } else if (selectedStabs === 'screwin') {
-      stabsPrice = prices.stabsScrewIn;
-      stabsName = "Fullset Screw-In / PCB";
     }
 
     let addonsTotal = 0;
