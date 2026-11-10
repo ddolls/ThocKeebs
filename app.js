@@ -1,6 +1,6 @@
 /**
  * ThocKeebs - Core Application Script
- * Inspired by biipmk.com (Mechanical Keyboard Designer Portfolio)
+ * ThocKeebs Studio - Mechanical Keyboard Tuning & Modding Portfolio
  * - Live Ticking Clock (Jakarta, Indonesia) in Navigation Bar
  * - Web Audio API Mechanical Keyboard Sound Synthesizer (Zero External Audio Files)
  * - Realtime Pre-Order Calculator & Live Subtotal Engine

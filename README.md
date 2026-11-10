@@ -69,4 +69,4 @@ Buka `http://localhost:3000` di web browser.
 
 - **Studio**: ThocKeebs Bandung, Indonesia
 - **WhatsApp Admin**: 085722333327
-- **Inspirasi Desain**: Biip Studio
+- **Inspirasi Estetika**: Minimalist Monospaced Industrial Design
