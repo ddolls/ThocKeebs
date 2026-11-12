@@ -11,6 +11,7 @@
     // --- Navigation & Common ---
     'nav.home': { en: 'Home', id: 'Home' },
     'nav.works': { en: 'Works', id: 'Works' },
+    'nav.drivers': { en: 'Drivers', id: 'Drivers' },
     'nav.order': { en: 'Order', id: 'Order' },
     'nav.about': { en: 'About', id: 'About' },
     'nav.location': { en: 'Bandung, Indonesia.', id: 'Bandung, Indonesia.' },
@@ -18,6 +19,7 @@
     // --- Footer ---
     'footer.info': { en: 'Info', id: 'Info' },
     'footer.social': { en: 'Social', id: 'Social' },
+    'footer.drivers': { en: 'Web Drivers', id: 'Web Drivers' },
     'footer.rights': { en: 'ALL RIGHTS RESERVED © 2026 THOCKEEBS', id: 'ALL RIGHTS RESERVED © 2026 THOCKEEBS' },
 
     // --- Index (Home) ---

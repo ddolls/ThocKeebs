@@ -1567,6 +1567,7 @@ html.light-theme .lang-dropdown-menu {
   }
 }
 </style>
+  <link rel="stylesheet" href="drivers.css">
 </head>
 <body class="light-theme" data-theme="light" toggle-theme="light">
 
@@ -1599,6 +1600,38 @@ html.light-theme .lang-dropdown-menu {
 </div>
           <a href="./" class="thoc-nav-link" data-i18n="nav.home">Home</a>
           <a href="works" class="thoc-nav-link" data-i18n="nav.works">Works</a>
+          
+<!-- ThocKeebs Drivers Navbar Pill -->
+<div class="thoc-drivers-nav-item">
+  <a href="#thoc-web-drivers" class="thoc-nav-link thoc-drivers-toggle" data-i18n="nav.drivers" style="display:inline-flex;align-items:center;gap:4px;">
+    <span>Drivers</span>
+    <svg class="thoc-drivers-chevron" width="8" height="8" viewBox="0 0 10 10" fill="currentColor"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+  </a>
+  <div class="thoc-drivers-dropdown">
+    <a href="https://leobog.thockeebs.com" target="_blank" rel="noopener noreferrer" class="thoc-driver-dropdown-item" title="Leobog Hi75C Pro Web Driver">
+      <div class="thoc-driver-item-info">
+        <span class="thoc-driver-item-title">
+          <span class="thoc-driver-dot"></span>
+          Leobog Hi75C Pro
+        </span>
+        <span class="thoc-driver-item-sub">WebUSB Configurator</span>
+      </div>
+      <span class="thoc-driver-arrow">↗</span>
+    </a>
+    <div class="thoc-driver-divider"></div>
+    <a href="https://weikav.thockeebs.com" target="_blank" rel="noopener noreferrer" class="thoc-driver-dropdown-item" title="Weikav WK75 Web Driver">
+      <div class="thoc-driver-item-info">
+        <span class="thoc-driver-item-title">
+          <span class="thoc-driver-dot"></span>
+          Weikav WK75
+        </span>
+        <span class="thoc-driver-item-sub">WebHID Configurator</span>
+      </div>
+      <span class="thoc-driver-arrow">↗</span>
+    </a>
+  </div>
+</div>
+
           <a href="order" class="thoc-nav-link active" data-i18n="nav.order">Order</a>
           <a href="about" class="thoc-nav-link" data-i18n="nav.about">About</a>
           
@@ -1920,7 +1953,7 @@ html.light-theme .lang-dropdown-menu {
     </div>
 
     <!-- CLEAN FOOTER -->
-    <footer class="thockeebs-footer-wrapper">
+    <footer class="thockeebs-footer-wrapper" id="thoc-web-drivers">
       <div class="thockeebs-footer-card">
         <div class="thockeebs-footer-nav">
           <div class="thockeebs-footer-column">
@@ -1953,7 +1986,27 @@ html.light-theme .lang-dropdown-menu {
               </a>
             </div>
           </div>
+        
+      <div class="thockeebs-footer-column">
+        <div class="thockeebs-footer-head">
+          <div class="thockeebs-footer-heading">
+            <span class="thockeebs-footer-dot" style="background:#10b981;"></span>
+            <span data-i18n="footer.drivers">Web Drivers</span>
+          </div>
+          <span class="thockeebs-footer-num">03</span>
         </div>
+        <div class="thockeebs-footer-links">
+          <a href="https://leobog.thockeebs.com" target="_blank" rel="noopener noreferrer" class="thockeebs-footer-link" title="Leobog Hi75C Pro Web Driver">
+            <span>Leobog Hi75C Pro</span>
+            <span class="thockeebs-external-arrow">↗</span>
+          </a>
+          <a href="https://weikav.thockeebs.com" target="_blank" rel="noopener noreferrer" class="thockeebs-footer-link" title="Weikav WK75 Web Driver">
+            <span>Weikav WK75</span>
+            <span class="thockeebs-external-arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
 
         <div class="thockeebs-footer-brand">
           <svg viewBox="0 0 1200 280" xmlns="http://www.w3.org/2000/svg">
@@ -2186,5 +2239,6 @@ html.light-theme .lang-dropdown-menu {
   })();
   </script>
   <script src="lang.js"></script>
+  <script src="drivers.js"></script>
 </body>
 </html>
