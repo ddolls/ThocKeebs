@@ -95,8 +95,8 @@ const THOC_CONFIG = {
   socials: {
     instagram: "https://instagram.com/thockeebs",
     instagramHandle: "@thockeebs",
-    tiktok: "https://www.tiktok.com/@thockkeebsofficial",
-    tiktokHandle: "@thockkeebsofficial",
+    tiktok: "https://www.tiktok.com/@thockeebsofficial",
+    tiktokHandle: "@thockeebsofficial",
     tokopedia: "https://tokopedia.com/thockeebs",
     shopee: "https://shopee.co.id/thockeebs"
   }
