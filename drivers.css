@@ -22,32 +22,31 @@
 }
 
 /* 2. Floating Navbar Drivers Item & Dropdown */
+.framer-8qYMR .framer-thoc-drivers-container,
+.framer-thoc-drivers-container {
+  cursor: pointer !important;
+  flex: none !important;
+  width: auto !important;
+  height: 42px !important;
+  position: relative !important;
+  display: block !important;
+}
+
 .thoc-drivers-nav-item {
   position: relative !important;
-  display: flex !important;
-  align-items: center !important;
   height: 100% !important;
 }
 
 .thoc-drivers-toggle {
-  display: flex !important;
-  align-items: center !important;
   cursor: pointer !important;
   text-decoration: none !important;
   user-select: none !important;
+  height: 100% !important;
+  display: block !important;
 }
 
-.thoc-drivers-chevron {
-  opacity: 0.6;
-  margin-left: 2px;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-  pointer-events: none;
-}
-
-.thoc-drivers-nav-item:hover .thoc-drivers-chevron,
-.thoc-drivers-toggle[aria-expanded="true"] .thoc-drivers-chevron {
-  transform: rotate(180deg);
-  opacity: 1;
+.framer-thoc-drivers-container p.framer-text {
+  margin: 0 !important;
 }
 
 /* Dropdown Card */
