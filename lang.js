@@ -37,14 +37,20 @@
       en: 'An architectural dissection of acoustic resonance, material physics, mounting systems, and precision Krytox tuning that defines the signature thock.',
       id: 'Pembedahan arsitektur akustik, fisika material, sistem mounting, dan pelumasan presisi Krytox yang menciptakan karakter thock autentik.'
     },
+    'anatomy.intro.badge': {
+      en: '• ARCHITECTURAL INTRO REEL •',
+      id: '• VIDEO INTRO ARSITEKTUR •'
+    },
     'anatomy.filter.all': { en: 'All Components', id: 'Semua Komponen' },
     'anatomy.filter.keycaps': { en: 'Keycaps', id: 'Keycaps' },
     'anatomy.filter.switches': { en: 'Switches', id: 'Switches' },
+    'anatomy.filter.switchtypes': { en: 'Switch Types', id: 'Tipe Switch' },
     'anatomy.filter.stabilizers': { en: 'Stabilizers', id: 'Stabilizer' },
+    'anatomy.filter.layouts': { en: 'Layouts', id: 'Layout' },
     'anatomy.filter.plates': { en: 'Plates', id: 'Plates' },
     'anatomy.filter.mounting': { en: 'Mounting', id: 'Mounting' },
     'anatomy.filter.acoustics': { en: 'Acoustic Foams', id: 'Acoustic Foam' },
-    'anatomy.filter.pcb': { en: 'PCB', id: 'PCB' },
+    'anatomy.filter.pcb': { en: 'PCB & MCU', id: 'PCB & MCU' },
     'anatomy.filter.case': { en: 'Case & Weight', id: 'Case & Weight' },
     'anatomy.matrix.title': {
       en: 'Acoustic Signature Comparison Matrix',

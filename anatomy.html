@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Anatomy — ThocKeebs Studio | Anatomy of a Custom Mechanical Keyboard</title>
-  <meta name="description" content="An architectural dissection of acoustic resonance, material physics, mounting systems, and precision switch tuning by ThocKeebs Studio Bandung.">
+  <meta name="description" content="An architectural dissection of acoustic resonance, material physics, mounting systems, and precision switch tuning with high-definition video walkthroughs by ThocKeebs Studio Bandung.">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 
   <!-- Fonts -->
@@ -20,7 +20,7 @@
   <style>
     /* ==========================================================================
        ANATOMY OF A CUSTOM MECHANICAL KEYBOARD - DEDICATED STYLING
-       Clean, Architectural, Monochromatic, Masterpiece Design
+       Clean, Architectural, Monochromatic, Masterpiece Design with Video Players
        ========================================================================== */
 
     :root {
@@ -244,7 +244,7 @@
     /* Hero Header */
     .anatomy-hero {
       text-align: center;
-      margin-bottom: 56px;
+      margin-bottom: 48px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -289,7 +289,104 @@
       font-size: clamp(14px, 1.8vw, 16px);
       line-height: 1.6;
       color: var(--thoc-text-muted);
-      margin: 0 0 32px 0;
+      margin: 0 0 28px 0;
+    }
+
+    /* ==========================================================================
+       HERO INTRO SHOWCASE VIDEO (1 Intro.mp4) - Centered Below Title
+       ========================================================================== */
+    .thoc-intro-video-card {
+      width: 100%;
+      max-width: 880px;
+      margin: 0 auto 36px;
+      background: var(--thoc-card-bg);
+      border: 1px solid var(--thoc-border);
+      border-radius: 20px;
+      padding: 18px;
+      box-sizing: border-box;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      text-align: left;
+    }
+
+    body.dark-theme .thoc-intro-video-card {
+      background: #1e1e1e;
+      border-color: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    .thoc-video-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding: 0 4px;
+    }
+
+    .thoc-video-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--thoc-text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .thoc-video-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--thoc-accent-dot);
+    }
+
+    .thoc-video-duration {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--thoc-text-dim);
+    }
+
+    .thoc-video-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000000;
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    .thoc-player {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: #000000;
+      border: none;
+      outline: none;
+    }
+
+    /* Embedded Video in Individual Component Cards */
+    .thoc-card-video-box {
+      grid-column: 1 / -1;
+      background: var(--thoc-card-sub);
+      border: 1px solid var(--thoc-border);
+      border-radius: 14px;
+      padding: 14px;
+      box-sizing: border-box;
+      margin-bottom: 8px;
+    }
+
+    .thoc-card-video-box .thoc-video-header {
+      margin-bottom: 10px;
+    }
+
+    .thoc-card-video-box .thoc-video-frame {
+      border-radius: 10px;
     }
 
     /* Filter Chips / Quick Jump Bar */
@@ -298,7 +395,7 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 8px;
-      max-width: 880px;
+      max-width: 960px;
       margin-bottom: 40px;
     }
 
@@ -346,6 +443,8 @@
       margin-bottom: 28px;
       padding-bottom: 16px;
       border-bottom: 1px solid var(--thoc-border);
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     .anatomy-exploded-title {
@@ -362,7 +461,7 @@
       margin: 0;
     }
 
-    /* Visual 8-Layer Stack Interactive List */
+    /* Visual Layer Stack Interactive List */
     .anatomy-layer-stack {
       display: flex;
       flex-direction: column;
@@ -372,7 +471,7 @@
 
     .anatomy-stack-row {
       display: grid;
-      grid-template-columns: 44px 180px 1fr auto;
+      grid-template-columns: 44px 190px 1fr auto;
       align-items: center;
       gap: 16px;
       padding: 14px 18px;
@@ -834,6 +933,9 @@
         flex-direction: column;
         align-items: flex-start;
       }
+      .thoc-intro-video-card {
+        padding: 12px;
+      }
       .anatomy-cta {
         padding: 32px 20px;
       }
@@ -938,16 +1040,32 @@
           An architectural dissection of acoustic resonance, material physics, mounting systems, and precision Krytox tuning that defines the signature thock.
         </p>
 
+        <!-- 1 INTRO VIDEO: CENTERED DIRECTLY UNDER TITLE -->
+        <div class="thoc-intro-video-card">
+          <div class="thoc-video-header">
+            <div class="thoc-video-tag">
+              <span class="thoc-video-dot"></span>
+              <span data-i18n="anatomy.intro.badge">• ARCHITECTURAL INTRO REEL •</span>
+            </div>
+            <span class="thoc-video-duration">1 Intro • 00:17 • 1080P FHD</span>
+          </div>
+          <div class="thoc-video-frame">
+            <video class="thoc-player" src="Videos/1%20Intro.mp4" controls playsinline preload="metadata" title="Anatomy of a Custom Mechanical Keyboard Intro Reel"></video>
+          </div>
+        </div>
+
         <!-- Quick Jump Filter Chips -->
         <div class="anatomy-filter-bar">
           <a href="#layer-keycaps" class="anatomy-chip">01. Keycaps</a>
           <a href="#layer-switches" class="anatomy-chip">02. Switches</a>
-          <a href="#layer-stabilizers" class="anatomy-chip">03. Stabilizers</a>
-          <a href="#layer-plates" class="anatomy-chip">04. Plates</a>
-          <a href="#layer-mounting" class="anatomy-chip">05. Mounting</a>
-          <a href="#layer-acoustics" class="anatomy-chip">06. Acoustic Foams</a>
-          <a href="#layer-pcb" class="anatomy-chip">07. PCB</a>
-          <a href="#layer-case" class="anatomy-chip">08. Case & Weight</a>
+          <a href="#layer-switch-types" class="anatomy-chip">03. Switch Types</a>
+          <a href="#layer-stabilizers" class="anatomy-chip">04. Stabilizers</a>
+          <a href="#layer-layouts" class="anatomy-chip">05. Layouts</a>
+          <a href="#layer-plates" class="anatomy-chip">06. Plates</a>
+          <a href="#layer-mounting" class="anatomy-chip">07. Mounting</a>
+          <a href="#layer-acoustics" class="anatomy-chip">08. Foams</a>
+          <a href="#layer-pcb" class="anatomy-chip">09. PCB & MCU</a>
+          <a href="#layer-case" class="anatomy-chip">10. Case & Weight</a>
         </div>
       </section>
 
@@ -955,8 +1073,8 @@
       <section class="anatomy-exploded-card">
         <div class="anatomy-exploded-head">
           <div>
-            <h2 class="anatomy-exploded-title">The 8-Layer Architectural Stack</h2>
-            <p class="anatomy-exploded-desc">Exploded cross-section of a custom mechanical keyboard from keycap to brass weight</p>
+            <h2 class="anatomy-exploded-title">The Architectural Assembly Stack</h2>
+            <p class="anatomy-exploded-desc">Exploded cross-section of a custom mechanical keyboard with dedicated video dissections</p>
           </div>
           <span class="card-num-badge">TOP-TO-BOTTOM ASSEMBLY</span>
         </div>
@@ -967,7 +1085,7 @@
             <span class="stack-idx">01</span>
             <span class="stack-name">Keycaps</span>
             <span class="stack-role">PBT Double-shot / Dye-sub, Cherry & MOA profiles, acoustic reverb chambers</span>
-            <span class="stack-action">Dissect ↓</span>
+            <span class="stack-action">Video & Dissect ↓</span>
           </a>
 
           <!-- 02 Switches -->
@@ -975,52 +1093,68 @@
             <span class="stack-idx">02</span>
             <span class="stack-name">Mechanical Switches</span>
             <span class="stack-role">Stem, Upper Housing, Multi-stage Spring, Gold Contact Leaf, Lower Housing</span>
-            <span class="stack-action">Dissect ↓</span>
+            <span class="stack-action">Video & Dissect ↓</span>
           </a>
 
-          <!-- 03 Stabilizers -->
-          <a href="#layer-stabilizers" class="anatomy-stack-row">
+          <!-- 03 Switch Types -->
+          <a href="#layer-switch-types" class="anatomy-stack-row">
             <span class="stack-idx">03</span>
+            <span class="stack-name">Switch Types</span>
+            <span class="stack-role">Linear, Tactile, Clicky actuation curves & acoustic sound frequencies</span>
+            <span class="stack-action">Video & Dissect ↓</span>
+          </a>
+
+          <!-- 04 Stabilizers -->
+          <a href="#layer-stabilizers" class="anatomy-stack-row">
+            <span class="stack-idx">04</span>
             <span class="stack-name">Stabilizers</span>
             <span class="stack-role">PCB Screw-in, balanced stainless wire, Holee Mod & XHT-BDZ rattle elimination</span>
-            <span class="stack-action">Dissect ↓</span>
+            <span class="stack-action">Video & Dissect ↓</span>
           </a>
 
-          <!-- 04 Plate -->
+          <!-- 05 Layouts -->
+          <a href="#layer-layouts" class="anatomy-stack-row">
+            <span class="stack-idx">05</span>
+            <span class="stack-name">Layouts & Ergonomics</span>
+            <span class="stack-role">60%, 65%, 75% compact, TKL, Full-size, Alice/Ergonomic split angles</span>
+            <span class="stack-action">Video & Dissect ↓</span>
+          </a>
+
+          <!-- 06 Plate -->
           <a href="#layer-plates" class="anatomy-stack-row">
-            <span class="stack-idx">04</span>
+            <span class="stack-idx">06</span>
             <span class="stack-name">Switch Plate</span>
             <span class="stack-role">Polycarbonate (PC), FR4, POM, Aluminum, Brass acoustic resonance dampening</span>
             <span class="stack-action">Dissect ↓</span>
           </a>
 
-          <!-- 05 Mounting -->
+          <!-- 07 Mounting -->
           <a href="#layer-mounting" class="anatomy-stack-row">
-            <span class="stack-idx">05</span>
+            <span class="stack-idx">07</span>
             <span class="stack-name">Mounting Architecture</span>
             <span class="stack-role">Poron Gasket strips, silicone socks, gummy O-ring flex, top mount rigidity</span>
             <span class="stack-action">Dissect ↓</span>
           </a>
 
-          <!-- 06 Acoustic Foams -->
+          <!-- 08 Acoustic Foams -->
           <a href="#layer-acoustics" class="anatomy-stack-row">
-            <span class="stack-idx">06</span>
+            <span class="stack-idx">08</span>
             <span class="stack-name">Acoustic Dampeners</span>
             <span class="stack-role">IXPE Switch Pad, Poron Plate Foam, PET Acoustic Sheet, EPDM, Tempest Tape Mod</span>
             <span class="stack-action">Dissect ↓</span>
           </a>
 
-          <!-- 07 PCB -->
+          <!-- 09 PCB & MCU -->
           <a href="#layer-pcb" class="anatomy-stack-row">
-            <span class="stack-idx">07</span>
-            <span class="stack-name">Printed Circuit Board</span>
-            <span class="stack-role">5-Pin Hot-swap sockets, South-Facing RGB, flex-cut traces, WebHID & WebUSB</span>
-            <span class="stack-action">Dissect ↓</span>
+            <span class="stack-idx">09</span>
+            <span class="stack-name">PCB & Microcontroller</span>
+            <span class="stack-role">5-Pin Hot-swap sockets, South-Facing RGB, MCU processing, WebHID & WebUSB</span>
+            <span class="stack-action">Video & Dissect ↓</span>
           </a>
 
-          <!-- 08 Case & Weight -->
+          <!-- 10 Case & Weight -->
           <a href="#layer-case" class="anatomy-stack-row">
-            <span class="stack-idx">08</span>
+            <span class="stack-idx">10</span>
             <span class="stack-name">CNC Chassis & Weights</span>
             <span class="stack-role">6063 Aluminum CNC milled unibody, PVD brass weight, low acoustic resonance base</span>
             <span class="stack-action">Dissect ↓</span>
@@ -1028,10 +1162,10 @@
         </div>
       </section>
 
-      <!-- 8 DETAILED COMPONENT CARDS -->
+      <!-- DETAILED COMPONENT CARDS WITH EMBEDDED VIDEOS -->
       <div class="anatomy-grid">
 
-        <!-- 01. KEYCAPS -->
+        <!-- 01. KEYCAPS (WITH 6 Keycaps.mp4) -->
         <article class="anatomy-card" id="layer-keycaps">
           <div class="card-top">
             <div class="card-title-group">
@@ -1040,9 +1174,24 @@
               <p>The primary tactile touchpoint and hollow resonance chamber of every keystroke.</p>
             </div>
             <div class="card-meta-pills">
+              <span class="meta-pill">Video Included</span>
               <span class="meta-pill">PBT / ABS</span>
               <span class="meta-pill">1.5mm - 1.7mm Wall Thickness</span>
               <span class="meta-pill">Cherry / OEM / MOA / SA</span>
+            </div>
+          </div>
+
+          <!-- Video Walkthrough Box for Keycaps -->
+          <div class="thoc-card-video-box">
+            <div class="thoc-video-header">
+              <div class="thoc-video-tag">
+                <span class="thoc-video-dot"></span>
+                <span>PART 01 • KEYCAPS DISSECTION & ACOUSTICS</span>
+              </div>
+              <span class="thoc-video-duration">6 Keycaps • 00:18 • 1080P</span>
+            </div>
+            <div class="thoc-video-frame">
+              <video class="thoc-player" src="Videos/6%20Keycaps.mp4" controls playsinline preload="metadata" title="Keycaps Dissection Walkthrough"></video>
             </div>
           </div>
 
@@ -1100,7 +1249,7 @@
           </div>
         </article>
 
-        <!-- 02. SWITCHES -->
+        <!-- 02. SWITCHES (WITH 4 Switches.mp4) -->
         <article class="anatomy-card" id="layer-switches">
           <div class="card-top">
             <div class="card-title-group">
@@ -1109,9 +1258,24 @@
               <p>The mechanical heartbeat where keystrokes are actuated, dampened, and acoustically defined.</p>
             </div>
             <div class="card-meta-pills">
+              <span class="meta-pill">Video Included</span>
               <span class="meta-pill">Linear / Tactile / Clicky</span>
               <span class="meta-pill">Krytox GPL 205g0 + GPL 105</span>
               <span class="meta-pill">Long Pole / Standard</span>
+            </div>
+          </div>
+
+          <!-- Video Walkthrough Box for Switches -->
+          <div class="thoc-card-video-box">
+            <div class="thoc-video-header">
+              <div class="thoc-video-tag">
+                <span class="thoc-video-dot"></span>
+                <span>PART 02 • SWITCH INTERNAL ANATOMY & LUBING</span>
+              </div>
+              <span class="thoc-video-duration">4 Switches • 00:21 • 1080P</span>
+            </div>
+            <div class="thoc-video-frame">
+              <video class="thoc-player" src="Videos/4%20Switches.mp4" controls playsinline preload="metadata" title="Switches Internal Anatomy Walkthrough"></video>
             </div>
           </div>
 
@@ -1178,18 +1342,118 @@
           </div>
         </article>
 
-        <!-- 03. STABILIZERS -->
+        <!-- 03. SWITCH TYPES (WITH 7 Switches Type.mp4) -->
+        <article class="anatomy-card" id="layer-switch-types">
+          <div class="card-top">
+            <div class="card-title-group">
+              <span class="card-num-badge">LAYER 03 • ACTUATION & SOUND DYNAMICS</span>
+              <h2>03. Switch Types: Linear vs Tactile vs Clicky</h2>
+              <p>Choosing the actuation curve and acoustic feedback that best matches your typing style.</p>
+            </div>
+            <div class="card-meta-pills">
+              <span class="meta-pill">Video Included</span>
+              <span class="meta-pill">Linear (Smooth)</span>
+              <span class="meta-pill">Tactile (Bump)</span>
+              <span class="meta-pill">Clicky (Audible Snap)</span>
+            </div>
+          </div>
+
+          <!-- Video Walkthrough Box for Switch Types -->
+          <div class="thoc-card-video-box">
+            <div class="thoc-video-header">
+              <div class="thoc-video-tag">
+                <span class="thoc-video-dot"></span>
+                <span>PART 03 • SWITCH TYPES & ACTUATION COMPARISON</span>
+              </div>
+              <span class="thoc-video-duration">7 Switches Type • 00:21 • 1080P</span>
+            </div>
+            <div class="thoc-video-frame">
+              <video class="thoc-player" src="Videos/7%20Switches%20Type.mp4" controls playsinline preload="metadata" title="Switch Types Comparison Walkthrough"></video>
+            </div>
+          </div>
+
+          <div class="card-body-grid">
+            <div class="sub-section-box">
+              <div class="sub-box-title">
+                <span class="box-dot"></span>
+                Actuation Curve Dynamics
+              </div>
+              <ul class="feature-list">
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Linear Switches:</span> Continuous, uninterrupted keystroke from top to bottom. Zero tactile bump or click mechanism. Favored for high-speed gaming, marathon typing, and creating the deepest, purest thock.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Tactile Switches:</span> Features a mechanical bump on the stem legs that creates tactile resistance before actuation. Provides physical confirmation of each keystroke without noisy clicking.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Clicky Switches:</span> Uses a click-jacket or tempered click-bar to produce a sharp, audible typewriter snap on keypress. Energetic feedback with high-frequency acoustic presence.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="sub-section-box">
+              <div class="sub-box-title">
+                <span class="box-dot"></span>
+                Tuning Guidelines by Switch Type
+              </div>
+              <p class="sub-box-desc">
+                Different switch types demand specialized lubrication techniques:
+              </p>
+              <ul class="feature-list">
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Linears:</span> Full stem slider, bottom housing rails, and stem pole lightly coated with Krytox GPL 205g0 for ultimate buttery glide.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Tactiles:</span> DO NOT lube the tactile legs or leaf contact point with thick grease, as this dulls the tactile bump. Only lube the side rails and springs.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Clickies:</span> Strictly spring bag-lubing with Krytox GPL 105 oil to eliminate spring ping while preserving the crisp click-bar resonance.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="tuning-note-banner">
+              <span class="tuning-tag">Recommendation</span>
+              <p class="tuning-text">
+                For the signature deep "Thock" sound profile, <strong>Linear switches</strong> with nylon housings and long-pole POM stems are the undisputed champion.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 04. STABILIZERS (WITH 5 Stabilizer.mp4) -->
         <article class="anatomy-card" id="layer-stabilizers">
           <div class="card-top">
             <div class="card-title-group">
-              <span class="card-num-badge">LAYER 03 • STABILIZATION ENGINE</span>
-              <h2>03. Stabilizers & Anti-Rattle Modding</h2>
+              <span class="card-num-badge">LAYER 04 • STABILIZATION ENGINE</span>
+              <h2>04. Stabilizers & Anti-Rattle Modding</h2>
               <p>Ensuring multi-unit modifier keys (Spacebar, Enter, Shift, Backspace) actuate uniformly without wire ticking.</p>
             </div>
             <div class="card-meta-pills">
+              <span class="meta-pill">Video Included</span>
               <span class="meta-pill">PCB Screw-in (Durock / Staebies)</span>
               <span class="meta-pill">Wire Balancing</span>
               <span class="meta-pill">Holee Mod + XHT-BDZ</span>
+            </div>
+          </div>
+
+          <!-- Video Walkthrough Box for Stabilizers -->
+          <div class="thoc-card-video-box">
+            <div class="thoc-video-header">
+              <div class="thoc-video-tag">
+                <span class="thoc-video-dot"></span>
+                <span>PART 04 • STABILIZER TUNING & WIRE BALANCING</span>
+              </div>
+              <span class="thoc-video-duration">5 Stabilizer • 00:05 • 1080P</span>
+            </div>
+            <div class="thoc-video-frame">
+              <video class="thoc-player" src="Videos/5%20Stabilizer.mp4" controls playsinline preload="metadata" title="Stabilizer Tuning Walkthrough"></video>
             </div>
           </div>
 
@@ -1248,12 +1512,97 @@
           </div>
         </article>
 
-        <!-- 04. SWITCH PLATES -->
+        <!-- 05. KEYBOARD LAYOUTS & ERGONOMICS (WITH 2 Layout.mp4) -->
+        <article class="anatomy-card" id="layer-layouts">
+          <div class="card-top">
+            <div class="card-title-group">
+              <span class="card-num-badge">LAYER 05 • FORM FACTORS & ERGONOMICS</span>
+              <h2>05. Keyboard Layouts & Form Factors</h2>
+              <p>Choosing the ideal form factor, key layout cluster, and desk footprint for your workflow.</p>
+            </div>
+            <div class="card-meta-pills">
+              <span class="meta-pill">Video Included</span>
+              <span class="meta-pill">60% / 65% / 75% / TKL</span>
+              <span class="meta-pill">Alice / Ergo Split</span>
+              <span class="meta-pill">ANSI vs ISO</span>
+            </div>
+          </div>
+
+          <!-- Video Walkthrough Box for Layouts -->
+          <div class="thoc-card-video-box">
+            <div class="thoc-video-header">
+              <div class="thoc-video-tag">
+                <span class="thoc-video-dot"></span>
+                <span>PART 05 • KEYBOARD LAYOUTS & FORM FACTORS</span>
+              </div>
+              <span class="thoc-video-duration">2 Layout • 00:13 • 1080P</span>
+            </div>
+            <div class="thoc-video-frame">
+              <video class="thoc-player" src="Videos/2%20Layout.mp4" controls playsinline preload="metadata" title="Keyboard Layouts Walkthrough"></video>
+            </div>
+          </div>
+
+          <div class="card-body-grid">
+            <div class="sub-section-box">
+              <div class="sub-box-title">
+                <span class="box-dot"></span>
+                Popular Enthusiast Form Factors
+              </div>
+              <ul class="feature-list">
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">75% Layout (e.g. Leobog Hi75C Pro, Weikav WK75):</span> The reigning sweet-spot. Retains dedicated arrow cluster, navigation keys, function row (F1-F12), and rotary media knob while saving 25% of desk space for mouse movement.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">65% Layout:</span> Compact alpha cluster with dedicated arrow keys. The ultimate minimalist layout for gaming and portability.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Tenkeyless (TKL / 80%):</span> Classic battle-station layout without numpad. Standard keycap compatibility with traditional navigation island.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Alice / Arisu (Ergonomic):</span> Split-angled alpha clusters with inward tilt to keep wrists at natural shoulder-width angles, reducing carpal strain.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="sub-section-box">
+              <div class="sub-box-title">
+                <span class="box-dot"></span>
+                Acoustic Influence of Layout Size
+              </div>
+              <p class="sub-box-desc">
+                Chassis dimensions directly dictate internal acoustic volume:
+              </p>
+              <ul class="feature-list">
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Compact Cases (60%-75%):</span> Smaller air cavities produce tighter, more concentrated bass sound waves with less hollow echo to dampen.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Full-Size (100%):</span> Large internal chambers require denser case dampeners (EPDM/Poron) and heavyweight internal weights to prevent cavernous acoustic reverb.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="tuning-note-banner">
+              <span class="tuning-tag">Studio Pick</span>
+              <p class="tuning-text">
+                75% exploded layout remains our #1 recommended format: maximum productivity, dedicated arrow cluster, and ideal acoustic chamber proportions.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 06. SWITCH PLATES -->
         <article class="anatomy-card" id="layer-plates">
           <div class="card-top">
             <div class="card-title-group">
-              <span class="card-num-badge">LAYER 04 • ACOUSTIC FILTER</span>
-              <h2>04. Switch Plate & Material Physics</h2>
+              <span class="card-num-badge">LAYER 06 • ACOUSTIC FILTER</span>
+              <h2>06. Switch Plate & Material Physics</h2>
               <p>The structural plate holds all switches securely in place, directly tuning bottom-out hardness and sound pitch.</p>
             </div>
             <div class="card-meta-pills">
@@ -1322,12 +1671,12 @@
           </div>
         </article>
 
-        <!-- 05. MOUNTING ARCHITECTURE -->
+        <!-- 07. MOUNTING ARCHITECTURE -->
         <article class="anatomy-card" id="layer-mounting">
           <div class="card-top">
             <div class="card-title-group">
-              <span class="card-num-badge">LAYER 05 • SUSPENSION & REBOUND</span>
-              <h2>05. Mounting Architecture</h2>
+              <span class="card-num-badge">LAYER 07 • SUSPENSION & REBOUND</span>
+              <h2>07. Mounting Architecture</h2>
               <p>How the plate and PCB assembly is suspended inside the case dictates overall typing bounce and vibration transfer.</p>
             </div>
             <div class="card-meta-pills">
@@ -1389,12 +1738,12 @@
           </div>
         </article>
 
-        <!-- 06. ACOUSTIC FOAMS & MODDING -->
+        <!-- 08. ACOUSTIC FOAMS & MODDING -->
         <article class="anatomy-card" id="layer-acoustics">
           <div class="card-top">
             <div class="card-title-group">
-              <span class="card-num-badge">LAYER 06 • SOUND SCULPTING</span>
-              <h2>06. Acoustic Dampeners & Acoustic Modding</h2>
+              <span class="card-num-badge">LAYER 08 • SOUND SCULPTING</span>
+              <h2>08. Acoustic Dampeners & Acoustic Modding</h2>
               <p>Sculpting the frequency curve by eliminating hollow case reverberation and accentuating rich bass tones.</p>
             </div>
             <div class="card-meta-pills">
@@ -1460,19 +1809,34 @@
           </div>
         </article>
 
-        <!-- 07. PCB -->
+        <!-- 09. PCB & MCU (WITH 3 PCB MCU.mp4) -->
         <article class="anatomy-card" id="layer-pcb">
           <div class="card-top">
             <div class="card-title-group">
-              <span class="card-num-badge">LAYER 07 • ELECTRICAL BRAIN</span>
-              <h2>07. Printed Circuit Board (PCB) & Firmware</h2>
+              <span class="card-num-badge">LAYER 09 • ELECTRICAL BRAIN & MCU</span>
+              <h2>09. Printed Circuit Board (PCB) & Microcontroller (MCU)</h2>
               <p>The neural pathway that captures keystrokes, controls RGB illumination, and runs WebHID real-time configurators.</p>
             </div>
             <div class="card-meta-pills">
+              <span class="meta-pill">Video Included</span>
               <span class="meta-pill">5-Pin Hot-Swap</span>
               <span class="meta-pill">South-Facing LEDs</span>
               <span class="meta-pill">Per-Key Flex Cuts</span>
               <span class="meta-pill">WebHID / WebUSB</span>
+            </div>
+          </div>
+
+          <!-- Video Walkthrough Box for PCB MCU -->
+          <div class="thoc-card-video-box">
+            <div class="thoc-video-header">
+              <div class="thoc-video-tag">
+                <span class="thoc-video-dot"></span>
+                <span>PART 09 • PCB & MICROCONTROLLER ARCHITECTURE</span>
+              </div>
+              <span class="thoc-video-duration">3 PCB MCU • 00:11 • 1080P</span>
+            </div>
+            <div class="thoc-video-frame">
+              <video class="thoc-player" src="Videos/3%20PCB%20MCU.mp4" controls playsinline preload="metadata" title="PCB and Microcontroller Walkthrough"></video>
             </div>
           </div>
 
@@ -1527,12 +1891,12 @@
           </div>
         </article>
 
-        <!-- 08. CASE & WEIGHT -->
+        <!-- 10. CASE & WEIGHT -->
         <article class="anatomy-card" id="layer-case">
           <div class="card-top">
             <div class="card-title-group">
-              <span class="card-num-badge">LAYER 08 • FOUNDATION & MASS</span>
-              <h2>08. CNC Aluminum Case & Acoustic Weight</h2>
+              <span class="card-num-badge">LAYER 10 • FOUNDATION & MASS</span>
+              <h2>10. CNC Aluminum Case & Acoustic Weight</h2>
               <p>The heavyweight chassis that absorbs typing kinetic energy, eliminates desk hollow, and anchors acoustic resonance.</p>
             </div>
             <div class="card-meta-pills">
@@ -1807,6 +2171,18 @@
               targetEl.style.removeProperty('border-color');
             }, 1200);
           }
+        });
+      });
+
+      // Pause other videos when one starts playing
+      var allVideos = document.querySelectorAll('video');
+      allVideos.forEach(function(vid) {
+        vid.addEventListener('play', function() {
+          allVideos.forEach(function(other) {
+            if (other !== vid && !other.paused) {
+              other.pause();
+            }
+          });
         });
       });
 
