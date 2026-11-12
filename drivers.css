@@ -175,9 +175,15 @@ html.light-theme .thoc-driver-dropdown-item:hover {
   width: 6px !important;
   height: 6px !important;
   border-radius: 50% !important;
-  background-color: #10b981 !important;
-  box-shadow: 0 0 6px rgba(16, 185, 129, 0.6) !important;
+  background-color: #000000 !important;
+  box-shadow: none !important;
   flex-shrink: 0 !important;
+}
+
+body.dark-theme .thoc-driver-dot,
+html.dark-theme .thoc-driver-dot {
+  background-color: #f0f0f1 !important;
+  box-shadow: none !important;
 }
 
 .thoc-driver-item-sub {
