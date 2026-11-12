@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<!-- ThocKeebs Studio - Anatomy of a Custom Mechanical Keyboard -->
+<html lang="en" class="light-theme" data-theme="light" toggle-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anatomy — ThocKeebs Studio | Anatomy of a Custom Mechanical Keyboard</title>
+  <meta name="description" content="An architectural dissection of acoustic resonance, material physics, mounting systems, and precision switch tuning by ThocKeebs Studio Bandung.">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="drivers.css">
+
+  <style>
+    /* ==========================================================================
+       ANATOMY OF A CUSTOM MECHANICAL KEYBOARD - DEDICATED STYLING
+       Clean, Architectural, Monochromatic, Masterpiece Design
+       ========================================================================== */
+
+    :root {
+      --thoc-bg: #f0f0f1;
+      --thoc-card-bg: #ffffff;
+      --thoc-card-hover: #f7f7f8;
+      --thoc-card-sub: #f3f3f4;
+      --thoc-border: rgba(0, 0, 0, 0.08);
+      --thoc-border-strong: rgba(0, 0, 0, 0.16);
+      --thoc-text-main: #252526;
+      --thoc-text-muted: #6d6d6f;
+      --thoc-text-dim: #9d9d9f;
+      --thoc-pill-bg: #e5e5e7;
+      --thoc-pill-active-bg: #2e2e2f;
+      --thoc-pill-active-text: #ffffff;
+      --thoc-accent-dot: #000000;
+      --thoc-highlight: rgba(0, 0, 0, 0.04);
+    }
+
+    body.dark-theme,
+    html.dark-theme {
+      --thoc-bg: #252526;
+      --thoc-card-bg: #1e1e1e;
+      --thoc-card-hover: #272728;
+      --thoc-card-sub: #282829;
+      --thoc-border: rgba(255, 255, 255, 0.10);
+      --thoc-border-strong: rgba(255, 255, 255, 0.20);
+      --thoc-text-main: #f0f0f1;
+      --thoc-text-muted: #9d9d9f;
+      --thoc-text-dim: #6d6d6f;
+      --thoc-pill-bg: #323234;
+      --thoc-pill-active-bg: #f0f0f1;
+      --thoc-pill-active-text: #252526;
+      --thoc-accent-dot: #f0f0f1;
+      --thoc-highlight: rgba(255, 255, 255, 0.04);
+    }
+
+    body {
+      background-color: var(--thoc-bg);
+      color: var(--thoc-text-main);
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+      overflow-x: hidden;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    /* Outer Wrapper */
+    .anatomy-page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    /* Top Nav Wrap */
+    .thoc-nav-wrap {
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .thoc-nav-container {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: auto;
+    }
+
+    .thoc-nav-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .thoc-home-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--thoc-border);
+      border-radius: 12px;
+      color: var(--thoc-text-main);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    body.dark-theme .thoc-home-btn {
+      background: rgba(46, 46, 47, 0.7);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .thoc-home-btn:hover {
+      transform: translateY(-1px);
+      border-color: var(--thoc-border-strong);
+    }
+
+    .thoc-nav-pill {
+      display: inline-flex;
+      align-items: center;
+      background: #ffffff;
+      border: 1px solid var(--thoc-border);
+      border-radius: 12px;
+      padding: 4px;
+      gap: 4px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      height: 42px;
+      box-sizing: border-box;
+    }
+
+    body.dark-theme .thoc-nav-pill {
+      background: #2e2e2f;
+      border-color: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    .thoc-nav-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 18px;
+      height: 100%;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--thoc-text-main);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.15s ease, color 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .thoc-nav-link:hover {
+      background-color: var(--thoc-highlight);
+    }
+
+    .thoc-nav-link.active {
+      background-color: #2e2e2f;
+      color: #ffffff !important;
+    }
+
+    body.dark-theme .thoc-nav-link.active {
+      background-color: #f0f0f1;
+      color: #252526 !important;
+    }
+
+    .thoc-nav-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--thoc-text-muted);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    /* Theme Toggle Switch */
+    .thoc-theme-toggle-slot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 4px;
+      height: 100%;
+    }
+
+    .theme-toggle-btn {
+      width: 36px;
+      height: 20px;
+      background: rgb(60, 60, 61);
+      border: none;
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+      outline: none;
+      padding: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .theme-toggle-btn span {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+      transition: left 0.2s cubic-bezier(.4, 1.2, .6, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    body.light-theme .theme-toggle-btn span,
+    html.light-theme .theme-toggle-btn span {
+      left: 18px;
+    }
+
+    /* Main Container */
+    .anatomy-main {
+      width: 100%;
+      max-width: 1120px;
+      padding: 32px 24px 80px;
+      box-sizing: border-box;
+    }
+
+    /* Hero Header */
+    .anatomy-hero {
+      text-align: center;
+      margin-bottom: 56px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .anatomy-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background-color: var(--thoc-card-bg);
+      border: 1px solid var(--thoc-border);
+      border-radius: 9999px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--thoc-text-muted);
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    }
+
+    .anatomy-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--thoc-accent-dot);
+    }
+
+    .anatomy-title {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1.1;
+      margin: 0 0 16px 0;
+      color: var(--thoc-text-main);
+    }
+
+    .anatomy-subtitle {
+      max-width: 720px;
+      font-size: clamp(14px, 1.8vw, 16px);
+      line-height: 1.6;
+      color: var(--thoc-text-muted);
+      margin: 0 0 32px 0;
+    }
+
+    /* Filter Chips / Quick Jump Bar */
+    .anatomy-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      max-width: 880px;
+      margin-bottom: 40px;
+    }
+
+    .anatomy-chip {
+      background: var(--thoc-card-bg);
+      border: 1px solid var(--thoc-border);
+      color: var(--thoc-text-muted);
+      padding: 8px 14px;
+      border-radius: 9999px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .anatomy-chip:hover,
+    .anatomy-chip.active {
+      background: var(--thoc-pill-active-bg);
+      color: var(--thoc-pill-active-text);
+      border-color: transparent;
+      transform: translateY(-1px);
+    }
+
+    /* Exploded Stack Interactive Banner */
+    .anatomy-exploded-card {
+      width: 100%;
+      background: var(--thoc-card-bg);
+      border: 1px solid var(--thoc-border);
+      border-radius: 20px;
+      padding: 36px 32px;
+      box-sizing: border-box;
+      margin-bottom: 56px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .anatomy-exploded-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--thoc-border);
+    }
+
+    .anatomy-exploded-title {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin: 0 0 6px 0;
+    }
+
+    .anatomy-exploded-desc {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--thoc-text-muted);
+      margin: 0;
+    }
+
+    /* Visual 8-Layer Stack Interactive List */
+    .anatomy-layer-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .anatomy-stack-row {
+      display: grid;
+      grid-template-columns: 44px 180px 1fr auto;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 18px;
+      background: var(--thoc-card-sub);
+      border: 1px solid var(--thoc-border);
+      border-radius: 12px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .anatomy-stack-row:hover {
+      transform: translateX(4px);
+      background: var(--thoc-card-hover);
+      border-color: var(--thoc-border-strong);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    .stack-idx {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--thoc-text-dim);
+    }
+
+    .stack-name {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--thoc-text-main);
+    }
+
+    .stack-role {
+      font-size: 13px;
+      color: var(--thoc-text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .stack-action {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--thoc-text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: transform 0.2s ease;
+    }
+
+    .anatomy-stack-row:hover .stack-action {
+      transform: translateX(2px);
+      color: var(--thoc-text-main);
+    }
+
+    /* Detailed Components Breakdown Grid */
+    .anatomy-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+      width: 100%;
+      margin-bottom: 64px;
+    }
+
+    .anatomy-card {
+      background: var(--thoc-card-bg);
+      border: 1px solid var(--thoc-border);
+      border-radius: 20px;
+      padding: 36px 36px;
+      box-sizing: border-box;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.03);
+      scroll-margin-top: 100px;
+      transition: border-color 0.2s ease;
+    }
+
+    .anatomy-card:hover {
+      border-color: var(--thoc-border-strong);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--thoc-border);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .card-num-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      background: var(--thoc-card-sub);
+      border-radius: 6px;
+      color: var(--thoc-text-muted);
+    }
+
+    .card-title-group h2 {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 8px 0 4px 0;
+      color: var(--thoc-text-main);
+    }
+
+    .card-title-group p {
+      font-size: 13.5px;
+      color: var(--thoc-text-muted);
+      margin: 0;
+    }
+
+    .card-meta-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .meta-pill {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      padding: 4px 10px;
+      border: 1px solid var(--thoc-border);
+      border-radius: 9999px;
+      color: var(--thoc-text-muted);
+    }
+
+    /* Content Layout inside Card */
+    .card-body-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 820px) {
+      .card-body-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .sub-section-box {
+      background: var(--thoc-card-sub);
+      border: 1px solid var(--thoc-border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .sub-box-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--thoc-text-main);
+    }
+
+    .sub-box-title .box-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--thoc-accent-dot);
+    }
+
+    .sub-box-desc {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--thoc-text-muted);
+      margin: 0 0 14px 0;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .feature-item {
+      font-size: 13px;
+      line-height: 1.5;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      color: var(--thoc-text-main);
+    }
+
+    .feature-item span.term {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--thoc-text-main);
+      white-space: nowrap;
+    }
+
+    .feature-bullet {
+      color: var(--thoc-text-dim);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    /* Tuning Highlight Bar inside card */
+    .tuning-note-banner {
+      grid-column: 1 / -1;
+      background: var(--thoc-highlight);
+      border-left: 3px solid var(--thoc-text-main);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin-top: 8px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .tuning-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--thoc-text-main);
+      white-space: nowrap;
+    }
+
+    .tuning-text {
+      font-size: 13px;
+      color: var(--thoc-text-muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Interactive Comparison Matrix */
+    .anatomy-matrix-card {
+      width: 100%;
+      background: var(--thoc-card-bg);
+      border: 1px solid var(--thoc-border);
+      border-radius: 20px;
+      padding: 36px 36px;
+      box-sizing: border-box;
+      margin-bottom: 56px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+    }
+
+    .matrix-head {
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--thoc-border);
+    }
+
+    .matrix-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0 0 6px 0;
+      letter-spacing: -0.015em;
+    }
+
+    .matrix-sub {
+      font-size: 13.5px;
+      color: var(--thoc-text-muted);
+      margin: 0;
+    }
+
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 960px) {
+      .matrix-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 580px) {
+      .matrix-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .matrix-col {
+      background: var(--thoc-card-sub);
+      border: 1px solid var(--thoc-border);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: all 0.2s ease;
+    }
+
+    .matrix-col:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+      border-color: var(--thoc-border-strong);
+    }
+
+    .col-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--thoc-border);
+      padding-bottom: 10px;
+    }
+
+    .col-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 0;
+      color: var(--thoc-text-main);
+    }
+
+    .col-pitch {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: var(--thoc-highlight);
+      color: var(--thoc-text-muted);
+    }
+
+    .col-desc {
+      font-size: 12.5px;
+      color: var(--thoc-text-muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .recipe-list {
+      margin-top: auto;
+      padding-top: 10px;
+      border-top: 1px dashed var(--thoc-border);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .recipe-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--thoc-text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .recipe-tag strong {
+      color: var(--thoc-text-main);
+    }
+
+    /* Call To Action Banner */
+    .anatomy-cta {
+      width: 100%;
+      background: var(--thoc-card-bg);
+      border: 1px solid var(--thoc-border);
+      border-radius: 20px;
+      padding: 44px 36px;
+      box-sizing: border-box;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cta-title {
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 0 0 12px 0;
+      color: var(--thoc-text-main);
+    }
+
+    .cta-desc {
+      max-width: 600px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--thoc-text-muted);
+      margin: 0 0 28px 0;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .cta-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 28px;
+      background: #2e2e2f;
+      color: #ffffff !important;
+      font-size: 13.5px;
+      font-weight: 600;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    }
+
+    body.dark-theme .cta-btn-primary {
+      background: #f0f0f1;
+      color: #252526 !important;
+    }
+
+    .cta-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .cta-btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      background: transparent;
+      color: var(--thoc-text-main);
+      border: 1px solid var(--thoc-border-strong);
+      font-size: 13.5px;
+      font-weight: 600;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .cta-btn-secondary:hover {
+      background: var(--thoc-highlight);
+      transform: translateY(-2px);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .anatomy-stack-row {
+        grid-template-columns: 32px 1fr auto;
+      }
+      .stack-role {
+        display: none;
+      }
+      .anatomy-card {
+        padding: 24px 20px;
+      }
+      .card-top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .anatomy-cta {
+        padding: 32px 20px;
+      }
+    }
+  </style>
+</head>
+<body class="light-theme" data-theme="light" toggle-theme="light">
+
+  <div class="anatomy-page-wrapper">
+
+    <!-- TOP FLOATING NAVBAR -->
+    <header class="thoc-nav-wrap">
+      <div class="thoc-nav-container">
+        
+        <!-- Left Home Icon -->
+        <div class="thoc-nav-left">
+          <a href="./" class="thoc-home-btn" aria-label="Home">
+            <svg width="20" height="20" viewBox="0 0 21 20" fill="currentColor">
+              <path d="M 20.461 15.508 L 17.32 6.884 C 17.316 6.872 17.312 6.86 17.306 6.849 L 17.303 6.841 C 17.297 6.826 17.289 6.811 17.28 6.796 L 17.274 6.786 L 17.252 6.753 L 17.243 6.741 C 17.225 6.716 17.205 6.692 17.182 6.67 L 17.177 6.663 C 17.151 6.639 17.123 6.617 17.093 6.597 L 17.087 6.597 C 17.037 6.566 16.983 6.543 16.927 6.529 L 15.984 6.277 L 14.307 1.666 C 14.295 1.627 14.279 1.589 14.259 1.553 L 14.256 1.548 C 14.172 1.404 14.028 1.304 13.863 1.276 L 9.173 0.02 C 9.03 -0.019 8.878 0 8.748 0.073 L 3.338 3.109 L 3.335 3.109 C 3.316 3.12 3.297 3.132 3.279 3.146 L 3.264 3.158 C 3.249 3.171 3.234 3.184 3.219 3.198 L 3.209 3.207 C 3.193 3.223 3.178 3.241 3.164 3.26 L 3.154 3.275 C 3.14 3.294 3.126 3.316 3.115 3.338 C 3.103 3.359 3.094 3.381 3.085 3.404 L 3.085 3.408 L 0.034 11.784 C -0.045 12.002 0.016 12.245 0.188 12.4 L 8.45 19.856 L 8.461 19.866 C 8.471 19.872 8.478 19.88 8.487 19.886 C 8.492 19.891 8.498 19.895 8.505 19.899 C 8.513 19.905 8.522 19.911 8.531 19.916 L 8.551 19.928 L 8.577 19.943 L 8.605 19.955 L 8.626 19.965 C 8.665 19.979 8.704 19.989 8.745 19.996 L 8.764 19.996 C 8.784 19.996 8.806 20 8.826 20 L 8.831 20 C 8.893 20 8.954 19.99 9.012 19.97 L 20.105 16.238 C 20.251 16.19 20.371 16.084 20.437 15.946 C 20.504 15.807 20.511 15.648 20.458 15.504 L 20.461 15.509 Z M 13.846 3.722 L 14.645 5.916 L 13.35 5.569 Z M 9.102 1.176 L 13.067 2.239 L 12.107 5.823 C 12.025 6.126 12.205 6.437 12.507 6.519 L 15.403 7.296 L 16.092 7.48 L 15.031 11.437 L 10.319 14.082 L 4.396 3.819 L 9.103 1.176 Z M 3.733 4.944 L 9.498 14.929 L 8.534 18.399 L 1.232 11.813 Z M 9.669 18.555 L 10.596 15.232 L 15.799 12.311 C 15.933 12.236 16.031 12.11 16.07 11.962 L 16.873 8.965 L 19.196 15.349 Z"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Center Nav Pill -->
+        <nav class="thoc-nav-pill">
+          <div class="thoc-lang-slot" style="position:relative;display:flex;align-items:center;padding:0 4px;height:100%;">
+            <button type="button" class="lang-toggle-btn" aria-label="Select language" aria-expanded="false">
+              <span class="lang-current-label">EN</span>
+              <svg class="lang-chevron" width="8" height="8" viewBox="0 0 10 10" fill="currentColor" style="margin-left:4px;display:inline-block;transition:transform 0.2s;"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            </button>
+            <div class="lang-dropdown-menu">
+              <button type="button" class="lang-opt-btn" data-lang="en">EN</button>
+              <button type="button" class="lang-opt-btn" data-lang="id">ID</button>
+            </div>
+          </div>
+          <a href="./" class="thoc-nav-link" data-i18n="nav.home">Home</a>
+          <a href="works" class="thoc-nav-link" data-i18n="nav.works">Works</a>
+          
+          <!-- Web Drivers Tab Pill -->
+          <div class="thoc-drivers-nav-item">
+            <a href="#thoc-web-drivers" class="thoc-nav-link thoc-drivers-toggle" data-i18n="nav.drivers">Drivers</a>
+            <div class="thoc-drivers-dropdown">
+              <a href="https://open-leobog.vercel.app" target="_blank" rel="noopener noreferrer" class="thoc-driver-dropdown-item" title="Leobog Hi75C Pro Web Driver">
+                <div class="thoc-driver-item-info">
+                  <span class="thoc-driver-item-title">
+                    <span class="thoc-driver-dot"></span>
+                    Leobog Hi75C Pro
+                  </span>
+                  <span class="thoc-driver-item-sub">WebUSB Configurator</span>
+                </div>
+                <span class="thoc-driver-arrow">↗</span>
+              </a>
+              <div class="thoc-driver-divider"></div>
+              <a href="https://openweikav.vercel.app" target="_blank" rel="noopener noreferrer" class="thoc-driver-dropdown-item" title="Weikav WK75 Web Driver">
+                <div class="thoc-driver-item-info">
+                  <span class="thoc-driver-item-title">
+                    <span class="thoc-driver-dot"></span>
+                    Weikav WK75
+                  </span>
+                  <span class="thoc-driver-item-sub">WebHID Configurator</span>
+                </div>
+                <span class="thoc-driver-arrow">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <a href="anatomy" class="thoc-nav-link active" data-i18n="nav.anatomy">Anatomy</a>
+          <a href="order" class="thoc-nav-link" data-i18n="nav.order">Order</a>
+          <a href="about" class="thoc-nav-link" data-i18n="nav.about">About</a>
+          
+          <!-- Theme Toggle Button -->
+          <div class="thoc-theme-toggle-slot">
+            <button type="button" aria-pressed="false" class="theme-toggle-btn" aria-label="Toggle theme">
+              <span>
+                <svg fill="#252526" width="12" height="12" viewBox="0 0 16 16">
+                  <path d="M2.34316 13.6569C5.46736 16.781 10.5327 16.781 13.6569 13.6569L2.34316 2.34315C-0.78103 5.46734 -0.78103 10.5327 2.34316 13.6569Z"/>
+                </svg>
+              </span>
+            </button>
+          </div>
+        </nav>
+
+        <!-- Right Clock -->
+        <div class="thoc-nav-meta">
+          Bandung, Indonesia. <span id="current-time">Nov 13</span>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- MAIN ANATOMY CONTENT -->
+    <main class="anatomy-main">
+      
+      <!-- HERO HEADER -->
+      <section class="anatomy-hero">
+        <div class="anatomy-badge">
+          <span class="anatomy-badge-dot"></span>
+          <span data-i18n="anatomy.badge">MECHANICAL KEYBOARD ARCHITECTURE • COMPONENT DISSECTION</span>
+        </div>
+        <h1 class="anatomy-title" data-i18n="anatomy.hero.title">Anatomy of a Custom Mechanical Keyboard</h1>
+        <p class="anatomy-subtitle" data-i18n="anatomy.hero.subtitle">
+          An architectural dissection of acoustic resonance, material physics, mounting systems, and precision Krytox tuning that defines the signature thock.
+        </p>
+
+        <!-- Quick Jump Filter Chips -->
+        <div class="anatomy-filter-bar">
+          <a href="#layer-keycaps" class="anatomy-chip">01. Keycaps</a>
+          <a href="#layer-switches" class="anatomy-chip">02. Switches</a>
+          <a href="#layer-stabilizers" class="anatomy-chip">03. Stabilizers</a>
+          <a href="#layer-plates" class="anatomy-chip">04. Plates</a>
+          <a href="#layer-mounting" class="anatomy-chip">05. Mounting</a>
+          <a href="#layer-acoustics" class="anatomy-chip">06. Acoustic Foams</a>
+          <a href="#layer-pcb" class="anatomy-chip">07. PCB</a>
+          <a href="#layer-case" class="anatomy-chip">08. Case & Weight</a>
+        </div>
+      </section>
+
+      <!-- EXPLODED LAYER STACK CARD -->
+      <section class="anatomy-exploded-card">
+        <div class="anatomy-exploded-head">
+          <div>
+            <h2 class="anatomy-exploded-title">The 8-Layer Architectural Stack</h2>
+            <p class="anatomy-exploded-desc">Exploded cross-section of a custom mechanical keyboard from keycap to brass weight</p>
+          </div>
+          <span class="card-num-badge">TOP-TO-BOTTOM ASSEMBLY</span>
+        </div>
+
+        <div class="anatomy-layer-stack">
+          <!-- 01 Keycaps -->
+          <a href="#layer-keycaps" class="anatomy-stack-row">
+            <span class="stack-idx">01</span>
+            <span class="stack-name">Keycaps</span>
+            <span class="stack-role">PBT Double-shot / Dye-sub, Cherry & MOA profiles, acoustic reverb chambers</span>
+            <span class="stack-action">Dissect ↓</span>
+          </a>
+
+          <!-- 02 Switches -->
+          <a href="#layer-switches" class="anatomy-stack-row">
+            <span class="stack-idx">02</span>
+            <span class="stack-name">Mechanical Switches</span>
+            <span class="stack-role">Stem, Upper Housing, Multi-stage Spring, Gold Contact Leaf, Lower Housing</span>
+            <span class="stack-action">Dissect ↓</span>
+          </a>
+
+          <!-- 03 Stabilizers -->
+          <a href="#layer-stabilizers" class="anatomy-stack-row">
+            <span class="stack-idx">03</span>
+            <span class="stack-name">Stabilizers</span>
+            <span class="stack-role">PCB Screw-in, balanced stainless wire, Holee Mod & XHT-BDZ rattle elimination</span>
+            <span class="stack-action">Dissect ↓</span>
+          </a>
+
+          <!-- 04 Plate -->
+          <a href="#layer-plates" class="anatomy-stack-row">
+            <span class="stack-idx">04</span>
+            <span class="stack-name">Switch Plate</span>
+            <span class="stack-role">Polycarbonate (PC), FR4, POM, Aluminum, Brass acoustic resonance dampening</span>
+            <span class="stack-action">Dissect ↓</span>
+          </a>
+
+          <!-- 05 Mounting -->
+          <a href="#layer-mounting" class="anatomy-stack-row">
+            <span class="stack-idx">05</span>
+            <span class="stack-name">Mounting Architecture</span>
+            <span class="stack-role">Poron Gasket strips, silicone socks, gummy O-ring flex, top mount rigidity</span>
+            <span class="stack-action">Dissect ↓</span>
+          </a>
+
+          <!-- 06 Acoustic Foams -->
+          <a href="#layer-acoustics" class="anatomy-stack-row">
+            <span class="stack-idx">06</span>
+            <span class="stack-name">Acoustic Dampeners</span>
+            <span class="stack-role">IXPE Switch Pad, Poron Plate Foam, PET Acoustic Sheet, EPDM, Tempest Tape Mod</span>
+            <span class="stack-action">Dissect ↓</span>
+          </a>
+
+          <!-- 07 PCB -->
+          <a href="#layer-pcb" class="anatomy-stack-row">
+            <span class="stack-idx">07</span>
+            <span class="stack-name">Printed Circuit Board</span>
+            <span class="stack-role">5-Pin Hot-swap sockets, South-Facing RGB, flex-cut traces, WebHID & WebUSB</span>
+            <span class="stack-action">Dissect ↓</span>
+          </a>
+
+          <!-- 08 Case & Weight -->
+          <a href="#layer-case" class="anatomy-stack-row">
+            <span class="stack-idx">08</span>
+            <span class="stack-name">CNC Chassis & Weights</span>
+            <span class="stack-role">6063 Aluminum CNC milled unibody, PVD brass weight, low acoustic resonance base</span>
+            <span class="stack-action">Dissect ↓</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- 8 DETAILED COMPONENT CARDS -->
+      <div class="anatomy-grid">
+
+        <!-- 01. KEYCAPS -->
+        <article class="anatomy-card" id="layer-keycaps">
+          <div class="card-top">
+            <div class="card-title-group">
+              <span class="card-num-badge">LAYER 01 • ACOUSTIC RESONATOR</span>
+              <h2>01. Keycaps & Acoustic Profiles</h2>
+              <p>The primary tactile touchpoint and hollow resonance chamber of every keystroke.</p>
+            </div>
+            <div class="card-meta-pills">
+              <span class="meta-pill">PBT / ABS</span>
+              <span class="meta-pill">1.5mm - 1.7mm Wall Thickness</span>
+              <span class="meta-pill">Cherry / OEM / MOA / SA</span>
+            </div>
+          </div>
+
+          <div class="card-body-grid">
+            <div class="sub-section-box">
+              <div class="sub-box-title">
+                <span class="box-dot"></span>
+                Material Physics: PBT vs ABS
+              </div>
+              <p class="sub-box-desc">
+                The chemical density and molding process of keycaps directly dictate acoustic pitch, bottom-out feedback, and resistance to finger oils over years of use.
+              </p>
+              <ul class="feature-list">
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">PBT (Polybutylene Terephthalate):</span> Higher material density, chalky matte texture, resistant to shine. Produces a significantly deeper, lower-pitch sound frequency (The "Deep Thock").</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">ABS (Acrylonitrile Butadiene Styrene):</span> High-impact rigid thermoplastic. Exceptional double-shot legend sharpness and crisp high-frequency "clack". Develops an authentic patina shine over time.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="sub-section-box">
+              <div class="sub-box-title">
+                <span class="box-dot"></span>
+                Profile Geometry & Chamber Volume
+              </div>
+              <p class="sub-box-desc">
+                The internal air volume trapped beneath the keycap acts as an acoustic soundbox, tuning the mechanical bottom-out snap.
+              </p>
+              <ul class="feature-list">
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Cherry Profile:</span> Ergonomic sculpted rows (R1-R4), medium height. Minimal resonance chamber, delivering balanced, clean keystrokes without hollow reverb.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">SA / KAT / MT3:</span> High-profile spherical keycaps with cavernous internal chambers. Amplifies low-end bass resonance, creating a loud, deep, booming thock.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">MOA / XDA:</span> Uniform height and rounded top curvature. Delivers dense, uniform marbly clacks across the entire keyboard plane.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="tuning-note-banner">
+              <span class="tuning-tag">ThocKeebs Tuning Standard</span>
+              <p class="tuning-text">
+                We mandate minimum 1.5mm wall thickness on all custom builds. Thin 1.0mm keycaps resonate with a hollow, plastic ping regardless of how well the switches are lubed.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 02. SWITCHES -->
+        <article class="anatomy-card" id="layer-switches">
+          <div class="card-top">
+            <div class="card-title-group">
+              <span class="card-num-badge">LAYER 02 • MECHANICAL CORE</span>
+              <h2>02. Mechanical Switches & 5-Part Anatomy</h2>
+              <p>The mechanical heartbeat where keystrokes are actuated, dampened, and acoustically defined.</p>
+            </div>
+            <div class="card-meta-pills">
+              <span class="meta-pill">Linear / Tactile / Clicky</span>
+              <span class="meta-pill">Krytox GPL 205g0 + GPL 105</span>
+              <span class="meta-pill">Long Pole / Standard</span>
+            </div>
+          </div>
+
+          <div class="card-body-grid">
+            <div class="sub-section-box">
+              <div class="sub-box-title">
+                <span class="box-dot"></span>
+                Exploded Switch Breakdown
+              </div>
+              <ul class="feature-list">
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Top Housing:</span> Polycarbonate (crisp, high pitch) or Nylon PA66 (deep, muted). Guides the stem sliders during actuation and shapes the top-out return sound.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Stem & Sliders:</span> Engineered from POM, LY, UPE, or P3 polymers for low-friction self-lubricating glide. Long-pole stems bottom out early (3.2mm - 3.5mm) on the center pole, creating an explosive popping thock.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Precision Spring:</span> Single-stage, two-stage extended (18-22mm), or slow-curve high-tensile steel. Determines actuation force (37g - 67g) and bounceback speed.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Contact Leaf:</span> Gold-plated phosphor bronze alloy. Closes the circuit when pushed by the stem leg. Requires precise lubing to prevent leaf ping without killing tactile bump.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Bottom Housing:</span> Features the center stem well and guide rails. The impact zone of the stem pole that generates the foundational keystroke sound.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="sub-section-box">
+              <div class="sub-box-title">
+                <span class="box-dot"></span>
+                ThocKeebs Precision Lubing Protocol
+              </div>
+              <p class="sub-box-desc">
+                Factory switches suffer from scratchy slider friction, spring crunch, and metallic leaf ping. Our meticulous hand-tuning restores buttery perfection.
+              </p>
+              <ul class="feature-list">
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Stem Rails:</span> Micro-brushed with an exact 0.05mm layer of genuine Krytox GPL 205g0 to eliminate rail friction without feeling sluggish.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Springs Bag-Lubed:</span> Immersed and evenly coated in Krytox GPL 105 high-viscosity oil to eradicate 100% of spring crunch and high-frequency metallic ping.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Switch Films:</span> Optional 0.15mm Poron or HTV/PC films installed between housings to eliminate micro-wobble and deepen sound pitch.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="tuning-note-banner">
+              <span class="tuning-tag">Acoustic Secret</span>
+              <p class="tuning-text">
+                Long pole stems (e.g., Leobog Graywood, KTT Strawberry, BCP, Vertex V1) hit the bottom housing exclusively on the stem tip, focusing 100% of kinetic energy into a deep, solid bottom-out pop.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 03. STABILIZERS -->
+        <article class="anatomy-card" id="layer-stabilizers">
+          <div class="card-top">
+            <div class="card-title-group">
+              <span class="card-num-badge">LAYER 03 • STABILIZATION ENGINE</span>
+              <h2>03. Stabilizers & Anti-Rattle Modding</h2>
+              <p>Ensuring multi-unit modifier keys (Spacebar, Enter, Shift, Backspace) actuate uniformly without wire ticking.</p>
+            </div>
+            <div class="card-meta-pills">
+              <span class="meta-pill">PCB Screw-in (Durock / Staebies)</span>
+              <span class="meta-pill">Wire Balancing</span>
+              <span class="meta-pill">Holee Mod + XHT-BDZ</span>
+            </div>
+          </div>
+
+          <div class="card-body-grid">
+            <div class="sub-section-box">
+              <div class="sub-box-title">
+                <span class="box-dot"></span>
+                Stabilizer Architecture
+              </div>
+              <p class="sub-box-desc">
+                A single wobbly spacebar can ruin an otherwise pristine keyboard build. Stabilizers utilize a stainless steel torsion wire held by two slider housings to keep long keycaps level.
+              </p>
+              <ul class="feature-list">
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">PCB Screw-In Mount:</span> Bolted directly to the PCB with steel screws and non-conductive washers. Immune to displacement during keycap pulling and vastly superior to clip-in stabs.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Tolerance Engineering:</span> Premium stabs (TX AP, Staebies V2.1) feature sub-0.05mm stem tolerances to eliminate lateral keycap wobble.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="sub-section-box">
+              <div class="sub-box-title">
+                <span class="box-dot"></span>
+                ThocKeebs 4-Step Anti-Rattle Tuning
+              </div>
+              <ul class="feature-list">
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">01. Wire Balancing:</span> Every steel wire is tested on a precision ceramic flat surface with high-intensity backlighting. Bent ends are micro-adjusted by hand until 0.00mm gap remains.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">02. Stem Clipping:</span> Eliminating superfluous dampening legs on older housings to provide a flat, crisp bottom-out landing.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">03. The Holee Mod:</span> Medical micropore adhesive tape or PTFE strips applied inside the slider cavity. Cushions the steel wire impact and permanently silences ticking.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">04. Krytox XHT-BDZ Lube:</span> Ultra-high viscosity fluorinated grease applied on wire elbows to dampen micro-chatter without creating a mushy return.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="tuning-note-banner">
+              <span class="tuning-tag">Guaranteed Result</span>
+              <p class="tuning-text">
+                Zero rattle, zero wire ticking on left/right edges of your Spacebar, with instantaneous snappy return and a deep, thocky acoustic strike.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 04. SWITCH PLATES -->
+        <article class="anatomy-card" id="layer-plates">
+          <div class="card-top">
+            <div class="card-title-group">
+              <span class="card-num-badge">LAYER 04 • ACOUSTIC FILTER</span>
+              <h2>04. Switch Plate & Material Physics</h2>
+              <p>The structural plate holds all switches securely in place, directly tuning bottom-out hardness and sound pitch.</p>
+            </div>
+            <div class="card-meta-pills">
+              <span class="meta-pill">PC / FR4 / POM / Aluminum / Brass</span>
+              <span class="meta-pill">Flex Index: 1 - 5</span>
+              <span class="meta-pill">Acoustic Pitch Filter</span>
+            </div>
+          </div>
+
+          <div class="card-body-grid">
+            <div class="sub-section-box">
+              <div class="sub-box-title">
+                <span class="box-dot"></span>
+                Plate Materials Compared
+              </div>
+              <ul class="feature-list">
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Polycarbonate (PC):</span> Very flexible, soft typing feel. Absorbs harsh high frequencies to deliver a deep, creamy, thocky acoustic profile. The gold standard for thock lovers.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">FR4 (Epoxy Glass Cloth):</span> The same composite used in PCBs. Balanced flexibility with a clean, poppy, marbly sound signature. Highly recommended all-rounder.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">POM (Polyoxymethylene):</span> Flexible with a distinct bouncy bottom-out. Produces a uniquely muted, bass-heavy acoustic thud.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Aluminum:</span> Rigid, classic mechanical keyboard feel. Crisp high-pitch "clack" with immediate tactile bottom-out confirmation.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Brass:</span> Extremely stiff and heavy. Bright, loud acoustic clack with zero plate flex. Delivers maximum finger energy feedback.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="sub-section-box">
+              <div class="sub-box-title">
+                <span class="box-dot"></span>
+                Flex Cuts & Perimeter Relief
+              </div>
+              <p class="sub-box-desc">
+                Modern custom plates incorporate laser relief cuts between switch clusters and perimeter relief tabs. This allows the plate assembly to compress downward uniformly under finger pressure, dampening wrist strain during extended typing or gaming sessions.
+              </p>
+              <ul class="feature-list">
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Full-Plate:</span> Single continuous sheet. Consistent sound and uniform bottom-out across all alpha keys.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Half-Plate:</span> Alphas have no plate (switches solder directly to PCB) for supreme bounce, while modifiers remain supported by plate tabs.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="tuning-note-banner">
+              <span class="tuning-tag">Plate Formula</span>
+              <p class="tuning-text">
+                Want deepest bass thock? Pair a <strong>Polycarbonate (PC)</strong> or <strong>POM plate</strong> with nylon switch housings and thick PBT keycaps.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 05. MOUNTING ARCHITECTURE -->
+        <article class="anatomy-card" id="layer-mounting">
+          <div class="card-top">
+            <div class="card-title-group">
+              <span class="card-num-badge">LAYER 05 • SUSPENSION & REBOUND</span>
+              <h2>05. Mounting Architecture</h2>
+              <p>How the plate and PCB assembly is suspended inside the case dictates overall typing bounce and vibration transfer.</p>
+            </div>
+            <div class="card-meta-pills">
+              <span class="meta-pill">Gasket Mount</span>
+              <span class="meta-pill">Gummy O-Ring</span>
+              <span class="meta-pill">Top Mount</span>
+              <span class="meta-pill">Tray Mount</span>
+            </div>
+          </div>
+
+          <div class="card-body-grid">
+            <div class="sub-section-box">
+              <div class="sub-box-title">
+                <span class="box-dot"></span>
+                Gasket Mount (Poron & Silicone)
+              </div>
+              <p class="sub-box-desc">
+                The undisputed standard of modern enthusiast keyboards. The plate features extended mounting tabs cushioned by high-density Poron foam strips or molded silicone socks.
+              </p>
+              <ul class="feature-list">
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Decoupled Acoustics:</span> Prevents metal-on-metal vibration from traveling from the switches into the rigid aluminum case.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Cushioned Bottom-Out:</span> Soft vertical compression eliminates harsh jarred stops on fingers during rapid typing.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="sub-section-box">
+              <div class="sub-box-title">
+                <span class="box-dot"></span>
+                Alternative Mounting Styles
+              </div>
+              <ul class="feature-list">
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Gummy O-Ring Mount (Bakeneko / F1-8X):</span> A large continuous silicone O-ring stretches around the plate/PCB sandwich and friction-fits into the case posts. Delivers ultra-uniform perimeter flex and clean acoustic resonance.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Top Mount:</span> The plate is screwed directly into the upper case rim. Highly consistent stiffness, crisp acoustic clack, and zero mushiness.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Tray Mount:</span> The PCB screws onto standoffs in the bottom case (common in budget 60% cases). Prone to stiff center spots and uneven acoustic reverb.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="tuning-note-banner">
+              <span class="tuning-tag">Studio Insight</span>
+              <p class="tuning-text">
+                In gasket builds like the Leobog Hi75C Pro and Weikav WK75, tuned Poron foam strips allow 1.5mm - 2.5mm of vertical displacement, delivering that sought-after bouncy typing sensation.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 06. ACOUSTIC FOAMS & MODDING -->
+        <article class="anatomy-card" id="layer-acoustics">
+          <div class="card-top">
+            <div class="card-title-group">
+              <span class="card-num-badge">LAYER 06 • SOUND SCULPTING</span>
+              <h2>06. Acoustic Dampeners & Acoustic Modding</h2>
+              <p>Sculpting the frequency curve by eliminating hollow case reverberation and accentuating rich bass tones.</p>
+            </div>
+            <div class="card-meta-pills">
+              <span class="meta-pill">Poron Plate Foam</span>
+              <span class="meta-pill">IXPE Switch Pad</span>
+              <span class="meta-pill">PET Sheet</span>
+              <span class="meta-pill">Tempest Tape Mod</span>
+            </div>
+          </div>
+
+          <div class="card-body-grid">
+            <div class="sub-section-box">
+              <div class="sub-box-title">
+                <span class="box-dot"></span>
+                Precision Foam Layers
+              </div>
+              <ul class="feature-list">
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Poron Plate Foam (3.0mm - 3.5mm):</span> Sandwiched between the Plate and PCB. Fills empty air cavities, silencing high-frequency resonance and pinging.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">IXPE Switch Pad (0.5mm):</span> Placed on top of the PCB surface directly under each switch. Shifts acoustic frequencies upward into the marbly, snappy, raindrop-like pop.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">PET Acoustic Film (0.2mm):</span> Ultra-thin reflective polymer sheet placed below IXPE pad to focus sound waves forward toward the user.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Case Dampener (EPDM / Poron / Silicone):</span> Fills the bottom aluminum chamber to prevent hollow box echo.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="sub-section-box">
+              <div class="sub-box-title">
+                <span class="box-dot"></span>
+                The Legendary Tempest Tape Mod
+              </div>
+              <p class="sub-box-desc">
+                Originating in custom modding circles, applying 2 to 3 layers of non-conductive painter's masking tape directly to the back of the PCB acts as an acoustic low-pass filter.
+              </p>
+              <ul class="feature-list">
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Acoustic Low-Pass Filter:</span> Tape absorbs high-frequency vibrations while reflecting low-frequency bass waves back upward through the switches.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Sound Transformation:</span> Turns thin, hollow clacks into thick, deep, concentrated thocks on almost any keyboard board.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="tuning-note-banner">
+              <span class="tuning-tag">Studio Philosophy</span>
+              <p class="tuning-text">
+                Over-foaming can choke a keyboard's acoustic character into a generic muted sound. At ThocKeebs, we tune foam density specifically to match your switch housing and plate material.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 07. PCB -->
+        <article class="anatomy-card" id="layer-pcb">
+          <div class="card-top">
+            <div class="card-title-group">
+              <span class="card-num-badge">LAYER 07 • ELECTRICAL BRAIN</span>
+              <h2>07. Printed Circuit Board (PCB) & Firmware</h2>
+              <p>The neural pathway that captures keystrokes, controls RGB illumination, and runs WebHID real-time configurators.</p>
+            </div>
+            <div class="card-meta-pills">
+              <span class="meta-pill">5-Pin Hot-Swap</span>
+              <span class="meta-pill">South-Facing LEDs</span>
+              <span class="meta-pill">Per-Key Flex Cuts</span>
+              <span class="meta-pill">WebHID / WebUSB</span>
+            </div>
+          </div>
+
+          <div class="card-body-grid">
+            <div class="sub-section-box">
+              <div class="sub-box-title">
+                <span class="box-dot"></span>
+                Hardware Architecture
+              </div>
+              <ul class="feature-list">
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Kailh Hot-Swap Sockets:</span> Solderless switch sockets rated for 100+ swaps. Lets you swap switches in seconds without touching a soldering iron.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">South-Facing Orientation:</span> LEDs are located on the bottom of the switch socket, preventing the top of the switch housing from colliding with Cherry profile keycap inner walls (No North-Facing Interference).</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Per-Key Laser Flex Cuts:</span> Laser cutaways around individual switch sockets that allow each key to flex independently under finger strike.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="sub-section-box">
+              <div class="sub-box-title">
+                <span class="box-dot"></span>
+                WebHID & WebUSB Firmware Configurator
+              </div>
+              <p class="sub-box-desc">
+                Modern custom mechanical keyboards eliminate the need for bloated background desktop apps. Thanks to WebHID and WebUSB API integration, configure keys directly inside your browser.
+              </p>
+              <ul class="feature-list">
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Official Web Drivers:</span> Compatible with QMK/VIA and ThocKeebs-partnered WebUSB drivers (Leobog Hi75C Pro & Weikav WK75). Remap layers, set macros, and calibrate knob encoders in real time.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Onboard EEPROM Memory:</span> Keybindings are saved directly to the keyboard's internal flash MCU and persist across any PC, Mac, or Linux machine.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="tuning-note-banner">
+              <span class="tuning-tag">PCB Protection</span>
+              <p class="tuning-text">
+                Always support hot-swap sockets with your finger on the back of the PCB when inserting new switches to avoid pushing the solder pad off the board trace!
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 08. CASE & WEIGHT -->
+        <article class="anatomy-card" id="layer-case">
+          <div class="card-top">
+            <div class="card-title-group">
+              <span class="card-num-badge">LAYER 08 • FOUNDATION & MASS</span>
+              <h2>08. CNC Aluminum Case & Acoustic Weight</h2>
+              <p>The heavyweight chassis that absorbs typing kinetic energy, eliminates desk hollow, and anchors acoustic resonance.</p>
+            </div>
+            <div class="card-meta-pills">
+              <span class="meta-pill">6063 Aluminum CNC Milled</span>
+              <span class="meta-pill">Internal Brass / PVD Weight</span>
+              <span class="meta-pill">Weight: 1.6kg - 3.2kg</span>
+            </div>
+          </div>
+
+          <div class="card-body-grid">
+            <div class="sub-section-box">
+              <div class="sub-box-title">
+                <span class="box-dot"></span>
+                Chassis Engineering & Finishes
+              </div>
+              <p class="sub-box-desc">
+                High-end keyboards are carved from solid billets of aerospace-grade 6063 aluminum using 5-axis CNC milling machines, resulting in seamless, zero-creak tolerances.
+              </p>
+              <ul class="feature-list">
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Anodized 150-Grit Bead Blast:</span> Velvety smooth metallic touch with scratch-resistant electrochemical color oxidation.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Electrophoresis (E-Coat):</span> Flawless, ultra-durable porcelain-like smooth finish popular in retro chalk and cream white custom builds.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Chamfered Bezels:</span> Precision angled edge cuts that reflect light and elevate workspace desk aesthetic.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="sub-section-box">
+              <div class="sub-box-title">
+                <span class="box-dot"></span>
+                The Physics of Mass: Acoustic Weights
+              </div>
+              <p class="sub-box-desc">
+                Why do custom keyboards weigh 2kg or more? Mass acts as an acoustic anchor.
+              </p>
+              <ul class="feature-list">
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Inertial Dampening:</span> A heavy brass, copper, or PVD mirror stainless steel internal weight bar absorbs vibrations before they can bounce off your desk surface.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Acoustic Chamber Geometry:</span> Tuned hollow proportions inside the bottom case eliminate flutter echoes and standing sound waves.</div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  <div><span class="term">Desk Stability:</span> Non-slip molded silicone feet ensure the keyboard never creeps or rattles even under aggressive competitive gaming keystrokes.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="tuning-note-banner">
+              <span class="tuning-tag">The Build Feel</span>
+              <p class="tuning-text">
+                When you tap a key on a dense 2.5kg custom keyboard, you don't hear plastic shaking on a desk—you feel an authoritative, deep acoustic thump grounded into solid metal.
+              </p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- ACOUSTIC SIGNATURE COMPARISON MATRIX -->
+      <section class="anatomy-matrix-card">
+        <div class="matrix-head">
+          <h2 class="matrix-title" data-i18n="anatomy.matrix.title">Acoustic Signature Comparison Matrix</h2>
+          <p class="matrix-sub" data-i18n="anatomy.matrix.subtitle">
+            How materials, switch stems, and acoustic mods interact to shape the acoustic frequencies of your keyboard.
+          </p>
+        </div>
+
+        <div class="matrix-grid">
+          <!-- Column 1: Deep Thock -->
+          <div class="matrix-col">
+            <div class="col-header">
+              <h3 class="col-title">Deep Thock</h3>
+              <span class="col-pitch">BASS • 150-300 Hz</span>
+            </div>
+            <p class="col-desc">
+              Low-frequency, bass-heavy, deep bottom-out with zero high-pitch ping. The holy grail of mechanical keyboard acoustics.
+            </p>
+            <div class="recipe-list">
+              <div class="recipe-tag">Plate: <strong>Polycarbonate (PC) / POM</strong></div>
+              <div class="recipe-tag">Switches: <strong>Nylon Housing + POM Stem</strong></div>
+              <div class="recipe-tag">Keycaps: <strong>Thick Cherry PBT (1.6mm)</strong></div>
+              <div class="recipe-tag">Mod: <strong>Tempest Tape Mod + 205g0</strong></div>
+            </div>
+          </div>
+
+          <!-- Column 2: Crisp Clack -->
+          <div class="matrix-col">
+            <div class="col-header">
+              <h3 class="col-title">Crisp Clack</h3>
+              <span class="col-pitch">HIGH • 1.5-3 kHz</span>
+            </div>
+            <p class="col-desc">
+              High-pitched, bright, snappy, and articulate. Keystrokes sound razor-sharp like antique typewriters with fast finger confirmation.
+            </p>
+            <div class="recipe-list">
+              <div class="recipe-tag">Plate: <strong>Aluminum / Brass / FR4</strong></div>
+              <div class="recipe-tag">Switches: <strong>Polycarbonate Housing</strong></div>
+              <div class="recipe-tag">Keycaps: <strong>Double-shot ABS Keycaps</strong></div>
+              <div class="recipe-tag">Mount: <strong>Top Mount / No Case Foams</strong></div>
+            </div>
+          </div>
+
+          <!-- Column 3: Creamy / Marbly -->
+          <div class="matrix-col">
+            <div class="col-header">
+              <h3 class="col-title">Creamy / Marbly</h3>
+              <span class="col-pitch">MID-BASS • 400-800 Hz</span>
+            </div>
+            <p class="col-desc">
+              Rich, smooth, rain-like popping sound resembling marbles rolling on marble floor tiles. Very satisfying acoustic balance.
+            </p>
+            <div class="recipe-list">
+              <div class="recipe-tag">Plate: <strong>POM / FR4 with Flex Cuts</strong></div>
+              <div class="recipe-tag">Switches: <strong>LY or UPE Low-Friction Stem</strong></div>
+              <div class="recipe-tag">Keycaps: <strong>MOA / Cherry PBT Dyesub</strong></div>
+              <div class="recipe-tag">Mod: <strong>IXPE Switch Pad + PET Sheet</strong></div>
+            </div>
+          </div>
+
+          <!-- Column 4: Poppy -->
+          <div class="matrix-col">
+            <div class="col-header">
+              <h3 class="col-title">Poppy</h3>
+              <span class="col-pitch">MID-HIGH • 800-1.2 kHz</span>
+            </div>
+            <p class="col-desc">
+              Energetic bubble-wrap pops with immediate acoustic rebound. High energy and distinct per-key acoustic individuality.
+            </p>
+            <div class="recipe-list">
+              <div class="recipe-tag">Plate: <strong>FR4 with Perimeter Relief</strong></div>
+              <div class="recipe-tag">Switches: <strong>Long Pole Stem (3.5mm travel)</strong></div>
+              <div class="recipe-tag">Keycaps: <strong>Cherry Profile PBT</strong></div>
+              <div class="recipe-tag">Mod: <strong>Gasket Mount + Poron Foam</strong></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CALL TO ACTION BANNER -->
+      <section class="anatomy-cta">
+        <h2 class="cta-title" data-i18n="anatomy.cta.title">Ready to Tune or Build Your Custom Keyboard?</h2>
+        <p class="cta-desc" data-i18n="anatomy.cta.desc">
+          Send your keyboard or loose switches to ThocKeebs Studio in Bandung for precision hand-lubing with Krytox, wire balancing on ceramic surfaces, and acoustic optimization.
+        </p>
+        <div class="cta-buttons">
+          <a href="order" class="cta-btn-primary" data-i18n="anatomy.cta.order">Configure Custom Order →</a>
+          <a href="works" class="cta-btn-secondary" data-i18n="anatomy.cta.works">Explore Past Works →</a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- TICKER BAR -->
+    <div class="thockeebs-ticker-wrapper" aria-hidden="true" style="width:100%; overflow:hidden; border-top:1px solid var(--thoc-border); border-bottom:1px solid var(--thoc-border); padding:10px 0; background:var(--thoc-card-bg);">
+      <div class="thockeebs-ticker-track" style="display:flex; width:max-content; animation:thocTicker 25s linear infinite; gap:40px; font-family:'IBM Plex Mono', monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color:var(--thoc-text-muted);">
+        <span>Every keyboard should have a story to tell.</span>
+        <span>•</span>
+        <span>Precision Krytox Lubing Studio • Bandung, Indonesia</span>
+        <span>•</span>
+        <span>Every keyboard should have a story to tell.</span>
+        <span>•</span>
+        <span>Precision Krytox Lubing Studio • Bandung, Indonesia</span>
+      </div>
+    </div>
+
+    <!-- GLOBAL 3-COLUMN FOOTER WITH WEB DRIVERS -->
+    <footer class="thockeebs-footer-wrapper" id="thoc-web-drivers">
+      <div class="thockeebs-footer-card">
+        <div class="thockeebs-footer-nav">
+          
+          <!-- Column 01: Info -->
+          <div class="thockeebs-footer-column">
+            <div class="thockeebs-footer-head">
+              <div class="thockeebs-footer-heading">
+                <span class="thockeebs-footer-dot"></span>
+                <span data-i18n="footer.info">Info</span>
+              </div>
+              <span class="thockeebs-footer-num">01</span>
+            </div>
+            <div class="thockeebs-footer-links">
+              <a href="works" class="thockeebs-footer-link" data-i18n="nav.works">Works</a>
+              <a href="anatomy" class="thockeebs-footer-link" data-i18n="nav.anatomy">Anatomy</a>
+              <a href="order" class="thockeebs-footer-link" data-i18n="nav.order">Order</a>
+              <a href="about" class="thockeebs-footer-link" data-i18n="nav.about">About</a>
+            </div>
+          </div>
+
+          <!-- Column 02: Social -->
+          <div class="thockeebs-footer-column">
+            <div class="thockeebs-footer-head">
+              <div class="thockeebs-footer-heading">
+                <span class="thockeebs-footer-dot"></span>
+                <span data-i18n="footer.social">Social</span>
+              </div>
+              <span class="thockeebs-footer-num">02</span>
+            </div>
+            <div class="thockeebs-footer-links">
+              <a href="https://www.tiktok.com/@thockeebsofficial" target="_blank" rel="noopener noreferrer" class="thockeebs-footer-link">
+                <span>TikTok</span>
+                <span class="thockeebs-external-arrow">↗</span>
+              </a>
+            </div>
+          </div>
+        
+          <!-- Column 03: Web Drivers (Official Collaboration) -->
+          <div class="thockeebs-footer-column">
+            <div class="thockeebs-footer-head">
+              <div class="thockeebs-footer-heading">
+                <span class="thockeebs-footer-dot"></span>
+                <span data-i18n="footer.drivers">Web Drivers</span>
+              </div>
+              <span class="thockeebs-footer-num">03</span>
+            </div>
+            <div class="thockeebs-footer-links">
+              <a href="https://open-leobog.vercel.app" target="_blank" rel="noopener noreferrer" class="thockeebs-footer-link" title="Leobog Hi75C Pro Web Driver">
+                <span>Leobog Hi75C Pro</span>
+                <span class="thockeebs-external-arrow">↗</span>
+              </a>
+              <a href="https://openweikav.vercel.app" target="_blank" rel="noopener noreferrer" class="thockeebs-footer-link" title="Weikav WK75 Web Driver">
+                <span>Weikav WK75</span>
+                <span class="thockeebs-external-arrow">↗</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Footer Bottom Brand & Rights -->
+        <div class="thockeebs-footer-bottom">
+          <div class="thockeebs-footer-credits" data-i18n="footer.rights">ALL RIGHTS RESERVED © 2026 THOCKEEBS</div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="theme.js"></script>
+  <script src="config.js"></script>
+  <script src="lang.js"></script>
+  <script src="drivers.js"></script>
+
+  <!-- Anatomy Page Interactivity -->
+  <script>
+    (function() {
+      // Smooth scroll for chips & layer rows
+      document.querySelectorAll('a[href^="#layer-"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+          var targetId = this.getAttribute('href');
+          var targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // Highlight effect on target card
+            targetEl.style.transition = 'box-shadow 0.3s ease, border-color 0.3s ease';
+            targetEl.style.borderColor = 'var(--thoc-text-main)';
+            targetEl.style.boxShadow = '0 0 0 2px var(--thoc-text-main)';
+            setTimeout(function() {
+              targetEl.style.removeProperty('box-shadow');
+              targetEl.style.removeProperty('border-color');
+            }, 1200);
+          }
+        });
+      });
+
+      // Live Clock
+      function updateClock() {
+        var clockEl = document.getElementById('current-time');
+        if (!clockEl) return;
+        var now = new Date();
+        var dateStr = now.toLocaleDateString('en-US', { timeZone: 'Asia/Jakarta', month: 'short', day: 'numeric' });
+        var timeStr = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Jakarta', hour12: false, hour: '2-digit', minute: '2-digit' });
+        clockEl.textContent = dateStr + ' ' + timeStr;
+      }
+      setInterval(updateClock, 1000);
+      updateClock();
+    })();
+  </script>
+</body>
+</html>

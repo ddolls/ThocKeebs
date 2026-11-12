@@ -12,6 +12,7 @@
     'nav.home': { en: 'Home', id: 'Home' },
     'nav.works': { en: 'Works', id: 'Works' },
     'nav.drivers': { en: 'Drivers', id: 'Drivers' },
+    'nav.anatomy': { en: 'Anatomy', id: 'Anatomy' },
     'nav.order': { en: 'Order', id: 'Order' },
     'nav.about': { en: 'About', id: 'About' },
     'nav.location': { en: 'Bandung, Indonesia.', id: 'Bandung, Indonesia.' },
@@ -20,7 +21,55 @@
     'footer.info': { en: 'Info', id: 'Info' },
     'footer.social': { en: 'Social', id: 'Social' },
     'footer.drivers': { en: 'Web Drivers', id: 'Web Drivers' },
+    'footer.anatomy': { en: 'Anatomy', id: 'Anatomy' },
     'footer.rights': { en: 'ALL RIGHTS RESERVED © 2026 THOCKEEBS', id: 'ALL RIGHTS RESERVED © 2026 THOCKEEBS' },
+
+    // --- Anatomy Page ---
+    'anatomy.badge': {
+      en: 'MECHANICAL KEYBOARD ARCHITECTURE • COMPONENT DISSECTION',
+      id: 'ARSITEKTUR MECHANICAL KEYBOARD • PEMBEDAHAN KOMPONEN'
+    },
+    'anatomy.hero.title': {
+      en: 'Anatomy of a Custom Mechanical Keyboard',
+      id: 'Anatomy of a Custom Mechanical Keyboard'
+    },
+    'anatomy.hero.subtitle': {
+      en: 'An architectural dissection of acoustic resonance, material physics, mounting systems, and precision Krytox tuning that defines the signature thock.',
+      id: 'Pembedahan arsitektur akustik, fisika material, sistem mounting, dan pelumasan presisi Krytox yang menciptakan karakter thock autentik.'
+    },
+    'anatomy.filter.all': { en: 'All Components', id: 'Semua Komponen' },
+    'anatomy.filter.keycaps': { en: 'Keycaps', id: 'Keycaps' },
+    'anatomy.filter.switches': { en: 'Switches', id: 'Switches' },
+    'anatomy.filter.stabilizers': { en: 'Stabilizers', id: 'Stabilizer' },
+    'anatomy.filter.plates': { en: 'Plates', id: 'Plates' },
+    'anatomy.filter.mounting': { en: 'Mounting', id: 'Mounting' },
+    'anatomy.filter.acoustics': { en: 'Acoustic Foams', id: 'Acoustic Foam' },
+    'anatomy.filter.pcb': { en: 'PCB', id: 'PCB' },
+    'anatomy.filter.case': { en: 'Case & Weight', id: 'Case & Weight' },
+    'anatomy.matrix.title': {
+      en: 'Acoustic Signature Comparison Matrix',
+      id: 'Matriks Perbandingan Karakter Suara'
+    },
+    'anatomy.matrix.subtitle': {
+      en: 'How materials, switch stems, and acoustic mods interact to shape the acoustic frequencies of your keyboard.',
+      id: 'Bagaimana perpaduan material plate, switch stem, dan peredam membentuk karakter frekuensi suara keyboard Anda.'
+    },
+    'anatomy.cta.title': {
+      en: 'Ready to Tune or Build Your Custom Keyboard?',
+      id: 'Siap Men-tuning atau Merakit Keyboard Custom Anda?'
+    },
+    'anatomy.cta.desc': {
+      en: 'Send your keyboard or loose switches to ThocKeebs Studio in Bandung for precision hand-lubing with Krytox, wire balancing on ceramic surfaces, and acoustic optimization.',
+      id: 'Kirimkan keyboard atau switch lepasan Anda ke ThocKeebs Studio di Bandung untuk pelumasan presisi Krytox, balancing stabilizer di atas kaca/keramik datar, dan tuning akustik maksimal.'
+    },
+    'anatomy.cta.order': {
+      en: 'Configure Custom Order →',
+      id: 'Konfigurasi Order Tuning →'
+    },
+    'anatomy.cta.works': {
+      en: 'Explore Past Works →',
+      id: 'Lihat Portfolio Hasil Build →'
+    },
 
     // --- Index (Home) ---
     'home.hero.subtitle': { en: 'Mechanical keyboards & keycaps design', id: 'Mechanical keyboards & keycaps design' },

@@ -21,9 +21,11 @@
   }
 }
 
-/* 2. Floating Navbar Drivers Item & Dropdown */
+/* 2. Floating Navbar Drivers & Anatomy Items */
 .framer-8qYMR .framer-thoc-drivers-container,
-.framer-thoc-drivers-container {
+.framer-thoc-drivers-container,
+.framer-8qYMR .framer-thoc-anatomy-container,
+.framer-thoc-anatomy-container {
   cursor: pointer !important;
   flex: none !important;
   width: auto !important;
@@ -45,7 +47,8 @@
   display: block !important;
 }
 
-.framer-thoc-drivers-container p.framer-text {
+.framer-thoc-drivers-container p.framer-text,
+.framer-thoc-anatomy-container p.framer-text {
   margin: 0 !important;
 }
 
@@ -221,8 +224,10 @@ html.light-theme .thoc-driver-divider {
 @media (max-width: 1024px) {
   .thoc-floating-bottom-dock .framer-thoc-drivers-container,
   .thoc-floating-bottom-dock .thoc-drivers-nav-item,
+  .thoc-floating-bottom-dock .framer-thoc-anatomy-container,
   .framer-8qYMR .framer-thoc-drivers-container,
-  .framer-8qYMR .thoc-drivers-nav-item {
+  .framer-8qYMR .thoc-drivers-nav-item,
+  .framer-8qYMR .framer-thoc-anatomy-container {
     height: 34px !important;
     display: flex !important;
     align-items: center !important;
@@ -245,5 +250,43 @@ html.light-theme .thoc-driver-divider {
   .thoc-nav-pill .thoc-drivers-dropdown.is-open,
   .nav-pill .thoc-drivers-dropdown.is-open {
     transform: translateX(-50%) translateY(0) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .thoc-floating-bottom-dock .framer-8qYMR,
+  .thoc-floating-bottom-dock .thoc-nav-pill,
+  .thoc-floating-bottom-dock .nav-pill {
+    padding: 3px 5px !important;
+    gap: 2px !important;
+    max-width: 98vw !important;
+  }
+
+  .thoc-floating-bottom-dock .framer-8qYMR a,
+  .thoc-floating-bottom-dock .thoc-nav-link,
+  .thoc-floating-bottom-dock .nav-link {
+    padding: 5px 7px !important;
+    --ewxefe: 5px 7px 5px 7px !important;
+    font-size: 10px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .thoc-floating-bottom-dock .framer-8qYMR a,
+  .thoc-floating-bottom-dock .thoc-nav-link,
+  .thoc-floating-bottom-dock .nav-link {
+    padding: 4px 5px !important;
+    --ewxefe: 4px 5px 4px 5px !important;
+    font-size: 9px !important;
+  }
+
+  .thoc-floating-bottom-dock .lang-toggle-btn {
+    padding: 2px 4px !important;
+    font-size: 8.5px !important;
+  }
+
+  .thoc-floating-bottom-dock .theme-toggle-btn {
+    width: 26px !important;
+    height: 16px !important;
   }
 }
