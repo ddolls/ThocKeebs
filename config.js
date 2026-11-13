@@ -15,11 +15,13 @@ const THOC_CONFIG = {
   
   // Lokasi & Alamat Pengiriman Workshop (Tampil di bagian Alamat Kirim & Tombol Salin Label)
   shippingAddress: {
-    receiverName: "Workshop ThocKeebs (Admin Lube)",
+    receiverName: "ThocKeebs Studio (Admin Lube)",
     phone: "0857-2233-3327",
-    city: "Jakarta Selatan, DKI Jakarta",
-    fullAddress: "Jl. Tebet Barat Raya No. 42B, RT.05/RW.02, Tebet Barat, Kec. Tebet, Kota Jakarta Selatan, DKI Jakarta 12810",
-    benchmarkNotes: "Depan Minimarket Indomaret Tebet Barat, pagar hitam bertuliskan ThocKeebs Lab."
+    city: "Kota Bandung, Jawa Barat",
+    fullAddress: "Komplek Panghegar, Jl. Padepokan Raya No.B. No. 09 RT. 06/09, Cipadung Kulon, Kec. Panyileukan, Kota Bandung, Jawa Barat 40614",
+    benchmarkNotes: "Komplek Panghegar, Jl. Padepokan Raya No.B. No. 09 (ThocKeebs Studio).",
+    mapsUrl: "https://www.google.com/maps/place/ThocKeebs+Studio/@-6.9193357,107.7032353,17z/data=!4m6!3m5!1s0x2e68dd8a7688754d:0x8f6b33c22ec83eef!8m2!3d-6.9193357!4d107.7032353!16s%2Fg%2F11_06v5q7y",
+    mapsShareUrl: "https://share.google/VoRRhhcmHah7c1TW8"
   },
   
   expeditionSupported: ["JNE", "J&T", "SiCepat", "GoSend (Sameday/Instant)", "GrabExpress", "Paxel"],

@@ -471,12 +471,12 @@
 
     // --- Order Page: Workshop Location Map ---
     'order.maps.title': { en: 'Workshop Location', id: 'Lokasi Workshop' },
-    'order.maps.city': { en: 'Tebet, South Jakarta', id: 'Tebet, Jakarta Selatan' },
+    'order.maps.city': { en: 'Bandung, West Java', id: 'Kota Bandung, Jawa Barat' },
     'order.maps.open': { en: 'Open in Maps ↗', id: 'Buka di Maps ↗' },
     'order.maps.benchmark': { en: 'Landmark:', id: 'Patokan:' },
     'order.maps.notes': {
-      en: 'In front of Indomaret Tebet Barat minimarket, black gate labeled "ThocKeebs Lab".',
-      id: 'Depan Minimarket Indomaret Tebet Barat, pagar hitam bertuliskan ThocKeebs Lab.'
+      en: 'Komplek Panghegar, Jl. Padepokan Raya No.B. No. 09 (ThocKeebs Studio).',
+      id: 'Komplek Panghegar, Jl. Padepokan Raya No.B. No. 09 (ThocKeebs Studio).'
     },
     'order.maps.copy': { en: 'Copy Shipping Address', id: 'Salin Alamat Kirim' },
     'order.maps.copied': { en: 'Address Copied! ✓', id: 'Alamat Tersalin! ✓' },

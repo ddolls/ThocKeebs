@@ -2281,9 +2281,9 @@ html.light-theme .lang-dropdown-menu {
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                   <span data-i18n="order.maps.title">Lokasi Workshop</span>
                 </span>
-                <span class="workshop-city" data-i18n="order.maps.city">Tebet, Jakarta Selatan</span>
+                <span class="workshop-city" data-i18n="order.maps.city">Kota Bandung, Jawa Barat</span>
               </div>
-              <a href="https://maps.google.com/?q=Jl.+Tebet+Barat+Raya+No.+42B,+Tebet+Barat,+Jakarta+Selatan" target="_blank" rel="noopener noreferrer" class="workshop-open-link" title="Buka di Google Maps">
+              <a href="https://www.google.com/maps/place/ThocKeebs+Studio/@-6.9193357,107.7032353,17z/data=!4m6!3m5!1s0x2e68dd8a7688754d:0x8f6b33c22ec83eef!8m2!3d-6.9193357!4d107.7032353!16s%2Fg%2F11_06v5q7y" target="_blank" rel="noopener noreferrer" class="workshop-open-link" title="Buka di Google Maps">
                 <span data-i18n="order.maps.open">Buka Maps ↗</span>
               </a>
             </div>
@@ -2291,8 +2291,8 @@ html.light-theme .lang-dropdown-menu {
             <!-- Google Maps Thumbnail Frame -->
             <div class="workshop-map-frame">
               <iframe
-                title="Google Maps ThocKeebs Workshop"
-                src="https://maps.google.com/maps?q=Jl.+Tebet+Barat+Raya+No.+42B,+Tebet+Barat,+Jakarta+Selatan&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+                title="Google Maps ThocKeebs Studio"
+                src="https://maps.google.com/maps?q=ThocKeebs+Studio&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade">
               </iframe>
@@ -2300,11 +2300,11 @@ html.light-theme .lang-dropdown-menu {
 
             <!-- Address Info & Benchmark -->
             <div class="workshop-details">
-              <div class="workshop-addr-name">Workshop ThocKeebs (Admin Lube)</div>
-              <div class="workshop-addr-text">Jl. Tebet Barat Raya No. 42B, RT.05/RW.02, Tebet Barat, Kec. Tebet, Kota Jakarta Selatan, DKI Jakarta 12810</div>
+              <div class="workshop-addr-name">ThocKeebs Studio (Admin Lube)</div>
+              <div class="workshop-addr-text">Komplek Panghegar, Jl. Padepokan Raya No.B. No. 09 RT. 06/09, Cipadung Kulon, Kec. Panyileukan, Kota Bandung, Jawa Barat 40614</div>
               <div class="workshop-addr-notes">
                 <span class="workshop-note-label" data-i18n="order.maps.benchmark">Patokan:</span>
-                <span data-i18n="order.maps.notes">Depan Minimarket Indomaret Tebet Barat, pagar hitam bertuliskan ThocKeebs Lab.</span>
+                <span data-i18n="order.maps.notes">Komplek Panghegar, Jl. Padepokan Raya No.B. No. 09 (ThocKeebs Studio).</span>
               </div>
 
               <!-- Quick Action Button -->
@@ -2626,10 +2626,10 @@ html.light-theme .lang-dropdown-menu {
 
     window.copyWorkshopAddress = function() {
       var addr = (window.THOC_CONFIG && window.THOC_CONFIG.shippingAddress) ? window.THOC_CONFIG.shippingAddress : {
-        receiverName: "Workshop ThocKeebs (Admin Lube)",
+        receiverName: "ThocKeebs Studio (Admin Lube)",
         phone: "0857-2233-3327",
-        fullAddress: "Jl. Tebet Barat Raya No. 42B, RT.05/RW.02, Tebet Barat, Kec. Tebet, Kota Jakarta Selatan, DKI Jakarta 12810",
-        benchmarkNotes: "Depan Minimarket Indomaret Tebet Barat, pagar hitam bertuliskan ThocKeebs Lab."
+        fullAddress: "Komplek Panghegar, Jl. Padepokan Raya No.B. No. 09 RT. 06/09, Cipadung Kulon, Kec. Panyileukan, Kota Bandung, Jawa Barat 40614",
+        benchmarkNotes: "Komplek Panghegar, Jl. Padepokan Raya No.B. No. 09 (ThocKeebs Studio)."
       };
       var textToCopy = "Penerima: " + addr.receiverName + " (" + addr.phone + ")\n" +
                        "Alamat: " + addr.fullAddress + "\n" +
