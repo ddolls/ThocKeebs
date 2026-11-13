@@ -802,7 +802,7 @@
       max-width: 100%;
       box-sizing: border-box;
       padding: 0 16px 24px 16px;
-      margin-top: 24px !important;
+      margin-top: 48px;
       position: relative;
       z-index: 10;
       background-color: transparent !important;
@@ -810,8 +810,8 @@
 
     .thockeebs-footer-card {
       width: 100%;
-      background-color: #2e2e2f !important;
-      border-radius: 12px !important;
+      background-color: #252526;
+      border-radius: 12px;
       padding: 24px 24px 16px 24px;
       display: flex;
       flex-direction: column;
@@ -858,16 +858,15 @@
 
     body.light-theme .thockeebs-footer-head,
     html.light-theme .thockeebs-footer-head {
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      border-bottom-color: rgba(0, 0, 0, 0.1) !important;
     }
 
     .thockeebs-footer-heading {
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
-      letter-spacing: -0.01em;
       color: inherit;
     }
 
@@ -875,42 +874,56 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: currentColor;
+      background-color: currentColor;
+      display: inline-block;
     }
 
     .thockeebs-footer-num {
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
+      font-size: 10px;
+      font-weight: 500;
+      padding: 2px 6px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
       color: inherit;
-      opacity: 0.45;
+      opacity: 0.8;
+      line-height: 14px;
+    }
+
+    body.light-theme .thockeebs-footer-num,
+    html.light-theme .thockeebs-footer-num {
+      border-color: rgba(0, 0, 0, 0.2) !important;
     }
 
     .thockeebs-footer-links {
       display: flex;
-      flex-direction: column;
-      gap: 8px;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: center;
     }
 
     .thockeebs-footer-link {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       font-size: 13px;
+      font-weight: 500;
       color: inherit;
-      opacity: 0.75;
       text-decoration: none;
+      opacity: 0.85;
       display: inline-flex;
       align-items: center;
-      justify-content: space-between;
-      transition: opacity 0.15s ease, transform 0.15s ease;
+      gap: 4px;
+      transition: opacity 0.15s ease;
     }
 
     .thockeebs-footer-link:hover {
       opacity: 1;
-      transform: translateX(2px);
+      transform: none;
     }
 
     .thockeebs-external-arrow {
-      font-family: 'IBM Plex Mono', monospace;
       font-size: 11px;
-      opacity: 0.6;
+      opacity: 0.8;
     }
 
     /* Jumbo Brand Text SVG */
