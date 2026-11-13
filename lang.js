@@ -475,8 +475,8 @@
     'order.maps.open': { en: 'Open in Maps ↗', id: 'Buka di Maps ↗' },
     'order.maps.benchmark': { en: 'Landmark:', id: 'Patokan:' },
     'order.maps.notes': {
-      en: 'Komplek Panghegar, Jl. Padepokan Raya No.B. No. 09 (ThocKeebs Studio).',
-      id: 'Komplek Panghegar, Jl. Padepokan Raya No.B. No. 09 (ThocKeebs Studio).'
+      en: 'Enter alley, beside Pesantren Rumah Prestasi / As-Salam.',
+      id: 'Masuk Gang, samping pesantren rumah prestasi / As-Salam'
     },
     'order.maps.copy': { en: 'Copy Shipping Address', id: 'Salin Alamat Kirim' },
     'order.maps.copied': { en: 'Address Copied! ✓', id: 'Alamat Tersalin! ✓' },
