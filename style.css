@@ -1002,6 +1002,34 @@ html.light-theme .lang-dropdown-menu {
     height: 12px !important;
   }
 
+  /* Dropup for Drivers Menu in Floating Bottom Dock & Mobile */
+  .thoc-floating-bottom-dock .thoc-drivers-dropdown {
+    top: auto !important;
+    bottom: calc(100% + 12px) !important;
+    transform: translateX(-50%) translateY(8px) !important;
+    box-shadow: 0 -16px 36px rgba(0, 0, 0, 0.45), 0 -2px 8px rgba(0, 0, 0, 0.25) !important;
+  }
+
+  body.light-theme .thoc-floating-bottom-dock .thoc-drivers-dropdown,
+  html.light-theme .thoc-floating-bottom-dock .thoc-drivers-dropdown {
+    box-shadow: 0 -16px 36px rgba(0, 0, 0, 0.12), 0 -2px 8px rgba(0, 0, 0, 0.06) !important;
+  }
+
+  .thoc-floating-bottom-dock .thoc-drivers-dropdown.is-open,
+  .thoc-floating-bottom-dock .thoc-drivers-nav-item:hover .thoc-drivers-dropdown,
+  .thoc-floating-bottom-dock .thoc-drivers-nav-item:focus-within .thoc-drivers-dropdown {
+    transform: translateX(-50%) translateY(0) !important;
+  }
+
+  .thoc-floating-bottom-dock .thoc-drivers-dropdown::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -14px !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 14px !important;
+  }
+
   .thoc-floating-bottom-dock .framer-mlk3nv,
   .thoc-floating-bottom-dock .thoc-theme-toggle-slot {
     height: 34px !important;
@@ -1241,22 +1269,149 @@ body.light-theme .framer-17la0sa svg * {
   }
 }
 
-@media (max-width: 480px) {
+/* Responsive Works Table for Mobile & Tablet */
+@media (max-width: 768px) {
   .thoc-works-header {
-    font-size: 9.5px !important;
+    display: flex !important;
+    align-items: center !important;
     gap: 8px !important;
     padding: 10px 0 !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    font-size: 9.5px !important;
   }
+  .thoc-wh-name {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    text-align: left !important;
+    justify-content: flex-start !important;
+  }
+  .thoc-wh-status {
+    flex: 0 0 52px !important;
+    min-width: 52px !important;
+    width: 52px !important;
+    text-align: left !important;
+    justify-content: flex-start !important;
+  }
+  .thoc-wh-date {
+    flex: 0 0 76px !important;
+    min-width: 76px !important;
+    width: 76px !important;
+    margin-right: 22px !important;
+    text-align: left !important;
+    justify-content: flex-start !important;
+  }
+
+  .thoc-works-row-wrap a.framer-3Qz7O,
+  a.framer-1g8niic,
   .framer-1g8niic {
+    display: flex !important;
+    flex-flow: row !important;
+    align-items: center !important;
     gap: 8px !important;
-    padding: 12px 0 !important;
+    padding: 14px 0 !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    position: relative !important;
   }
-  .framer-4rjn7p h2 {
-    font-size: 13.5px !important;
+  .framer-4rjn7p {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    width: auto !important;
+    overflow: visible !important;
+  }
+  .framer-4rjn7p h2,
+  .framer-4rjn7p .framer-text,
+  .framer-4rjn7p span {
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    line-height: 1.25 !important;
+    font-size: 12px !important;
+    margin: 0 !important;
+    text-align: left !important;
+  }
+  .framer-82ks48 {
+    flex: 0 0 52px !important;
+    min-width: 52px !important;
+    width: 52px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
   }
   .framer-82ks48 .framer-text,
-  .framer-31ht2t .framer-text {
-    font-size: 10px !important;
+  .framer-82ks48 span {
+    white-space: nowrap !important;
+    font-size: 9px !important;
+    letter-spacing: 0.04em !important;
+    text-align: left !important;
+  }
+  .framer-31ht2t {
+    flex: 0 0 76px !important;
+    min-width: 76px !important;
+    width: 76px !important;
+    margin-right: 22px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    place-content: center flex-start !important;
+    text-align: left !important;
+    box-sizing: border-box !important;
+  }
+  .framer-31ht2t .framer-text,
+  .framer-31ht2t .framer-styles-preset-2m3oxe,
+  .framer-31ht2t span,
+  .framer-31ht2t div {
+    white-space: nowrap !important;
+    font-size: 8px !important;
+    --framer-font-size: 8px !important;
+    letter-spacing: -0.01em !important;
+    text-align: left !important;
+  }
+  .framer-17la0sa {
+    right: 0 !important;
+    width: 16px !important;
+    height: 16px !important;
+  }
+}
+
+@media (max-width: 365px) {
+  .thoc-works-header {
+    gap: 6px !important;
+  }
+  .thoc-works-row-wrap a.framer-3Qz7O,
+  a.framer-1g8niic,
+  .framer-1g8niic {
+    gap: 6px !important;
+  }
+  .thoc-wh-status,
+  .framer-82ks48 {
+    flex: 0 0 46px !important;
+    min-width: 46px !important;
+    width: 46px !important;
+  }
+  .thoc-wh-date,
+  .framer-31ht2t {
+    flex: 0 0 68px !important;
+    min-width: 68px !important;
+    width: 68px !important;
+    margin-right: 18px !important;
+  }
+  .framer-4rjn7p h2 {
+    font-size: 11px !important;
+  }
+  .framer-82ks48 .framer-text {
+    font-size: 8px !important;
+  }
+  .framer-31ht2t .framer-text,
+  .framer-31ht2t div {
+    font-size: 7px !important;
+    --framer-font-size: 7px !important;
+  }
+  .framer-17la0sa {
+    width: 14px !important;
+    height: 14px !important;
   }
 }
 

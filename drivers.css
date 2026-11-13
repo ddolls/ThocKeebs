@@ -84,6 +84,63 @@
   transform: translateX(-50%) translateY(0) !important;
 }
 
+/* Dropup for Floating Bottom Dock and Mobile Devices */
+.thoc-floating-bottom-dock .thoc-drivers-dropdown {
+  top: auto !important;
+  bottom: calc(100% + 12px) !important;
+  transform: translateX(-50%) translateY(8px) !important;
+  box-shadow: 0 -16px 36px rgba(0, 0, 0, 0.45), 0 -2px 8px rgba(0, 0, 0, 0.25) !important;
+}
+
+body.light-theme .thoc-floating-bottom-dock .thoc-drivers-dropdown,
+html.light-theme .thoc-floating-bottom-dock .thoc-drivers-dropdown {
+  box-shadow: 0 -16px 36px rgba(0, 0, 0, 0.12), 0 -2px 8px rgba(0, 0, 0, 0.06) !important;
+}
+
+.thoc-floating-bottom-dock .thoc-drivers-dropdown.is-open,
+.thoc-floating-bottom-dock .thoc-drivers-nav-item:hover .thoc-drivers-dropdown,
+.thoc-floating-bottom-dock .thoc-drivers-nav-item:focus-within .thoc-drivers-dropdown {
+  transform: translateX(-50%) translateY(0) !important;
+}
+
+.thoc-floating-bottom-dock .thoc-drivers-dropdown::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: -14px !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 14px !important;
+}
+
+@media (max-width: 1024px) {
+  .thoc-drivers-dropdown {
+    top: auto !important;
+    bottom: calc(100% + 12px) !important;
+    transform: translateX(-50%) translateY(8px) !important;
+    box-shadow: 0 -16px 36px rgba(0, 0, 0, 0.45), 0 -2px 8px rgba(0, 0, 0, 0.25) !important;
+  }
+
+  body.light-theme .thoc-drivers-dropdown,
+  html.light-theme .thoc-drivers-dropdown {
+    box-shadow: 0 -16px 36px rgba(0, 0, 0, 0.12), 0 -2px 8px rgba(0, 0, 0, 0.06) !important;
+  }
+
+  .thoc-drivers-dropdown.is-open,
+  .thoc-drivers-nav-item:hover .thoc-drivers-dropdown,
+  .thoc-drivers-nav-item:focus-within .thoc-drivers-dropdown {
+    transform: translateX(-50%) translateY(0) !important;
+  }
+
+  .thoc-drivers-dropdown::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -14px !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 14px !important;
+  }
+}
+
 /* Light Mode */
 body.light-theme .thoc-drivers-dropdown,
 html.light-theme .thoc-drivers-dropdown {
