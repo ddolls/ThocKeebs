@@ -11,7 +11,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Core CSS -->
   <link rel="stylesheet" href="style.css">
@@ -20,7 +20,7 @@
   <style>
     /* ==========================================================================
        ANATOMY OF A CUSTOM MECHANICAL KEYBOARD - DEDICATED ARCHITECTURAL STYLING
-       Clean, Monochromatic, Masterpiece Design with Non-Interactive Looping Videos
+       Clean, Monochromatic, Masterpiece Design with Zigzag Alternating Modules
        ========================================================================== */
 
     :root {
@@ -236,8 +236,8 @@
     /* Main Container */
     .anatomy-main {
       width: 100%;
-      max-width: 1120px;
-      padding: 32px 24px 80px;
+      max-width: 1160px;
+      padding: 32px 24px 60px;
       box-sizing: border-box;
     }
 
@@ -362,7 +362,11 @@
       transform: translateY(-1px);
     }
 
-    /* Modules Grid (Only 6 video-backed items: 02 to 07) */
+    /* ==========================================================================
+       ZIGZAG ALTERNATING MODULES (01 - 06)
+       Odd modules: Video Left, Text Right
+       Even modules: Text Left, Video Right
+       ========================================================================== */
     .anatomy-grid {
       display: flex;
       flex-direction: column;
@@ -375,26 +379,71 @@
       background: var(--thoc-card-bg);
       border: 1px solid var(--thoc-border);
       border-radius: 20px;
-      padding: 36px 36px;
+      padding: 32px;
       box-sizing: border-box;
       box-shadow: 0 6px 24px rgba(0, 0, 0, 0.03);
       scroll-margin-top: 100px;
       transition: border-color 0.2s ease;
+      width: 100%;
     }
 
     .anatomy-card:hover {
       border-color: var(--thoc-border-strong);
     }
 
+    .anatomy-zigzag-row {
+      display: grid;
+      grid-template-columns: 440px 1fr;
+      gap: 36px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .anatomy-card.is-reverse .anatomy-zigzag-row {
+      grid-template-columns: 1fr 440px;
+    }
+
+    /* Video Column */
+    .zigzag-video-col {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .thoc-card-video-wrap {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #000000;
+      border: 1px solid var(--thoc-border);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body.dark-theme .thoc-card-video-wrap {
+      border-color: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Text Column */
+    .zigzag-text-col {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
     .card-top {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: flex-start;
-      margin-bottom: 20px;
-      padding-bottom: 18px;
+      gap: 12px;
+      margin-bottom: 4px;
+      padding-bottom: 16px;
       border-bottom: 1px solid var(--thoc-border);
-      flex-wrap: wrap;
-      gap: 16px;
     }
 
     .card-num-badge {
@@ -413,19 +462,18 @@
     }
 
     .card-title-group h2 {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 700;
       letter-spacing: -0.02em;
-      margin: 8px 0 6px 0;
+      margin: 4px 0 6px 0;
       color: var(--thoc-text-main);
     }
 
     .card-title-group p {
-      font-size: 14px;
+      font-size: 13.5px;
       line-height: 1.6;
       color: var(--thoc-text-muted);
       margin: 0;
-      max-width: 820px;
     }
 
     .card-meta-pills {
@@ -436,43 +484,23 @@
 
     .meta-pill {
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      padding: 5px 12px;
+      font-size: 10.5px;
+      padding: 4px 10px;
       border: 1px solid var(--thoc-border);
       border-radius: 9999px;
       color: var(--thoc-text-muted);
       background: var(--thoc-card-sub);
     }
 
-    /* Seamless Card Video Wrapper (No frame player chrome) */
-    .thoc-card-video-wrap {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      border-radius: 14px;
-      overflow: hidden;
-      background: #000000;
-      border: 1px solid var(--thoc-border);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-      margin-top: 4px;
-      margin-bottom: 24px;
-      user-select: none;
-      -webkit-user-select: none;
-    }
-
-    body.dark-theme .thoc-card-video-wrap {
-      border-color: rgba(255, 255, 255, 0.12);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-    }
-
-    /* Content Layout inside Card */
+    /* Sub-box grids inside text column */
     .card-body-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-top: 8px;
+      gap: 16px;
+      margin-top: 4px;
     }
 
-    @media (max-width: 820px) {
+    @media (max-width: 640px) {
       .card-body-grid {
         grid-template-columns: 1fr;
       }
@@ -481,17 +509,17 @@
     .sub-section-box {
       background: var(--thoc-card-sub);
       border: 1px solid var(--thoc-border);
-      border-radius: 14px;
-      padding: 22px;
+      border-radius: 12px;
+      padding: 16px 18px;
     }
 
     .sub-box-title {
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.04em;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -506,10 +534,10 @@
     }
 
     .sub-box-desc {
-      font-size: 13.5px;
-      line-height: 1.6;
+      font-size: 13px;
+      line-height: 1.55;
       color: var(--thoc-text-muted);
-      margin: 0 0 16px 0;
+      margin: 0 0 12px 0;
     }
 
     .feature-list {
@@ -518,22 +546,22 @@
       margin: 0;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
 
     .feature-item {
-      font-size: 13.5px;
-      line-height: 1.55;
+      font-size: 12.5px;
+      line-height: 1.5;
       display: flex;
       align-items: flex-start;
-      gap: 10px;
+      gap: 8px;
       color: var(--thoc-text-main);
     }
 
     .feature-item strong {
       font-family: 'IBM Plex Mono', monospace;
       font-weight: 600;
-      font-size: 12.5px;
+      font-size: 12px;
       color: var(--thoc-text-main);
     }
 
@@ -542,22 +570,21 @@
       font-family: 'IBM Plex Mono', monospace;
     }
 
-    /* Tuning Highlight Bar inside card */
+    /* Tuning Highlight Bar */
     .tuning-note-banner {
-      grid-column: 1 / -1;
       background: var(--thoc-highlight);
       border-left: 3px solid var(--thoc-text-main);
-      padding: 16px 20px;
-      border-radius: 0 10px 10px 0;
-      margin-top: 12px;
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      margin-top: 6px;
       display: flex;
       align-items: baseline;
-      gap: 14px;
+      gap: 12px;
     }
 
     .tuning-tag {
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -566,10 +593,10 @@
     }
 
     .tuning-text {
-      font-size: 13.5px;
+      font-size: 13px;
       color: var(--thoc-text-muted);
       margin: 0;
-      line-height: 1.55;
+      line-height: 1.5;
     }
 
     /* Call To Action Banner */
@@ -585,6 +612,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin-top: 24px;
     }
 
     .cta-title {
@@ -655,14 +683,243 @@
       transform: translateY(-2px);
     }
 
-    /* Responsive adjustments */
+    /* ==========================================================================
+       AUTHENTIC RUNNING TEXT MARQUEE & JUMBO FOOTER BRANDING (MATCHING ALL PAGES)
+       ========================================================================== */
+    .thockeebs-ticker-wrapper {
+      width: 100%;
+      overflow: hidden;
+      user-select: none;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      padding: 24px 0 12px 0;
+      margin-top: 48px;
+      margin-bottom: 0px;
+      position: relative;
+      z-index: 5;
+      background: transparent !important;
+    }
+
+    .thockeebs-ticker-track {
+      display: flex;
+      width: max-content;
+      white-space: nowrap;
+      animation: thockeebs-ticker-marquee 36s linear infinite;
+      will-change: transform;
+    }
+
+    .thockeebs-ticker-content {
+      display: flex;
+      white-space: nowrap;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .thockeebs-ticker-content span {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 96px;
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: rgb(215, 215, 218);
+      padding-right: 48px;
+      display: inline-block;
+      transition: color 0.2s ease;
+    }
+
+    body.dark-theme .thockeebs-ticker-content span,
+    html.dark-theme .thockeebs-ticker-content span {
+      color: rgb(60, 60, 61) !important;
+    }
+
+    @keyframes thockeebs-ticker-marquee {
+      0% {
+        transform: translate3d(0, 0, 0);
+      }
+      100% {
+        transform: translate3d(-50%, 0, 0);
+      }
+    }
+
     @media (max-width: 768px) {
+      .thockeebs-ticker-content span {
+        font-size: 56px;
+        padding-right: 32px;
+      }
+      .thockeebs-ticker-wrapper {
+        padding: 16px 0 8px 0;
+        margin-top: 24px;
+      }
+    }
+
+    /* Global 3-Column Footer with Card Elevation */
+    .thockeebs-footer-wrapper {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      padding: 0 16px 24px 16px;
+      margin-top: 24px !important;
+      position: relative;
+      z-index: 10;
+      background-color: transparent !important;
+    }
+
+    .thockeebs-footer-card {
+      width: 100%;
+      background-color: #2e2e2f !important;
+      border-radius: 12px !important;
+      padding: 24px 24px 16px 24px;
+      display: flex;
+      flex-direction: column;
+      color: #f0f0f1;
+      box-sizing: border-box;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    body.light-theme .thockeebs-footer-card,
+    html.light-theme .thockeebs-footer-card {
+      background-color: #ffffff !important;
+      color: #252526 !important;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    }
+
+    .thockeebs-footer-nav {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .thockeebs-footer-nav {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+    .thockeebs-footer-column {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .thockeebs-footer-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      margin-bottom: 14px;
+    }
+
+    body.light-theme .thockeebs-footer-head,
+    html.light-theme .thockeebs-footer-head {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .thockeebs-footer-heading {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: inherit;
+    }
+
+    .thockeebs-footer-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .thockeebs-footer-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: inherit;
+      opacity: 0.45;
+    }
+
+    .thockeebs-footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .thockeebs-footer-link {
+      font-size: 13px;
+      color: inherit;
+      opacity: 0.75;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+
+    .thockeebs-footer-link:hover {
+      opacity: 1;
+      transform: translateX(2px);
+    }
+
+    .thockeebs-external-arrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      opacity: 0.6;
+    }
+
+    /* Jumbo Brand Text SVG */
+    .thockeebs-footer-brand {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 28px 0 12px 0;
+      user-select: none;
+      color: inherit;
+    }
+
+    .thockeebs-footer-brand svg {
+      width: 100%;
+      max-width: 1200px;
+      height: auto;
+      display: block;
+    }
+
+    .thockeebs-footer-bottom {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding-top: 8px;
+    }
+
+    .thockeebs-footer-credits {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: inherit;
+      opacity: 0.45;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 960px) {
+      .anatomy-zigzag-row,
+      .anatomy-card.is-reverse .anatomy-zigzag-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .anatomy-card.is-reverse .zigzag-text-col {
+        order: 2;
+      }
+      .anatomy-card.is-reverse .zigzag-video-col {
+        order: 1;
+      }
       .anatomy-card {
         padding: 24px 18px;
-      }
-      .card-top {
-        flex-direction: column;
-        align-items: flex-start;
       }
       .tuning-note-banner {
         flex-direction: column;
@@ -777,482 +1034,524 @@
           <video class="thoc-loop-video" src="Videos/1%20Intro.mp4" autoplay loop muted playsinline disablePictureInPicture disableremoteplayback preload="auto" oncontextmenu="return false;"></video>
         </div>
 
-        <!-- Quick Jump Filter Chips (Only for existing video chapters) -->
+        <!-- Quick Jump Filter Chips (Numbered 01 to 06) -->
         <div class="anatomy-filter-bar">
-          <a href="#module-layout" class="anatomy-chip" data-i18n="anatomy.filter.layout">02. Layout</a>
-          <a href="#module-pcbmcu" class="anatomy-chip" data-i18n="anatomy.filter.pcbmcu">03. PCB & MCU</a>
-          <a href="#module-mount" class="anatomy-chip" data-i18n="anatomy.filter.mount">04. Gasket & Plat Mount</a>
-          <a href="#module-stab" class="anatomy-chip" data-i18n="anatomy.filter.stab">05. Stabilizer</a>
-          <a href="#module-keycaps" class="anatomy-chip" data-i18n="anatomy.filter.keycaps">06. Keycaps Size</a>
-          <a href="#module-switches" class="anatomy-chip" data-i18n="anatomy.filter.switches">07. Switches Type</a>
+          <a href="#module-layout" class="anatomy-chip" data-i18n="anatomy.filter.layout">01. Layout</a>
+          <a href="#module-pcbmcu" class="anatomy-chip" data-i18n="anatomy.filter.pcbmcu">02. PCB and MCU</a>
+          <a href="#module-mount" class="anatomy-chip" data-i18n="anatomy.filter.mount">03. Gasket & Plate Mount</a>
+          <a href="#module-stab" class="anatomy-chip" data-i18n="anatomy.filter.stab">04. Stabilizer</a>
+          <a href="#module-keycaps" class="anatomy-chip" data-i18n="anatomy.filter.keycaps">05. Keycaps Size</a>
+          <a href="#module-switches" class="anatomy-chip" data-i18n="anatomy.filter.switches">06. Switches Type</a>
         </div>
       </section>
 
-      <!-- MODULES GRID: ONLY 6 VIDEO-BACKED CHAPTERS IN EXACT NUMERICAL ORDER (02 - 07) -->
+      <!-- MODULES GRID: ZIGZAG ALTERNATING LAYOUT IN EXACT NUMERICAL ORDER (01 - 06) -->
       <div class="anatomy-grid">
 
-        <!-- 02. LAYOUT (Video: 2 Layout.mp4) -->
+        <!-- 01. LAYOUT (Video Left, Text Right) -->
         <article class="anatomy-card" id="module-layout">
-          <div class="card-top">
-            <div class="card-title-group">
-              <span class="card-num-badge" data-i18n="anatomy.part2.layer">MODULE 02 • PHYSICAL DIMENSIONS & ERGONOMICS</span>
-              <h2 data-i18n="anatomy.part2.title">02. Layout</h2>
-              <p data-i18n="anatomy.part2.summary">
-                Penjelasan ukuran fisik keyboard (persentase dari ukuran penuh/100%). Contoh umum: TKL (80%), 75%, 65%, 60%, hingga 40%. Perlu diingat bahwa ukuran persentase tidak selalu berarti jumlah switch yang sama persis.
-              </p>
-            </div>
-            <div class="card-meta-pills">
-              <span class="meta-pill" data-i18n="anatomy.part2.pill1">Full Size (100%)</span>
-              <span class="meta-pill" data-i18n="anatomy.part2.pill2">TKL (80%)</span>
-              <span class="meta-pill" data-i18n="anatomy.part2.pill3">75% Compact</span>
-              <span class="meta-pill" data-i18n="anatomy.part2.pill4">65% / 60% / 40%</span>
-            </div>
-          </div>
-
-          <!-- Video Showcase (Looping, no controls, non-interactive) -->
-          <div class="thoc-card-video-wrap">
-            <video class="thoc-loop-video" src="Videos/2%20Layout.mp4" autoplay loop muted playsinline disablePictureInPicture disableremoteplayback preload="auto" oncontextmenu="return false;"></video>
-          </div>
-
-          <div class="card-body-grid">
-            <div class="sub-section-box">
-              <div class="sub-box-title">
-                <span class="box-dot"></span>
-                <span data-i18n="anatomy.part2.box1_title">Form Factor Hierarchy & Switch Count</span>
+          <div class="anatomy-zigzag-row">
+            <!-- Left: Video Showcase -->
+            <div class="zigzag-video-col">
+              <div class="thoc-card-video-wrap">
+                <video class="thoc-loop-video" src="Videos/2%20Layout.mp4" autoplay loop muted playsinline disablePictureInPicture disableremoteplayback preload="auto" oncontextmenu="return false;"></video>
               </div>
-              <p class="sub-box-desc" data-i18n="anatomy.part2.box1_desc">
-                Istilah persentase layout mengacu pada perbandingan rasio ukuran fisik relatif terhadap keyboard standar industri 104-tombol.
-              </p>
-              <ul class="feature-list">
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part2.box1_item1"><strong>Full Size (100%):</strong> 104–108 tombol. Dilengkapi Numpad dan navigation cluster lengkap untuk kebutuhan input data dan akuntansi.</div>
-                </li>
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part2.box1_item2"><strong>Tenkeyless / TKL (80%):</strong> ~87 tombol. Menghilangkan Numpad untuk memberikan area gerak mouse yang jauh lebih luas dan posisi tangan lebih ergonomis.</div>
-                </li>
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part2.box1_item3"><strong>75% Compact:</strong> 82–84 tombol. Mempertahankan tombol Function (F1–F12) dan navigasi vertikal dalam ukuran ringkas tanpa celah kosong.</div>
-                </li>
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part2.box1_item4"><strong>65% / 60% / 40%:</strong> 67 hingga sub-50 tombol. Form factor minimalis portabel yang memaksimalkan ruang meja dengan sistem layer Fn terprogram.</div>
-                </li>
-              </ul>
             </div>
 
-            <div class="sub-section-box">
-              <div class="sub-box-title">
-                <span class="box-dot"></span>
-                <span data-i18n="anatomy.part2.box2_title">Ergonomic Desk Travel & Footprint</span>
+            <!-- Right: Explanation -->
+            <div class="zigzag-text-col">
+              <div class="card-top">
+                <span class="card-num-badge" data-i18n="anatomy.part1.layer">MODULE 01 • PHYSICAL DIMENSIONS & ERGONOMICS</span>
+                <div class="card-title-group">
+                  <h2 data-i18n="anatomy.part1.title">01. Layout</h2>
+                  <p data-i18n="anatomy.part1.summary">
+                    Penjelasan ukuran fisik keyboard (persentase dari ukuran penuh/100%). Contoh umum: TKL (80%), 75%, 65%, 60%, hingga 40%. Perlu diingat bahwa ukuran persentase tidak selalu berarti jumlah switch yang sama persis.
+                  </p>
+                </div>
+                <div class="card-meta-pills">
+                  <span class="meta-pill" data-i18n="anatomy.part1.pill1">Full Size (100%)</span>
+                  <span class="meta-pill" data-i18n="anatomy.part1.pill2">TKL (80%)</span>
+                  <span class="meta-pill" data-i18n="anatomy.part1.pill3">75% Compact</span>
+                  <span class="meta-pill" data-i18n="anatomy.part1.pill4">65% / 60% / 40%</span>
+                </div>
               </div>
-              <p class="sub-box-desc" data-i18n="anatomy.part2.box2_desc">
-                Pemilihan layout menentukan keseimbangan antara efisiensi pengetikan harian dan kebebasan ruang gerak mouse.
-              </p>
-              <ul class="feature-list">
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part2.box2_item1"><strong>Penyelarasan Bahu & Pergelangan:</strong> Layout kompak menjaga posisi tangan tetap sejajar lebar bahu, mengurangi ketegangan otot leher dan pergelangan tangan.</div>
-                </li>
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part2.box2_item2"><strong>Variasi Jumlah Switch:</strong> Dua keyboard 75% bisa memiliki jumlah switch berbeda (81 vs 84 switch) tergantung keberadaan knob volume atau blocker pemisah.</div>
-                </li>
-              </ul>
-            </div>
 
-            <div class="tuning-note-banner">
-              <span class="tuning-tag" data-i18n="anatomy.part2.note_tag">Tips Memilih Layout</span>
-              <p class="tuning-text" data-i18n="anatomy.part2.note_text">
-                Untuk sesi coding dan gaming harian, form factor 75% dan 65% merupakan pilihan paling seimbang antara kelengkapan tombol esensial dan keleluasaan ruang meja.
-              </p>
+              <div class="card-body-grid">
+                <div class="sub-section-box">
+                  <div class="sub-box-title">
+                    <span class="box-dot"></span>
+                    <span data-i18n="anatomy.part1.box1_title">Form Factor Hierarchy & Switch Count</span>
+                  </div>
+                  <p class="sub-box-desc" data-i18n="anatomy.part1.box1_desc">
+                    Istilah persentase layout mengacu pada perbandingan rasio ukuran fisik relatif terhadap keyboard standar industri 104-tombol.
+                  </p>
+                  <ul class="feature-list">
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part1.box1_item1"><strong>Full Size (100%):</strong> 104–108 tombol. Dilengkapi Numpad dan navigation cluster lengkap untuk kebutuhan input data dan akuntansi.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part1.box1_item2"><strong>Tenkeyless / TKL (80%):</strong> ~87 tombol. Menghilangkan Numpad untuk memberikan area gerak mouse yang jauh lebih luas dan posisi tangan lebih ergonomis.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part1.box1_item3"><strong>75% Compact:</strong> 82–84 tombol. Mempertahankan tombol Function (F1–F12) dan navigasi vertikal dalam ukuran ringkas tanpa celah kosong.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part1.box1_item4"><strong>65% / 60% / 40%:</strong> 67 hingga sub-50 tombol. Form factor minimalis portabel yang memaksimalkan ruang meja dengan sistem layer Fn terprogram.</div>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="sub-section-box">
+                  <div class="sub-box-title">
+                    <span class="box-dot"></span>
+                    <span data-i18n="anatomy.part1.box2_title">Ergonomic Desk Travel & Footprint</span>
+                  </div>
+                  <p class="sub-box-desc" data-i18n="anatomy.part1.box2_desc">
+                    Pemilihan layout menentukan keseimbangan antara efisiensi pengetikan harian dan kebebasan ruang gerak mouse.
+                  </p>
+                  <ul class="feature-list">
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part1.box2_item1"><strong>Penyelarasan Bahu & Pergelangan:</strong> Layout kompak menjaga posisi tangan tetap sejajar lebar bahu, mengurangi ketegangan otot leher dan pergelangan tangan.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part1.box2_item2"><strong>Variasi Jumlah Switch:</strong> Dua keyboard 75% bisa memiliki jumlah switch berbeda (81 vs 84 switch) tergantung keberadaan knob volume atau blocker pemisah.</div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="tuning-note-banner">
+                <span class="tuning-tag" data-i18n="anatomy.part1.note_tag">Tips Memilih Layout</span>
+                <p class="tuning-text" data-i18n="anatomy.part1.note_text">
+                  Untuk sesi coding dan gaming harian, form factor 75% dan 65% merupakan pilihan paling seimbang antara kelengkapan tombol esensial dan keleluasaan ruang meja.
+                </p>
+              </div>
             </div>
           </div>
         </article>
 
-        <!-- 03. PCB DAN MCU (Video: 3 PCB MCU.mp4) -->
-        <article class="anatomy-card" id="module-pcbmcu">
-          <div class="card-top">
-            <div class="card-title-group">
-              <span class="card-num-badge" data-i18n="anatomy.part3.layer">MODULE 03 • ELECTRONIC ARCHITECTURE & LOGIC</span>
-              <h2 data-i18n="anatomy.part3.title">03. PCB dan MCU</h2>
-              <p data-i18n="anatomy.part3.summary">
-                Printed Circuit Board sebagai "otak" keyboard yang menerjemahkan input switch menjadi sinyal ke perangkat.
-              </p>
-            </div>
-            <div class="card-meta-pills">
-              <span class="meta-pill" data-i18n="anatomy.part3.pill1">Microcontroller (MCU)</span>
-              <span class="meta-pill" data-i18n="anatomy.part3.pill2">Soket Hot-Swap 5-Pin</span>
-              <span class="meta-pill" data-i18n="anatomy.part3.pill3">South-Facing RGB</span>
-              <span class="meta-pill" data-i18n="anatomy.part3.pill4">Driver WebHID / WebUSB</span>
-            </div>
-          </div>
-
-          <!-- Video Showcase (Looping, no controls, non-interactive) -->
-          <div class="thoc-card-video-wrap">
-            <video class="thoc-loop-video" src="Videos/3%20PCB%20MCU.mp4" autoplay loop muted playsinline disablePictureInPicture disableremoteplayback preload="auto" oncontextmenu="return false;"></video>
-          </div>
-
-          <div class="card-body-grid">
-            <div class="sub-section-box">
-              <div class="sub-box-title">
-                <span class="box-dot"></span>
-                <span data-i18n="anatomy.part3.box1_title">Sirkuit & Pemrosesan Hardware</span>
+        <!-- 02. PCB DAN MCU (Text Left, Video Right) -->
+        <article class="anatomy-card is-reverse" id="module-pcbmcu">
+          <div class="anatomy-zigzag-row">
+            <!-- Left: Explanation -->
+            <div class="zigzag-text-col">
+              <div class="card-top">
+                <span class="card-num-badge" data-i18n="anatomy.part2.layer">MODULE 02 • ELECTRONIC ARCHITECTURE & LOGIC</span>
+                <div class="card-title-group">
+                  <h2 data-i18n="anatomy.part2.title">02. PCB dan MCU</h2>
+                  <p data-i18n="anatomy.part2.summary">
+                    Printed Circuit Board sebagai "otak" keyboard yang menerjemahkan input switch menjadi sinyal ke perangkat.
+                  </p>
+                </div>
+                <div class="card-meta-pills">
+                  <span class="meta-pill" data-i18n="anatomy.part2.pill1">Microcontroller (MCU)</span>
+                  <span class="meta-pill" data-i18n="anatomy.part2.pill2">Soket Hot-Swap 5-Pin</span>
+                  <span class="meta-pill" data-i18n="anatomy.part2.pill3">South-Facing RGB</span>
+                  <span class="meta-pill" data-i18n="anatomy.part2.pill4">Driver WebHID / WebUSB</span>
+                </div>
               </div>
-              <p class="sub-box-desc" data-i18n="anatomy.part3.box1_desc">
-                PCB mendistribusikan jalur daya, matriks diode anti-ghosting, dan menampung chip processor mikrokomputer.
-              </p>
-              <ul class="feature-list">
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part3.box1_item1"><strong>Microcontroller Unit (MCU):</strong> Chip prosesor 32-bit ARM Cortex atau RP2040 berkecepatan tinggi yang memproses scan matriks 1000Hz–8000Hz dengan latensi respon instan.</div>
-                </li>
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part3.box1_item2"><strong>Soket Hot-Swap Kailh:</strong> Menghilangkan kebutuhan menyolder. Kontak tembaga presisi memungkinkan penggantian switch mekanikal secara instan tanpa solder.</div>
-                </li>
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part3.box1_item3"><strong>Orientasi South-Facing:</strong> Posisi LED di sisi bawah lubang switch menjamin tidak terjadi benturan fisik (interference) dengan dinding keycap Cherry profile.</div>
-                </li>
-              </ul>
-            </div>
 
-            <div class="sub-section-box">
-              <div class="sub-box-title">
-                <span class="box-dot"></span>
-                <span data-i18n="anatomy.part3.box2_title">Ekosistem Firmware & Web Driver</span>
+              <div class="card-body-grid">
+                <div class="sub-section-box">
+                  <div class="sub-box-title">
+                    <span class="box-dot"></span>
+                    <span data-i18n="anatomy.part2.box1_title">Sirkuit & Pemrosesan Hardware</span>
+                  </div>
+                  <p class="sub-box-desc" data-i18n="anatomy.part2.box1_desc">
+                    PCB mendistribusikan jalur daya, matriks diode anti-ghosting, dan menampung chip processor mikrokomputer.
+                  </p>
+                  <ul class="feature-list">
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part2.box1_item1"><strong>Microcontroller Unit (MCU):</strong> Chip prosesor 32-bit ARM Cortex atau RP2040 berkecepatan tinggi yang memproses scan matriks 1000Hz–8000Hz dengan latensi respon instan.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part2.box1_item2"><strong>Soket Hot-Swap Kailh:</strong> Menghilangkan kebutuhan menyolder. Kontak tembaga presisi memungkinkan penggantian switch mekanikal secara instan tanpa solder.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part2.box1_item3"><strong>Orientasi South-Facing:</strong> Posisi LED di sisi bawah lubang switch menjamin tidak terjadi benturan fisik (interference) dengan dinding keycap Cherry profile.</div>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="sub-section-box">
+                  <div class="sub-box-title">
+                    <span class="box-dot"></span>
+                    <span data-i18n="anatomy.part2.box2_title">Ekosistem Firmware & Web Driver</span>
+                  </div>
+                  <p class="sub-box-desc" data-i18n="anatomy.part2.box2_desc">
+                    Keyboard modern memungkinkan remap tombol dan pengaturan layer secara realtime tanpa software berat.
+                  </p>
+                  <ul class="feature-list">
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part2.box2_item1"><strong>Kompatibilitas WebHID / WebUSB:</strong> Terhubung langsung dengan konfigurator web browser seperti Web Driver Leobog Hi75C Pro dan Weikav WK75.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part2.box2_item2"><strong>Memori Internal Onboard:</strong> Semua pengaturan tombol, macro, dan fungsi knob tersimpan di hardware keyboard dan aktif di PC, Mac, maupun Linux.</div>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <p class="sub-box-desc" data-i18n="anatomy.part3.box2_desc">
-                Keyboard modern memungkinkan remap tombol dan pengaturan layer secara realtime tanpa software berat.
-              </p>
-              <ul class="feature-list">
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part3.box2_item1"><strong>Kompatibilitas WebHID / WebUSB:</strong> Terhubung langsung dengan konfigurator web browser seperti Web Driver Leobog Hi75C Pro dan Weikav WK75.</div>
-                </li>
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part3.box2_item2"><strong>Memori Internal Onboard:</strong> Semua pengaturan tombol, macro, dan fungsi knob tersimpan di hardware keyboard dan aktif di PC, Mac, maupun Linux.</div>
-                </li>
-              </ul>
+
+              <div class="tuning-note-banner">
+                <span class="tuning-tag" data-i18n="anatomy.part2.note_tag">Keamanan PCB</span>
+                <p class="tuning-text" data-i18n="anatomy.part2.note_text">
+                  Selalu tahan soket hot-swap dari sisi belakang PCB saat memasang switch baru agar pin yang melengkung tidak merusak jalur solder PCB.
+                </p>
+              </div>
             </div>
 
-            <div class="tuning-note-banner">
-              <span class="tuning-tag" data-i18n="anatomy.part3.note_tag">Keamanan PCB</span>
-              <p class="tuning-text" data-i18n="anatomy.part3.note_text">
-                Selalu tahan soket hot-swap dari sisi belakang PCB saat memasang switch baru agar pin yang melengkung tidak merusak jalur solder PCB.
-              </p>
+            <!-- Right: Video Showcase -->
+            <div class="zigzag-video-col">
+              <div class="thoc-card-video-wrap">
+                <video class="thoc-loop-video" src="Videos/3%20PCB%20MCU.mp4" autoplay loop muted playsinline disablePictureInPicture disableremoteplayback preload="auto" oncontextmenu="return false;"></video>
+              </div>
             </div>
           </div>
         </article>
 
-        <!-- 04. GASKET & PLAT MOUNT (Video: 4 Switches.mp4) -->
+        <!-- 03. GASKET & PLAT MOUNT (Video Left, Text Right) -->
         <article class="anatomy-card" id="module-mount">
-          <div class="card-top">
-            <div class="card-title-group">
-              <span class="card-num-badge" data-i18n="anatomy.part4.layer">MODULE 04 • ACOUSTIC RESONANCE & MOUNTING</span>
-              <h2 data-i18n="anatomy.part4.title">04. Gasket & Plat Mount</h2>
-              <p data-i18n="anatomy.part4.summary">
-                Penahan switch agar tetap lurus dan memberikan feedback suara/rasa ketikan tertentu. Material bervariasi dari aluminium hingga polikarbonat.
-              </p>
-            </div>
-            <div class="card-meta-pills">
-              <span class="meta-pill" data-i18n="anatomy.part4.pill1">Gasket Poron / Silikon</span>
-              <span class="meta-pill" data-i18n="anatomy.part4.pill2">Polycarbonate (PC) / POM</span>
-              <span class="meta-pill" data-i18n="anatomy.part4.pill3">FR4 Epoxy Glass</span>
-              <span class="meta-pill" data-i18n="anatomy.part4.pill4">Plate Aluminium</span>
-            </div>
-          </div>
-
-          <!-- Video Showcase (Looping, no controls, non-interactive) -->
-          <div class="thoc-card-video-wrap">
-            <video class="thoc-loop-video" src="Videos/4%20Switches.mp4" autoplay loop muted playsinline disablePictureInPicture disableremoteplayback preload="auto" oncontextmenu="return false;"></video>
-          </div>
-
-          <div class="card-body-grid">
-            <div class="sub-section-box">
-              <div class="sub-box-title">
-                <span class="box-dot"></span>
-                <span data-i18n="anatomy.part4.box1_title">Fisika Material Plate & Karakter Suara</span>
+          <div class="anatomy-zigzag-row">
+            <!-- Left: Video Showcase -->
+            <div class="zigzag-video-col">
+              <div class="thoc-card-video-wrap">
+                <video class="thoc-loop-video" src="Videos/4%20Switches.mp4" autoplay loop muted playsinline disablePictureInPicture disableremoteplayback preload="auto" oncontextmenu="return false;"></video>
               </div>
-              <p class="sub-box-desc" data-i18n="anatomy.part4.box1_desc">
-                Elastisitas dan densitas plat menentukan pantulan benturan switch dan karakter nada ketikan.
-              </p>
-              <ul class="feature-list">
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part4.box1_item1"><strong>Polycarbonate (PC) & POM:</strong> Fleksibel dan empuk. Meredam nada tinggi yang menusuk telinga demi menghasilkan suara bas bulat ("deep thock").</div>
-                </li>
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part4.box1_item2"><strong>FR4 (Bahan Fiber PCB):</strong> Fleksibilitas seimbang. Menghadirkan karakter suara "poppy" yang garing dan konsisten di setiap tombol.</div>
-                </li>
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part4.box1_item3"><strong>Aluminium & Brass:</strong> Kaku dan padat. Memberikan konfirmasi sentuhan cepat dengan suara ketukan "clack" yang nyaring dan renyah.</div>
-                </li>
-              </ul>
             </div>
 
-            <div class="sub-section-box">
-              <div class="sub-box-title">
-                <span class="box-dot"></span>
-                <span data-i18n="anatomy.part4.box2_title">Sistem Isolasi Gasket Mount</span>
+            <!-- Right: Explanation -->
+            <div class="zigzag-text-col">
+              <div class="card-top">
+                <span class="card-num-badge" data-i18n="anatomy.part3.layer">MODULE 03 • ACOUSTIC RESONANCE & MOUNTING</span>
+                <div class="card-title-group">
+                  <h2 data-i18n="anatomy.part3.title">03. Gasket & Plat Mount</h2>
+                  <p data-i18n="anatomy.part3.summary">
+                    Penahan switch agar tetap lurus dan memberikan feedback suara/rasa ketikan tertentu. Material bervariasi dari aluminium hingga polikarbonat.
+                  </p>
+                </div>
+                <div class="card-meta-pills">
+                  <span class="meta-pill" data-i18n="anatomy.part3.pill1">Gasket Poron / Silikon</span>
+                  <span class="meta-pill" data-i18n="anatomy.part3.pill2">Polycarbonate (PC) / POM</span>
+                  <span class="meta-pill" data-i18n="anatomy.part3.pill3">FR4 Epoxy Glass</span>
+                  <span class="meta-pill" data-i18n="anatomy.part3.pill4">Plate Aluminium</span>
+                </div>
               </div>
-              <p class="sub-box-desc" data-i18n="anatomy.part4.box2_desc">
-                Struktur gasket mengisolasi kontak fisik langsung antara susunan plate dengan rangka case luar.
-              </p>
-              <ul class="feature-list">
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part4.box2_item1"><strong>Peredaman Getaran:</strong> Bantalan poron atau silikon menahan plat keyboard, menyerap kejutan kinetik agar tidak merambat ke meja kerja.</div>
-                </li>
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part4.box2_item2"><strong>Rasa Ketik Empuk & Seragam:</strong> Memberikan pantulan ketikan yang nyaman dan konsisten di bagian tengah maupun sudut keyboard tanpa rasa kaku.</div>
-                </li>
-              </ul>
-            </div>
 
-            <div class="tuning-note-banner">
-              <span class="tuning-tag" data-i18n="anatomy.part4.note_tag">Saran Tuning</span>
-              <p class="tuning-text" data-i18n="anatomy.part4.note_text">
-                Padukan plat Polycarbonate (PC) dengan sistem Gasket Mount dan switch linear berpelumas Krytox untuk karakter deep thock paling maksimal.
-              </p>
+              <div class="card-body-grid">
+                <div class="sub-section-box">
+                  <div class="sub-box-title">
+                    <span class="box-dot"></span>
+                    <span data-i18n="anatomy.part3.box1_title">Fisika Material Plate & Karakter Suara</span>
+                  </div>
+                  <p class="sub-box-desc" data-i18n="anatomy.part3.box1_desc">
+                    Elastisitas dan densitas plat menentukan pantulan benturan switch dan karakter nada ketikan.
+                  </p>
+                  <ul class="feature-list">
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part3.box1_item1"><strong>Polycarbonate (PC) & POM:</strong> Fleksibel dan empuk. Meredam nada tinggi yang menusuk telinga demi menghasilkan suara bas bulat ("deep thock").</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part3.box1_item2"><strong>FR4 (Bahan Fiber PCB):</strong> Fleksibilitas seimbang. Menghadirkan karakter suara "poppy" yang garing dan konsisten di setiap tombol.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part3.box1_item3"><strong>Aluminium & Brass:</strong> Kaku dan padat. Memberikan konfirmasi sentuhan cepat dengan suara ketukan "clack" yang nyaring dan renyah.</div>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="sub-section-box">
+                  <div class="sub-box-title">
+                    <span class="box-dot"></span>
+                    <span data-i18n="anatomy.part3.box2_title">Sistem Isolasi Gasket Mount</span>
+                  </div>
+                  <p class="sub-box-desc" data-i18n="anatomy.part3.box2_desc">
+                    Struktur gasket mengisolasi kontak fisik langsung antara susunan plate dengan rangka case luar.
+                  </p>
+                  <ul class="feature-list">
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part3.box2_item1"><strong>Peredaman Getaran:</strong> Bantalan poron atau silikon menahan plat keyboard, menyerap kejutan kinetik agar tidak merambat ke meja kerja.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part3.box2_item2"><strong>Rasa Ketik Empuk & Seragam:</strong> Memberikan pantulan ketikan yang nyaman dan konsisten di bagian tengah maupun sudut keyboard tanpa rasa kaku.</div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="tuning-note-banner">
+                <span class="tuning-tag" data-i18n="anatomy.part3.note_tag">Saran Tuning</span>
+                <p class="tuning-text" data-i18n="anatomy.part3.note_text">
+                  Padukan plat Polycarbonate (PC) dengan sistem Gasket Mount dan switch linear berpelumas Krytox untuk karakter deep thock paling maksimal.
+                </p>
+              </div>
             </div>
           </div>
         </article>
 
-        <!-- 05. STABILIZER (Video: 5 Stabilizer.mp4) -->
-        <article class="anatomy-card" id="module-stab">
-          <div class="card-top">
-            <div class="card-title-group">
-              <span class="card-num-badge" data-i18n="anatomy.part5.layer">MODULE 05 • MECHANICAL BALANCING & ANTI-RATTLE</span>
-              <h2 data-i18n="anatomy.part5.title">05. Stabilizer</h2>
-              <p data-i18n="anatomy.part5.summary">
-                Komponen untuk menstabilkan tombol besar (seperti Spacebar atau Enter) agar tidak goyang saat ditekan.
-              </p>
-            </div>
-            <div class="card-meta-pills">
-              <span class="meta-pill" data-i18n="anatomy.part5.pill1">PCB Screw-In Mount</span>
-              <span class="meta-pill" data-i18n="anatomy.part5.pill2">Wire Balancing (0.00mm)</span>
-              <span class="meta-pill" data-i18n="anatomy.part5.pill3">Krytox XHT-BDZ & 205g0</span>
-              <span class="meta-pill" data-i18n="anatomy.part5.pill4">Anti-Rattle Holee Mod</span>
-            </div>
-          </div>
-
-          <!-- Video Showcase (Looping, no controls, non-interactive) -->
-          <div class="thoc-card-video-wrap">
-            <video class="thoc-loop-video" src="Videos/5%20Stabilizer.mp4" autoplay loop muted playsinline disablePictureInPicture disableremoteplayback preload="auto" oncontextmenu="return false;"></video>
-          </div>
-
-          <div class="card-body-grid">
-            <div class="sub-section-box">
-              <div class="sub-box-title">
-                <span class="box-dot"></span>
-                <span data-i18n="anatomy.part5.box1_title">Mekanika Keseimbangan Tombol Lebar</span>
+        <!-- 04. STABILIZER (Text Left, Video Right) -->
+        <article class="anatomy-card is-reverse" id="module-stab">
+          <div class="anatomy-zigzag-row">
+            <!-- Left: Explanation -->
+            <div class="zigzag-text-col">
+              <div class="card-top">
+                <span class="card-num-badge" data-i18n="anatomy.part4.layer">MODULE 04 • MECHANICAL BALANCING & ANTI-RATTLE</span>
+                <div class="card-title-group">
+                  <h2 data-i18n="anatomy.part4.title">04. Stabilizer</h2>
+                  <p data-i18n="anatomy.part4.summary">
+                    Komponen untuk menstabilkan tombol besar (seperti Spacebar atau Enter) agar tidak goyang saat ditekan.
+                  </p>
+                </div>
+                <div class="card-meta-pills">
+                  <span class="meta-pill" data-i18n="anatomy.part4.pill1">PCB Screw-In Mount</span>
+                  <span class="meta-pill" data-i18n="anatomy.part4.pill2">Wire Balancing (0.00mm)</span>
+                  <span class="meta-pill" data-i18n="anatomy.part4.pill3">Krytox XHT-BDZ & 205g0</span>
+                  <span class="meta-pill" data-i18n="anatomy.part4.pill4">Anti-Rattle Holee Mod</span>
+                </div>
               </div>
-              <p class="sub-box-desc" data-i18n="anatomy.part5.box1_desc">
-                Tanpa stabilizer, menekan pinggir tombol Spacebar 6.25u akan membuat keycap miring dan macet saat turun.
-              </p>
-              <ul class="feature-list">
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part5.box1_item1"><strong>Kawat Baja Torsi:</strong> Menyalurkan gaya tekan ke kedua sisi tombol secara serentak sehingga pergerakan keycap selalu sejajar sempurna.</div>
-                </li>
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part5.box1_item2"><strong>Konstruksi Screw-In PCB:</strong> Dibaut kokoh langsung ke substrat PCB, mencegah housing terangkat atau oblak saat tombol ditekan cepat.</div>
-                </li>
-              </ul>
-            </div>
 
-            <div class="sub-section-box">
-              <div class="sub-box-title">
-                <span class="box-dot"></span>
-                <span data-i18n="anatomy.part5.box2_title">Protokol Tuning Anti-Rattle ThocKeebs</span>
+              <div class="card-body-grid">
+                <div class="sub-section-box">
+                  <div class="sub-box-title">
+                    <span class="box-dot"></span>
+                    <span data-i18n="anatomy.part4.box1_title">Mekanika Keseimbangan Tombol Lebar</span>
+                  </div>
+                  <p class="sub-box-desc" data-i18n="anatomy.part4.box1_desc">
+                    Tanpa stabilizer, menekan pinggir tombol Spacebar 6.25u akan membuat keycap miring dan macet saat turun.
+                  </p>
+                  <ul class="feature-list">
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part4.box1_item1"><strong>Kawat Baja Torsi:</strong> Menyalurkan gaya tekan ke kedua sisi tombol secara serentak sehingga pergerakan keycap selalu sejajar sempurna.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part4.box1_item2"><strong>Konstruksi Screw-In PCB:</strong> Dibaut kokoh langsung ke substrat PCB, mencegah housing terangkat atau oblak saat tombol ditekan cepat.</div>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="sub-section-box">
+                  <div class="sub-box-title">
+                    <span class="box-dot"></span>
+                    <span data-i18n="anatomy.part4.box2_title">Protokol Tuning Anti-Rattle ThocKeebs</span>
+                  </div>
+                  <p class="sub-box-desc" data-i18n="anatomy.part4.box2_desc">
+                    Setiap stabilizer di bengkel ThocKeebs melalui tahapan modifikasi presisi bebas rattle.
+                  </p>
+                  <ul class="feature-list">
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part4.box2_item1"><strong>Wire Balancing Kaca Optik:</strong> Meluruskan kawat baja di atas permukaan kaca/keramik optik datar hingga deviasi 0.00mm tanpa celah.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part4.box2_item2"><strong>Grease Krytox XHT-BDZ:</strong> Melumasi tekukan kawat dengan pelumas berdensitas tinggi untuk membungkam gesekan metal dengan plastik selamanya.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part4.box2_item3"><strong>Holee Mod:</strong> Memasang lapisan micropore teflon pada rongga stem slider untuk meredam benturan kawat.</div>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <p class="sub-box-desc" data-i18n="anatomy.part5.box2_desc">
-                Setiap stabilizer di bengkel ThocKeebs melalui tahapan modifikasi presisi bebas rattle.
-              </p>
-              <ul class="feature-list">
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part5.box2_item1"><strong>Wire Balancing Kaca Optik:</strong> Meluruskan kawat baja di atas permukaan kaca/keramik optik datar hingga deviasi 0.00mm tanpa celah.</div>
-                </li>
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part5.box2_item2"><strong>Grease Krytox XHT-BDZ:</strong> Melumasi tekukan kawat dengan pelumas berdensitas tinggi untuk membungkam gesekan metal dengan plastik selamanya.</div>
-                </li>
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part5.box2_item3"><strong>Holee Mod:</strong> Memasang lapisan micropore teflon pada rongga stem slider untuk meredam benturan kawat.</div>
-                </li>
-              </ul>
+
+              <div class="tuning-note-banner">
+                <span class="tuning-tag" data-i18n="anatomy.part4.note_tag">Standar ThocKeebs</span>
+                <p class="tuning-text" data-i18n="anatomy.part4.note_text">
+                  Kualitas sebuah keyboard ditentukan oleh kestabilan tombol Spacebar-nya. Bebas rattle, tanpa suara kawat berisik, dan berkarakter thock empuk adalah komitmen utama ThocKeebs.
+                </p>
+              </div>
             </div>
 
-            <div class="tuning-note-banner">
-              <span class="tuning-tag" data-i18n="anatomy.part5.note_tag">Standar ThocKeebs</span>
-              <p class="tuning-text" data-i18n="anatomy.part5.note_text">
-                Kualitas sebuah keyboard ditentukan oleh kestabilan tombol Spacebar-nya. Bebas rattle, tanpa suara kawat berisik, dan berkarakter thock empuk adalah komitmen utama ThocKeebs.
-              </p>
+            <!-- Right: Video Showcase -->
+            <div class="zigzag-video-col">
+              <div class="thoc-card-video-wrap">
+                <video class="thoc-loop-video" src="Videos/5%20Stabilizer.mp4" autoplay loop muted playsinline disablePictureInPicture disableremoteplayback preload="auto" oncontextmenu="return false;"></video>
+              </div>
             </div>
           </div>
         </article>
 
-        <!-- 06. KEYCAPS SIZE (Video: 6 Keycaps.mp4) -->
+        <!-- 05. KEYCAPS SIZE (Video Left, Text Right) -->
         <article class="anatomy-card" id="module-keycaps">
-          <div class="card-top">
-            <div class="card-title-group">
-              <span class="card-num-badge" data-i18n="anatomy.part6.layer">MODULE 06 • KEYCAP PROFILES & "U" METRICS</span>
-              <h2 data-i18n="anatomy.part6.title">06. Keycaps Size</h2>
-              <p data-i18n="anatomy.part6.summary">
-                Penjelasan istilah "u" (unit) untuk mengukur panjang keycap. Tombol standar adalah 1u, dan kunci 2u ke atas memerlukan stabilizer.
-              </p>
-            </div>
-            <div class="card-meta-pills">
-              <span class="meta-pill" data-i18n="anatomy.part6.pill1">Standar 1u (19.05mm)</span>
-              <span class="meta-pill" data-i18n="anatomy.part6.pill2">2u+ Wajib Stabilizer</span>
-              <span class="meta-pill" data-i18n="anatomy.part6.pill3">Spacebar 6.25u / 7u</span>
-              <span class="meta-pill" data-i18n="anatomy.part6.pill4">PBT Double-Shot 1.6mm</span>
-            </div>
-          </div>
-
-          <!-- Video Showcase (Looping, no controls, non-interactive) -->
-          <div class="thoc-card-video-wrap">
-            <video class="thoc-loop-video" src="Videos/6%20Keycaps.mp4" autoplay loop muted playsinline disablePictureInPicture disableremoteplayback preload="auto" oncontextmenu="return false;"></video>
-          </div>
-
-          <div class="card-body-grid">
-            <div class="sub-section-box">
-              <div class="sub-box-title">
-                <span class="box-dot"></span>
-                <span data-i18n="anatomy.part6.box1_title">Memahami Standar Ukuran Satuan "u"</span>
+          <div class="anatomy-zigzag-row">
+            <!-- Left: Video Showcase -->
+            <div class="zigzag-video-col">
+              <div class="thoc-card-video-wrap">
+                <video class="thoc-loop-video" src="Videos/6%20Keycaps.mp4" autoplay loop muted playsinline disablePictureInPicture disableremoteplayback preload="auto" oncontextmenu="return false;"></video>
               </div>
-              <p class="sub-box-desc" data-i18n="anatomy.part6.box1_desc">
-                Dalam arsitektur keyboard, panjang keycap dihitung menggunakan satuan universal "u" (tepat 19.05 mm atau 0.75 inci).
-              </p>
-              <ul class="feature-list">
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part6.box1_item1"><strong>Tombol Standar 1u:</strong> Ukuran dasar bujur sangkar untuk tombol huruf (A-Z), angka, dan baris Function atas.</div>
-                </li>
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part6.box1_item2"><strong>Ukuran Tombol Modifier:</strong> Tab (1.5u), Caps Lock (1.75u), Backspace (2u), Enter (2.25u), Left Shift (2.25u), dan Right Shift (2.75u / 1.75u).</div>
-                </li>
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part6.box1_item3"><strong>Spacebar (6.25u vs 7u):</strong> Standar ANSI modern umumnya menggunakan 6.25u, sedangkan layout Tsangan custom menggunakan bilah 7u.</div>
-                </li>
-              </ul>
             </div>
 
-            <div class="sub-section-box">
-              <div class="sub-box-title">
-                <span class="box-dot"></span>
-                <span data-i18n="anatomy.part6.box2_title">Densitas Material & Ruang Akustik</span>
+            <!-- Right: Explanation -->
+            <div class="zigzag-text-col">
+              <div class="card-top">
+                <span class="card-num-badge" data-i18n="anatomy.part5.layer">MODULE 05 • KEYCAP PROFILES & "U" METRICS</span>
+                <div class="card-title-group">
+                  <h2 data-i18n="anatomy.part5.title">05. Keycaps Size</h2>
+                  <p data-i18n="anatomy.part5.summary">
+                    Penjelasan istilah "u" (unit) untuk mengukur panjang keycap. Tombol standar adalah 1u, dan kunci 2u ke atas memerlukan stabilizer.
+                  </p>
+                </div>
+                <div class="card-meta-pills">
+                  <span class="meta-pill" data-i18n="anatomy.part5.pill1">Standar 1u (19.05mm)</span>
+                  <span class="meta-pill" data-i18n="anatomy.part5.pill2">2u+ Wajib Stabilizer</span>
+                  <span class="meta-pill" data-i18n="anatomy.part5.pill3">Spacebar 6.25u / 7u</span>
+                  <span class="meta-pill" data-i18n="anatomy.part5.pill4">PBT Double-Shot 1.6mm</span>
+                </div>
               </div>
-              <p class="sub-box-desc" data-i18n="anatomy.part6.box2_desc">
-                Rongga hampa di bawah keycap bertindak sebagai soundbox akustik yang membentuk nada suara ketukan.
-              </p>
-              <ul class="feature-list">
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part6.box2_item1"><strong>PBT vs ABS:</strong> Bahan PBT memiliki tekstur matte tahan minyak dan menghasilkan suara bas berbobot, sedangkan ABS menghasilkan warna cerah dengan karakter suara nyaring.</div>
-                </li>
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part6.box2_item2"><strong>Ketebalan Dinding 1.5mm - 1.7mm:</strong> Dinding keycap tebal mencegah gema plastik kopong, memastikan ketukan terasa padat dan berbobot.</div>
-                </li>
-              </ul>
-            </div>
 
-            <div class="tuning-note-banner">
-              <span class="tuning-tag" data-i18n="anatomy.part6.note_tag">Aturan Stabilizer</span>
-              <p class="tuning-text" data-i18n="anatomy.part6.note_text">
-                Perlu diingat: Setiap tombol dengan panjang 2u atau lebih (Backspace, Enter, Shift, Spacebar) wajib ditopang stabilizer agar tidak oleng.
-              </p>
+              <div class="card-body-grid">
+                <div class="sub-section-box">
+                  <div class="sub-box-title">
+                    <span class="box-dot"></span>
+                    <span data-i18n="anatomy.part5.box1_title">Memahami Standar Ukuran Satuan "u"</span>
+                  </div>
+                  <p class="sub-box-desc" data-i18n="anatomy.part5.box1_desc">
+                    Dalam arsitektur keyboard, panjang keycap dihitung menggunakan satuan universal "u" (tepat 19.05 mm atau 0.75 inci).
+                  </p>
+                  <ul class="feature-list">
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part5.box1_item1"><strong>Tombol Standar 1u:</strong> Ukuran dasar bujur sangkar untuk tombol huruf (A-Z), angka, dan baris Function atas.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part5.box1_item2"><strong>Ukuran Tombol Modifier:</strong> Tab (1.5u), Caps Lock (1.75u), Backspace (2u), Enter (2.25u), Left Shift (2.25u), dan Right Shift (2.75u / 1.75u).</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part5.box1_item3"><strong>Spacebar (6.25u vs 7u):</strong> Standar ANSI modern umumnya menggunakan 6.25u, sedangkan layout Tsangan custom menggunakan bilah 7u.</div>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="sub-section-box">
+                  <div class="sub-box-title">
+                    <span class="box-dot"></span>
+                    <span data-i18n="anatomy.part5.box2_title">Densitas Material & Ruang Akustik</span>
+                  </div>
+                  <p class="sub-box-desc" data-i18n="anatomy.part5.box2_desc">
+                    Rongga hampa di bawah keycap bertindak sebagai soundbox akustik yang membentuk nada suara ketukan.
+                  </p>
+                  <ul class="feature-list">
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part5.box2_item1"><strong>PBT vs ABS:</strong> Bahan PBT memiliki tekstur matte tahan minyak dan menghasilkan suara bas berbobot, sedangkan ABS menghasilkan warna cerah dengan karakter suara nyaring.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part5.box2_item2"><strong>Ketebalan Dinding 1.5mm - 1.7mm:</strong> Dinding keycap tebal mencegah gema plastik kopong, memastikan ketukan terasa padat dan berbobot.</div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="tuning-note-banner">
+                <span class="tuning-tag" data-i18n="anatomy.part5.note_tag">Aturan Stabilizer</span>
+                <p class="tuning-text" data-i18n="anatomy.part5.note_text">
+                  Perlu diingat: Setiap tombol dengan panjang 2u atau lebih (Backspace, Enter, Shift, Spacebar) wajib ditopang stabilizer agar tidak oleng.
+                </p>
+              </div>
             </div>
           </div>
         </article>
 
-        <!-- 07. SWITCHES TYPE (Video: 7 Switches Type.mp4) -->
-        <article class="anatomy-card" id="module-switches">
-          <div class="card-top">
-            <div class="card-title-group">
-              <span class="card-num-badge" data-i18n="anatomy.part7.layer">MODULE 07 • SWITCH ACTUATION & PIN ARCHITECTURE</span>
-              <h2 data-i18n="anatomy.part7.title">07. Switches Type</h2>
-              <p data-i18n="anatomy.part7.summary">
-                Penjelasan tiga tipe utama: Linear (halus), Tactile (ada bump), dan Clicky (ada suara klik). Juga dibahas perbedaan switch 3-pin dan 5-pin.
-              </p>
-            </div>
-            <div class="card-meta-pills">
-              <span class="meta-pill" data-i18n="anatomy.part7.pill1">Linear / Tactile / Clicky</span>
-              <span class="meta-pill" data-i18n="anatomy.part7.pill2">Perbedaan 3-Pin vs 5-Pin</span>
-              <span class="meta-pill" data-i18n="anatomy.part7.pill3">Krytox Brush Lubed</span>
-              <span class="meta-pill" data-i18n="anatomy.part7.pill4">Long Pole Bottom-Out</span>
-            </div>
-          </div>
-
-          <!-- Video Showcase (Looping, no controls, non-interactive) -->
-          <div class="thoc-card-video-wrap">
-            <video class="thoc-loop-video" src="Videos/7%20Switches%20Type.mp4" autoplay loop muted playsinline disablePictureInPicture disableremoteplayback preload="auto" oncontextmenu="return false;"></video>
-          </div>
-
-          <div class="card-body-grid">
-            <div class="sub-section-box">
-              <div class="sub-box-title">
-                <span class="box-dot"></span>
-                <span data-i18n="anatomy.part7.box1_title">Tiga Karakteristik Utama Gerakan Switch</span>
+        <!-- 06. SWITCHES TYPE (Text Left, Video Right) -->
+        <article class="anatomy-card is-reverse" id="module-switches">
+          <div class="anatomy-zigzag-row">
+            <!-- Left: Explanation -->
+            <div class="zigzag-text-col">
+              <div class="card-top">
+                <span class="card-num-badge" data-i18n="anatomy.part6.layer">MODULE 06 • SWITCH ACTUATION & PIN ARCHITECTURE</span>
+                <div class="card-title-group">
+                  <h2 data-i18n="anatomy.part6.title">06. Switches Type</h2>
+                  <p data-i18n="anatomy.part6.summary">
+                    Penjelasan tiga tipe utama: Linear (halus), Tactile (ada bump), dan Clicky (ada suara klik). Juga dibahas perbedaan switch 3-pin dan 5-pin.
+                  </p>
+                </div>
+                <div class="card-meta-pills">
+                  <span class="meta-pill" data-i18n="anatomy.part6.pill1">Linear / Tactile / Clicky</span>
+                  <span class="meta-pill" data-i18n="anatomy.part6.pill2">Perbedaan 3-Pin vs 5-Pin</span>
+                  <span class="meta-pill" data-i18n="anatomy.part6.pill3">Krytox Brush Lubed</span>
+                  <span class="meta-pill" data-i18n="anatomy.part6.pill4">Long Pole Bottom-Out</span>
+                </div>
               </div>
-              <p class="sub-box-desc" data-i18n="anatomy.part7.box1_desc">
-                Switch mekanikal dibedakan berdasarkan interaksi batang stem dengan daun kontak tembaga di dalamnya.
-              </p>
-              <ul class="feature-list">
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part7.box1_item1"><strong>Linear (Halus Mulus):</strong> Gerakan lurus tanpa hambatan dari awal tekan hingga dasar. Sangat disukai gamer dan penggemar sensasi ketikan empuk.</div>
-                </li>
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part7.box1_item2"><strong>Tactile (Ada Bump):</strong> Memiliki tonjolan halus di titik aktuasi, memberi umpan balik sentuhan yang presisi untuk mengetik cepat tanpa bising.</div>
-                </li>
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part7.box1_item3"><strong>Clicky (Suara Klik Renyah):</strong> Dilengkapi mekanisme click jacket atau click-bar yang menghasilkan suara klik mekanikal nyaring saat ditekan.</div>
-                </li>
-              </ul>
-            </div>
 
-            <div class="sub-section-box">
-              <div class="sub-box-title">
-                <span class="box-dot"></span>
-                <span data-i18n="anatomy.part7.box2_title">Perbedaan Switch 3-Pin vs 5-Pin</span>
+              <div class="card-body-grid">
+                <div class="sub-section-box">
+                  <div class="sub-box-title">
+                    <span class="box-dot"></span>
+                    <span data-i18n="anatomy.part6.box1_title">Tiga Karakteristik Utama Gerakan Switch</span>
+                  </div>
+                  <p class="sub-box-desc" data-i18n="anatomy.part6.box1_desc">
+                    Switch mekanikal dibedakan berdasarkan interaksi batang stem dengan daun kontak tembaga di dalamnya.
+                  </p>
+                  <ul class="feature-list">
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part6.box1_item1"><strong>Linear (Halus Mulus):</strong> Gerakan lurus tanpa hambatan dari awal tekan hingga dasar. Sangat disukai gamer dan penggemar sensasi ketikan empuk.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part6.box1_item2"><strong>Tactile (Ada Bump):</strong> Memiliki tonjolan halus di titik aktuasi, memberi umpan balik sentuhan yang presisi untuk mengetik cepat tanpa bising.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part6.box1_item3"><strong>Clicky (Suara Klik Renyah):</strong> Dilengkapi mekanisme click jacket atau click-bar yang menghasilkan suara klik mekanikal nyaring saat ditekan.</div>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="sub-section-box">
+                  <div class="sub-box-title">
+                    <span class="box-dot"></span>
+                    <span data-i18n="anatomy.part6.box2_title">Perbedaan Switch 3-Pin vs 5-Pin</span>
+                  </div>
+                  <p class="sub-box-desc" data-i18n="anatomy.part6.box2_desc">
+                    Jumlah pin pada dasar switch menentukan kestabilan kelurusan switch pada papan PCB.
+                  </p>
+                  <ul class="feature-list">
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part6.box2_item1"><strong>3-Pin (Plate-Mounted):</strong> Memiliki 1 tiang tengah plastik dan 2 pin kontak tembaga. Mengandalkan lubang plat keyboard agar switch terpasang lurus.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">•</span>
+                      <div data-i18n="anatomy.part6.box2_item2"><strong>5-Pin (PCB-Mounted):</strong> Memiliki 2 kaki pemandu plastik ekstra yang menancap ke lubang PCB, menjamin switch berdiri tegak lurus sempurna tanpa miring.</div>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <p class="sub-box-desc" data-i18n="anatomy.part7.box2_desc">
-                Jumlah pin pada dasar switch menentukan kestabilan kelurusan switch pada papan PCB.
-              </p>
-              <ul class="feature-list">
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part7.box2_item1"><strong>3-Pin (Plate-Mounted):</strong> Memiliki 1 tiang tengah plastik dan 2 pin kontak tembaga. Mengandalkan lubang plat keyboard agar switch terpasang lurus.</div>
-                </li>
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  <div data-i18n="anatomy.part7.box2_item2"><strong>5-Pin (PCB-Mounted):</strong> Memiliki 2 kaki pemandu plastik ekstra yang menancap ke lubang PCB, menjamin switch berdiri tegak lurus sempurna tanpa miring.</div>
-                </li>
-              </ul>
+
+              <div class="tuning-note-banner">
+                <span class="tuning-tag" data-i18n="anatomy.part6.note_tag">Pelumasan Krytox</span>
+                <p class="tuning-text" data-i18n="anatomy.part6.note_text">
+                  Pelumasan manual dengan Krytox GPL 205g0 pada stem rails dan bottom housing menghilangkan rasa gesekan kasar (scratchiness), menghasilkan ketukan buttery-smooth yang tenang.
+                </p>
+              </div>
             </div>
 
-            <div class="tuning-note-banner">
-              <span class="tuning-tag" data-i18n="anatomy.part7.note_tag">Pelumasan Krytox</span>
-              <p class="tuning-text" data-i18n="anatomy.part7.note_text">
-                Pelumasan manual dengan Krytox GPL 205g0 pada stem rails dan bottom housing menghilangkan rasa gesekan kasar (scratchiness), menghasilkan ketukan buttery-smooth yang tenang.
-              </p>
+            <!-- Right: Video Showcase -->
+            <div class="zigzag-video-col">
+              <div class="thoc-card-video-wrap">
+                <video class="thoc-loop-video" src="Videos/7%20Switches%20Type.mp4" autoplay loop muted playsinline disablePictureInPicture disableremoteplayback preload="auto" oncontextmenu="return false;"></video>
+              </div>
             </div>
           </div>
         </article>
@@ -1273,20 +1572,25 @@
 
     </main>
 
-    <!-- TICKER BAR -->
-    <div class="thockeebs-ticker-wrapper" aria-hidden="true" style="width:100%; overflow:hidden; border-top:1px solid var(--thoc-border); border-bottom:1px solid var(--thoc-border); padding:10px 0; background:var(--thoc-card-bg);">
-      <div class="thockeebs-ticker-track" style="display:flex; width:max-content; animation:thocTicker 25s linear infinite; gap:40px; font-family:'IBM Plex Mono', monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color:var(--thoc-text-muted);">
-        <span>Every keyboard should have a story to tell.</span>
-        <span>•</span>
-        <span>Precision Krytox Lubing Studio • Bandung, Indonesia</span>
-        <span>•</span>
-        <span>Every keyboard should have a story to tell.</span>
-        <span>•</span>
-        <span>Precision Krytox Lubing Studio • Bandung, Indonesia</span>
+    <!-- AUTHENTIC FULL-SIZE MARQUEE TEXT -->
+    <div class="thockeebs-ticker-wrapper" aria-hidden="true">
+      <div class="thockeebs-ticker-track">
+        <div class="thockeebs-ticker-content">
+          <span>Every keyboard should have a story to tell.</span>
+          <span>Every keyboard should have a story to tell.</span>
+          <span>Every keyboard should have a story to tell.</span>
+          <span>Every keyboard should have a story to tell.</span>
+        </div>
+        <div class="thockeebs-ticker-content" aria-hidden="true">
+          <span>Every keyboard should have a story to tell.</span>
+          <span>Every keyboard should have a story to tell.</span>
+          <span>Every keyboard should have a story to tell.</span>
+          <span>Every keyboard should have a story to tell.</span>
+        </div>
       </div>
     </div>
 
-    <!-- GLOBAL 3-COLUMN FOOTER WITH WEB DRIVERS -->
+    <!-- GLOBAL 3-COLUMN FOOTER WITH JUMBO THOCKEEBS SVG BRAND -->
     <footer class="thockeebs-footer-wrapper" id="thoc-web-drivers">
       <div class="thockeebs-footer-card">
         <div class="thockeebs-footer-nav">
@@ -1346,6 +1650,13 @@
             </div>
           </div>
 
+        </div>
+
+        <!-- JUMBO THOCKEEBS BRAND SVG -->
+        <div class="thockeebs-footer-brand">
+          <svg viewBox="0 0 1200 280" xmlns="http://www.w3.org/2000/svg">
+            <text x="50%" y="78%" text-anchor="middle" font-family="'Inter', -apple-system, BlinkMacSystemFont, sans-serif" font-weight="800" font-size="230" letter-spacing="-6px" fill="currentColor">thockeebs</text>
+          </svg>
         </div>
 
         <!-- Footer Bottom Brand & Rights -->
