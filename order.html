@@ -822,6 +822,16 @@ html.light-theme .lang-opt-btn.active {
     .order-summary-column {
       position: sticky;
       top: 96px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-height: calc(100vh - 110px);
+      overflow-y: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .order-summary-column::-webkit-scrollbar {
+      display: none;
     }
     .order-summary-card {
       background-color: #2e2e2f;
@@ -1032,6 +1042,187 @@ html.light-theme .lang-opt-btn.active {
     }
     .summary-chat-link:hover {
       opacity: 1;
+    }
+
+    /* --- RIGHT COLUMN: WORKSHOP LOCATION & MAPS CARD --- */
+    .order-workshop-card {
+      background-color: #2e2e2f;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 18px 20px;
+      color: inherit;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+      transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    body.light-theme .order-workshop-card {
+      background-color: #ffffff !important;
+      border-color: rgba(0, 0, 0, 0.08) !important;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    }
+    .workshop-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      gap: 8px;
+    }
+    .workshop-header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .workshop-pin-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: inherit;
+    }
+    body.light-theme .workshop-pin-badge {
+      background: rgba(0, 0, 0, 0.05) !important;
+      border-color: rgba(0, 0, 0, 0.12) !important;
+    }
+    .workshop-pin-badge svg {
+      color: #f87171;
+    }
+    .workshop-city {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      opacity: 0.6;
+    }
+    .workshop-open-link {
+      font-size: 11px;
+      font-weight: 600;
+      color: inherit;
+      opacity: 0.75;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      white-space: nowrap;
+      transition: opacity 0.15s ease, color 0.15s ease;
+    }
+    .workshop-open-link:hover {
+      opacity: 1;
+      color: #60a5fa;
+    }
+    body.light-theme .workshop-open-link:hover {
+      color: #2563eb;
+    }
+    .workshop-map-frame {
+      position: relative;
+      width: 100%;
+      height: 145px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: #1e1e1f;
+      margin-bottom: 12px;
+    }
+    body.light-theme .workshop-map-frame {
+      border-color: rgba(0, 0, 0, 0.1) !important;
+      background: #f1f1f2 !important;
+    }
+    .workshop-map-frame iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: none;
+    }
+    body:not(.light-theme) .workshop-map-frame iframe {
+      filter: invert(90%) hue-rotate(180deg) contrast(95%);
+    }
+    .workshop-details {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .workshop-addr-name {
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .workshop-addr-text {
+      font-size: 11.5px;
+      line-height: 1.45;
+      opacity: 0.72;
+    }
+    .workshop-addr-notes {
+      font-size: 11px;
+      line-height: 1.4;
+      opacity: 0.65;
+      background: rgba(255, 255, 255, 0.03);
+      border-left: 2px solid rgba(255, 255, 255, 0.2);
+      padding: 6px 9px;
+      border-radius: 0 6px 6px 0;
+      margin-top: 2px;
+    }
+    body.light-theme .workshop-addr-notes {
+      background: rgba(0, 0, 0, 0.03) !important;
+      border-left-color: rgba(0, 0, 0, 0.2) !important;
+    }
+    .workshop-note-label {
+      font-weight: 600;
+      opacity: 0.95;
+    }
+    .workshop-actions {
+      margin-top: 8px;
+    }
+    .workshop-copy-btn {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+    body.light-theme .workshop-copy-btn {
+      background: rgba(0, 0, 0, 0.05) !important;
+      border-color: rgba(0, 0, 0, 0.12) !important;
+      color: #252526 !important;
+    }
+    .workshop-copy-btn:hover {
+      background: rgba(255, 255, 255, 0.13);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-1px);
+    }
+    body.light-theme .workshop-copy-btn:hover {
+      background: rgba(0, 0, 0, 0.08) !important;
+      border-color: rgba(0, 0, 0, 0.2) !important;
+    }
+    .workshop-copy-btn .check-icon {
+      display: none;
+    }
+    .workshop-copy-btn.copied {
+      background: rgba(34, 197, 94, 0.15) !important;
+      border-color: rgba(34, 197, 94, 0.4) !important;
+      color: #4ade80 !important;
+    }
+    body.light-theme .workshop-copy-btn.copied {
+      color: #15803d !important;
+    }
+    .workshop-copy-btn.copied .copy-icon {
+      display: none;
+    }
+    .workshop-copy-btn.copied .check-icon {
+      display: inline-block;
     }
 
     /* --- RUNNING TEXT MARQUEE --- */
@@ -1475,6 +1666,8 @@ html.light-theme .lang-dropdown-menu {
   .order-summary-column {
     position: static !important;
     width: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
   }
 
   .order-hero-head {
@@ -2079,6 +2272,51 @@ html.light-theme .lang-dropdown-menu {
             </div>
 
           </div>
+
+          <!-- WORKSHOP LOCATION & GOOGLE MAPS THUMBNAIL CARD -->
+          <div class="order-workshop-card">
+            <div class="workshop-card-header">
+              <div class="workshop-header-left">
+                <span class="workshop-pin-badge">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  <span data-i18n="order.maps.title">Lokasi Workshop</span>
+                </span>
+                <span class="workshop-city" data-i18n="order.maps.city">Tebet, Jakarta Selatan</span>
+              </div>
+              <a href="https://maps.google.com/?q=Jl.+Tebet+Barat+Raya+No.+42B,+Tebet+Barat,+Jakarta+Selatan" target="_blank" rel="noopener noreferrer" class="workshop-open-link" title="Buka di Google Maps">
+                <span data-i18n="order.maps.open">Buka Maps ↗</span>
+              </a>
+            </div>
+
+            <!-- Google Maps Thumbnail Frame -->
+            <div class="workshop-map-frame">
+              <iframe
+                title="Google Maps ThocKeebs Workshop"
+                src="https://maps.google.com/maps?q=Jl.+Tebet+Barat+Raya+No.+42B,+Tebet+Barat,+Jakarta+Selatan&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+
+            <!-- Address Info & Benchmark -->
+            <div class="workshop-details">
+              <div class="workshop-addr-name">Workshop ThocKeebs (Admin Lube)</div>
+              <div class="workshop-addr-text">Jl. Tebet Barat Raya No. 42B, RT.05/RW.02, Tebet Barat, Kec. Tebet, Kota Jakarta Selatan, DKI Jakarta 12810</div>
+              <div class="workshop-addr-notes">
+                <span class="workshop-note-label" data-i18n="order.maps.benchmark">Patokan:</span>
+                <span data-i18n="order.maps.notes">Depan Minimarket Indomaret Tebet Barat, pagar hitam bertuliskan ThocKeebs Lab.</span>
+              </div>
+
+              <!-- Quick Action Button -->
+              <div class="workshop-actions">
+                <button type="button" class="workshop-copy-btn" id="copy-address-btn" onclick="copyWorkshopAddress()">
+                  <svg class="copy-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  <svg class="check-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span id="copy-btn-text" data-i18n="order.maps.copy">Salin Alamat Kirim</span>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -2385,6 +2623,57 @@ html.light-theme .lang-dropdown-menu {
     document.addEventListener('thockeebs-lang-changed', function() {
       calculate();
     });
+
+    window.copyWorkshopAddress = function() {
+      var addr = (window.THOC_CONFIG && window.THOC_CONFIG.shippingAddress) ? window.THOC_CONFIG.shippingAddress : {
+        receiverName: "Workshop ThocKeebs (Admin Lube)",
+        phone: "0857-2233-3327",
+        fullAddress: "Jl. Tebet Barat Raya No. 42B, RT.05/RW.02, Tebet Barat, Kec. Tebet, Kota Jakarta Selatan, DKI Jakarta 12810",
+        benchmarkNotes: "Depan Minimarket Indomaret Tebet Barat, pagar hitam bertuliskan ThocKeebs Lab."
+      };
+      var textToCopy = "Penerima: " + addr.receiverName + " (" + addr.phone + ")\n" +
+                       "Alamat: " + addr.fullAddress + "\n" +
+                       "Patokan: " + addr.benchmarkNotes;
+
+      function onCopiedSuccess() {
+        var btn = document.getElementById('copy-address-btn');
+        var btnText = document.getElementById('copy-btn-text');
+        if (!btn || !btnText) return;
+        btn.classList.add('copied');
+        var copiedLabel = (window.ThocLang && window.ThocLang.t) ? window.ThocLang.t('order.maps.copied') : 'Alamat Tersalin! ✓';
+        btnText.textContent = copiedLabel;
+        setTimeout(function() {
+          btn.classList.remove('copied');
+          var defaultLabel = (window.ThocLang && window.ThocLang.t) ? window.ThocLang.t('order.maps.copy') : 'Salin Alamat Kirim';
+          btnText.textContent = defaultLabel;
+        }, 2200);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(textToCopy).then(onCopiedSuccess).catch(function() {
+          fallbackCopy(textToCopy);
+        });
+      } else {
+        fallbackCopy(textToCopy);
+      }
+
+      function fallbackCopy(str) {
+        var ta = document.createElement('textarea');
+        ta.value = str;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        try {
+          document.execCommand('copy');
+          onCopiedSuccess();
+        } catch (e) {
+          console.error('Copy fallback failed', e);
+        }
+        document.body.removeChild(ta);
+      }
+    };
 
     calculate();
   })();

@@ -469,6 +469,18 @@
     'order.summary.perk3': { en: 'Free acoustic sound profile & switch tuning consultation', id: 'Konsultasi gratis sound profile & switch tuning' },
     'order.summary.chat': { en: 'Prefer to consult first without a form? Chat Admin on WhatsApp ↗', id: 'Mau konsultasi dulu tanpa form? Chat Admin WhatsApp ↗' },
 
+    // --- Order Page: Workshop Location Map ---
+    'order.maps.title': { en: 'Workshop Location', id: 'Lokasi Workshop' },
+    'order.maps.city': { en: 'Tebet, South Jakarta', id: 'Tebet, Jakarta Selatan' },
+    'order.maps.open': { en: 'Open in Maps ↗', id: 'Buka di Maps ↗' },
+    'order.maps.benchmark': { en: 'Landmark:', id: 'Patokan:' },
+    'order.maps.notes': {
+      en: 'In front of Indomaret Tebet Barat minimarket, black gate labeled "ThocKeebs Lab".',
+      id: 'Depan Minimarket Indomaret Tebet Barat, pagar hitam bertuliskan ThocKeebs Lab.'
+    },
+    'order.maps.copy': { en: 'Copy Shipping Address', id: 'Salin Alamat Kirim' },
+    'order.maps.copied': { en: 'Address Copied! ✓', id: 'Alamat Tersalin! ✓' },
+
     // --- Works Project Pages ---
     'works.back': { en: '← Back to Works', id: '← Kembali ke Works' },
     'works.specs.heading': { en: 'Tuning Specifications & Build Details', id: 'Tuning Specifications & Build Details' },
@@ -664,7 +676,8 @@
   window.ThocLang = {
     get: function() { return currentLang; },
     set: applyLanguage,
-    dict: DICTIONARY
+    dict: DICTIONARY,
+    t: function(key) { return (DICTIONARY[key] && DICTIONARY[key][currentLang]) || key; }
   };
 
   // Run on initial load
