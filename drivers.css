@@ -37,6 +37,9 @@
 .thoc-drivers-nav-item {
   position: relative !important;
   height: 100% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .thoc-drivers-toggle {
@@ -44,7 +47,9 @@
   text-decoration: none !important;
   user-select: none !important;
   height: 100% !important;
-  display: block !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .framer-thoc-drivers-container p.framer-text,
