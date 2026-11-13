@@ -1691,3 +1691,224 @@ html.light-theme .thoc-modal-btn.wa {
   opacity: 0.88;
 }
 
+
+/* ==========================================================================
+   THOCKEEBS UNIVERSAL PORTRAIT & MOBILE FLOATING TAB MENU DOCK SYSTEM
+   Guarantees zero cut-off across all portrait devices (Smartphones & Tablets)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .thoc-floating-bottom-dock,
+  #thoc-floating-bottom-dock {
+    position: fixed !important;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px)) !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 9999999 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    max-width: calc(100vw - 12px) !important;
+    width: auto !important;
+    margin: 0 auto !important;
+    pointer-events: none !important;
+  }
+
+  .thoc-floating-bottom-dock > * {
+    pointer-events: auto !important;
+  }
+
+  .thoc-floating-bottom-dock .framer-8qYMR,
+  .thoc-floating-bottom-dock .thoc-nav-pill,
+  .thoc-floating-bottom-dock .nav-pill {
+    display: inline-flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-wrap: nowrap !important;
+    background: rgba(30, 30, 32, 0.90) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+    border-radius: 9999px !important;
+    padding: 3px 6px !important;
+    gap: 3px !important;
+    height: 36px !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+  }
+
+  body.light-theme .thoc-floating-bottom-dock .framer-8qYMR,
+  html.light-theme .thoc-floating-bottom-dock .framer-8qYMR,
+  body.light-theme .thoc-floating-bottom-dock .thoc-nav-pill,
+  html.light-theme .thoc-floating-bottom-dock .thoc-nav-pill,
+  body.light-theme .thoc-floating-bottom-dock .nav-pill,
+  html.light-theme .thoc-floating-bottom-dock .nav-pill {
+    background: rgba(255, 255, 255, 0.94) !important;
+    border-color: rgba(0, 0, 0, 0.12) !important;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .thoc-floating-bottom-dock .framer-1recba8-container,
+  .thoc-floating-bottom-dock .framer-1se3ac9-container,
+  .thoc-floating-bottom-dock .framer-wi4r6e-container,
+  .thoc-floating-bottom-dock .framer-zny3c4-container,
+  .thoc-floating-bottom-dock .framer-thoc-drivers-container,
+  .thoc-floating-bottom-dock .framer-thoc-anatomy-container,
+  .thoc-floating-bottom-dock .thoc-drivers-nav-item,
+  .thoc-floating-bottom-dock .thoc-nav-link,
+  .thoc-floating-bottom-dock .nav-link,
+  .thoc-floating-bottom-dock .thoc-lang-slot,
+  .thoc-floating-bottom-dock .thoc-theme-toggle-slot,
+  .thoc-floating-bottom-dock .framer-mlk3nv {
+    height: 30px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    width: auto !important;
+  }
+
+  .thoc-floating-bottom-dock .framer-8qYMR a,
+  .thoc-floating-bottom-dock a.framer-jrMkR,
+  .thoc-floating-bottom-dock .thoc-nav-link,
+  .thoc-floating-bottom-dock .nav-link {
+    height: 30px !important;
+    padding: 4px 8px !important;
+    --ewxefe: 4px 8px 4px 8px !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    border-radius: 9999px !important;
+    white-space: nowrap !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    line-height: 1 !important;
+  }
+
+  .thoc-floating-bottom-dock p.framer-text,
+  .thoc-floating-bottom-dock .framer-54qjam p {
+    font-size: 11px !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  .thoc-floating-bottom-dock .lang-toggle-btn {
+    padding: 3px 5px !important;
+    font-size: 10px !important;
+    border-radius: 9999px !important;
+    height: 24px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+
+  .thoc-floating-bottom-dock .theme-toggle-btn {
+    width: 30px !important;
+    height: 18px !important;
+  }
+
+  .thoc-floating-bottom-dock .theme-toggle-btn span {
+    width: 14px !important;
+    height: 14px !important;
+  }
+
+  body.light-theme .thoc-floating-bottom-dock .theme-toggle-btn span,
+  html.light-theme .thoc-floating-bottom-dock .theme-toggle-btn span {
+    left: 14px !important;
+  }
+}
+
+@media (max-width: 480px), (max-width: 520px) and (orientation: portrait) {
+  .thoc-floating-bottom-dock .framer-8qYMR,
+  .thoc-floating-bottom-dock .thoc-nav-pill,
+  .thoc-floating-bottom-dock .nav-pill {
+    padding: 2.5px 4px !important;
+    gap: 2px !important;
+    height: 34px !important;
+  }
+
+  .thoc-floating-bottom-dock .framer-8qYMR a,
+  .thoc-floating-bottom-dock a.framer-jrMkR,
+  .thoc-floating-bottom-dock .thoc-nav-link,
+  .thoc-floating-bottom-dock .nav-link {
+    height: 28px !important;
+    padding: 3px 6px !important;
+    --ewxefe: 3px 6px 3px 6px !important;
+    font-size: 10px !important;
+  }
+
+  .thoc-floating-bottom-dock p.framer-text,
+  .thoc-floating-bottom-dock .framer-54qjam p {
+    font-size: 10px !important;
+  }
+
+  .thoc-floating-bottom-dock .lang-toggle-btn {
+    padding: 2px 4px !important;
+    font-size: 9.5px !important;
+    height: 22px !important;
+  }
+
+  .thoc-floating-bottom-dock .theme-toggle-btn {
+    width: 28px !important;
+    height: 16px !important;
+  }
+
+  .thoc-floating-bottom-dock .theme-toggle-btn span {
+    width: 12px !important;
+    height: 12px !important;
+  }
+
+  body.light-theme .thoc-floating-bottom-dock .theme-toggle-btn span,
+  html.light-theme .thoc-floating-bottom-dock .theme-toggle-btn span {
+    left: 14px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .thoc-floating-bottom-dock .framer-8qYMR,
+  .thoc-floating-bottom-dock .thoc-nav-pill,
+  .thoc-floating-bottom-dock .nav-pill {
+    padding: 2px 3px !important;
+    gap: 1.5px !important;
+    height: 32px !important;
+  }
+
+  .thoc-floating-bottom-dock .framer-8qYMR a,
+  .thoc-floating-bottom-dock a.framer-jrMkR,
+  .thoc-floating-bottom-dock .thoc-nav-link,
+  .thoc-floating-bottom-dock .nav-link {
+    height: 26px !important;
+    padding: 2px 5px !important;
+    --ewxefe: 2px 5px 2px 5px !important;
+    font-size: 9.2px !important;
+  }
+
+  .thoc-floating-bottom-dock p.framer-text,
+  .thoc-floating-bottom-dock .framer-54qjam p {
+    font-size: 9.2px !important;
+  }
+
+  .thoc-floating-bottom-dock .lang-toggle-btn {
+    padding: 2px 3px !important;
+    font-size: 8.5px !important;
+    height: 20px !important;
+  }
+
+  .thoc-floating-bottom-dock .theme-toggle-btn {
+    width: 26px !important;
+    height: 15px !important;
+  }
+
+  .thoc-floating-bottom-dock .theme-toggle-btn span {
+    width: 11px !important;
+    height: 11px !important;
+  }
+
+  body.light-theme .thoc-floating-bottom-dock .theme-toggle-btn span,
+  html.light-theme .thoc-floating-bottom-dock .theme-toggle-btn span {
+    left: 13px !important;
+  }
+}

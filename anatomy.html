@@ -72,6 +72,8 @@
 
     /* Outer Wrapper */
     .anatomy-page-wrapper {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -385,22 +387,45 @@
       scroll-margin-top: 100px;
       transition: border-color 0.2s ease;
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
     }
 
     .anatomy-card:hover {
       border-color: var(--thoc-border-strong);
     }
 
-    .anatomy-zigzag-row {
-      display: grid;
-      grid-template-columns: 440px 1fr;
-      gap: 36px;
-      align-items: center;
+    /* 1. FULL-WIDTH MODULE HEADER (Panjang Sepanjang Frame) */
+    .card-header-full {
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--thoc-border);
+      box-sizing: border-box;
     }
 
-    .anatomy-card.is-reverse .anatomy-zigzag-row {
+    /* 2. ZIGZAG CONTENT ROW (Video & Breakdown Details) */
+    .anatomy-zigzag-content {
+      display: grid;
+      grid-template-columns: 440px 1fr;
+      gap: 32px;
+      align-items: center;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .anatomy-card.is-reverse .anatomy-zigzag-content {
       grid-template-columns: 1fr 440px;
+    }
+
+    .zigzag-details-col {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
     /* Video Column */
@@ -412,6 +437,7 @@
     }
 
     .thoc-card-video-wrap {
+      max-width: 100% !important;
       width: 100%;
       aspect-ratio: 16 / 9;
       border-radius: 14px;
@@ -429,7 +455,7 @@
     }
 
     /* Text Column */
-    .zigzag-text-col {
+    .zigzag-details-col {
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -687,6 +713,8 @@
        AUTHENTIC RUNNING TEXT MARQUEE & JUMBO FOOTER BRANDING (MATCHING ALL PAGES)
        ========================================================================== */
     .thockeebs-ticker-wrapper {
+      overflow: hidden !important;
+      max-width: 100vw !important;
       width: 100%;
       overflow: hidden;
       user-select: none;
@@ -907,12 +935,12 @@
 
     /* Responsive adjustments */
     @media (max-width: 960px) {
-      .anatomy-zigzag-row,
-      .anatomy-card.is-reverse .anatomy-zigzag-row {
+      .anatomy-zigzag-content,
+      .anatomy-card.is-reverse .anatomy-zigzag-content {
         grid-template-columns: 1fr;
         gap: 20px;
       }
-      .anatomy-card.is-reverse .zigzag-text-col {
+      .anatomy-card.is-reverse .zigzag-details-col {
         order: 2;
       }
       .anatomy-card.is-reverse .zigzag-video-col {
@@ -929,7 +957,229 @@
         padding: 32px 20px;
       }
     }
-  </style>
+  
+/* ==========================================================================
+   THOCKEEBS UNIVERSAL PORTRAIT & MOBILE FLOATING TAB MENU DOCK SYSTEM
+   Guarantees zero cut-off across all portrait devices (Smartphones & Tablets)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .thoc-floating-bottom-dock,
+  #thoc-floating-bottom-dock {
+    position: fixed !important;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px)) !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 9999999 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    max-width: calc(100vw - 12px) !important;
+    width: auto !important;
+    margin: 0 auto !important;
+    pointer-events: none !important;
+  }
+
+  .thoc-floating-bottom-dock > * {
+    pointer-events: auto !important;
+  }
+
+  .thoc-floating-bottom-dock .framer-8qYMR,
+  .thoc-floating-bottom-dock .thoc-nav-pill,
+  .thoc-floating-bottom-dock .nav-pill {
+    display: inline-flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-wrap: nowrap !important;
+    background: rgba(30, 30, 32, 0.90) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+    border-radius: 9999px !important;
+    padding: 3px 6px !important;
+    gap: 3px !important;
+    height: 36px !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+  }
+
+  body.light-theme .thoc-floating-bottom-dock .framer-8qYMR,
+  html.light-theme .thoc-floating-bottom-dock .framer-8qYMR,
+  body.light-theme .thoc-floating-bottom-dock .thoc-nav-pill,
+  html.light-theme .thoc-floating-bottom-dock .thoc-nav-pill,
+  body.light-theme .thoc-floating-bottom-dock .nav-pill,
+  html.light-theme .thoc-floating-bottom-dock .nav-pill {
+    background: rgba(255, 255, 255, 0.94) !important;
+    border-color: rgba(0, 0, 0, 0.12) !important;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .thoc-floating-bottom-dock .framer-1recba8-container,
+  .thoc-floating-bottom-dock .framer-1se3ac9-container,
+  .thoc-floating-bottom-dock .framer-wi4r6e-container,
+  .thoc-floating-bottom-dock .framer-zny3c4-container,
+  .thoc-floating-bottom-dock .framer-thoc-drivers-container,
+  .thoc-floating-bottom-dock .framer-thoc-anatomy-container,
+  .thoc-floating-bottom-dock .thoc-drivers-nav-item,
+  .thoc-floating-bottom-dock .thoc-nav-link,
+  .thoc-floating-bottom-dock .nav-link,
+  .thoc-floating-bottom-dock .thoc-lang-slot,
+  .thoc-floating-bottom-dock .thoc-theme-toggle-slot,
+  .thoc-floating-bottom-dock .framer-mlk3nv {
+    height: 30px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    width: auto !important;
+  }
+
+  .thoc-floating-bottom-dock .framer-8qYMR a,
+  .thoc-floating-bottom-dock a.framer-jrMkR,
+  .thoc-floating-bottom-dock .thoc-nav-link,
+  .thoc-floating-bottom-dock .nav-link {
+    height: 30px !important;
+    padding: 4px 8px !important;
+    --ewxefe: 4px 8px 4px 8px !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    border-radius: 9999px !important;
+    white-space: nowrap !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    line-height: 1 !important;
+  }
+
+  .thoc-floating-bottom-dock p.framer-text,
+  .thoc-floating-bottom-dock .framer-54qjam p {
+    font-size: 11px !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  .thoc-floating-bottom-dock .lang-toggle-btn {
+    padding: 3px 5px !important;
+    font-size: 10px !important;
+    border-radius: 9999px !important;
+    height: 24px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+
+  .thoc-floating-bottom-dock .theme-toggle-btn {
+    width: 30px !important;
+    height: 18px !important;
+  }
+
+  .thoc-floating-bottom-dock .theme-toggle-btn span {
+    width: 14px !important;
+    height: 14px !important;
+  }
+
+  body.light-theme .thoc-floating-bottom-dock .theme-toggle-btn span,
+  html.light-theme .thoc-floating-bottom-dock .theme-toggle-btn span {
+    left: 14px !important;
+  }
+}
+
+@media (max-width: 480px), (max-width: 520px) and (orientation: portrait) {
+  .thoc-floating-bottom-dock .framer-8qYMR,
+  .thoc-floating-bottom-dock .thoc-nav-pill,
+  .thoc-floating-bottom-dock .nav-pill {
+    padding: 2.5px 4px !important;
+    gap: 2px !important;
+    height: 34px !important;
+  }
+
+  .thoc-floating-bottom-dock .framer-8qYMR a,
+  .thoc-floating-bottom-dock a.framer-jrMkR,
+  .thoc-floating-bottom-dock .thoc-nav-link,
+  .thoc-floating-bottom-dock .nav-link {
+    height: 28px !important;
+    padding: 3px 6px !important;
+    --ewxefe: 3px 6px 3px 6px !important;
+    font-size: 10px !important;
+  }
+
+  .thoc-floating-bottom-dock p.framer-text,
+  .thoc-floating-bottom-dock .framer-54qjam p {
+    font-size: 10px !important;
+  }
+
+  .thoc-floating-bottom-dock .lang-toggle-btn {
+    padding: 2px 4px !important;
+    font-size: 9.5px !important;
+    height: 22px !important;
+  }
+
+  .thoc-floating-bottom-dock .theme-toggle-btn {
+    width: 28px !important;
+    height: 16px !important;
+  }
+
+  .thoc-floating-bottom-dock .theme-toggle-btn span {
+    width: 12px !important;
+    height: 12px !important;
+  }
+
+  body.light-theme .thoc-floating-bottom-dock .theme-toggle-btn span,
+  html.light-theme .thoc-floating-bottom-dock .theme-toggle-btn span {
+    left: 14px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .thoc-floating-bottom-dock .framer-8qYMR,
+  .thoc-floating-bottom-dock .thoc-nav-pill,
+  .thoc-floating-bottom-dock .nav-pill {
+    padding: 2px 3px !important;
+    gap: 1.5px !important;
+    height: 32px !important;
+  }
+
+  .thoc-floating-bottom-dock .framer-8qYMR a,
+  .thoc-floating-bottom-dock a.framer-jrMkR,
+  .thoc-floating-bottom-dock .thoc-nav-link,
+  .thoc-floating-bottom-dock .nav-link {
+    height: 26px !important;
+    padding: 2px 5px !important;
+    --ewxefe: 2px 5px 2px 5px !important;
+    font-size: 9.2px !important;
+  }
+
+  .thoc-floating-bottom-dock p.framer-text,
+  .thoc-floating-bottom-dock .framer-54qjam p {
+    font-size: 9.2px !important;
+  }
+
+  .thoc-floating-bottom-dock .lang-toggle-btn {
+    padding: 2px 3px !important;
+    font-size: 8.5px !important;
+    height: 20px !important;
+  }
+
+  .thoc-floating-bottom-dock .theme-toggle-btn {
+    width: 26px !important;
+    height: 15px !important;
+  }
+
+  .thoc-floating-bottom-dock .theme-toggle-btn span {
+    width: 11px !important;
+    height: 11px !important;
+  }
+
+  body.light-theme .thoc-floating-bottom-dock .theme-toggle-btn span,
+  html.light-theme .thoc-floating-bottom-dock .theme-toggle-btn span {
+    left: 13px !important;
+  }
+}
+
+</style>
 </head>
 <body class="light-theme" data-theme="light" toggle-theme="light">
 
@@ -1046,36 +1296,37 @@
       </section>
 
       <!-- MODULES GRID: ZIGZAG ALTERNATING LAYOUT IN EXACT NUMERICAL ORDER (01 - 06) -->
+            <!-- MODULES GRID: FULL-WIDTH HEADER + ZIGZAG VIDEO/DETAILS + FULL-WIDTH TIPS (01 - 06) -->
       <div class="anatomy-grid">
 
-        <!-- 01. LAYOUT (Video Left, Text Right) -->
+        <!-- 01. LAYOUT (Odd: Video Left, Details Right) -->
         <article class="anatomy-card" id="module-layout">
-          <div class="anatomy-zigzag-row">
-            <!-- Left: Video Showcase -->
+          <!-- Full-Width Header -->
+          <div class="card-header-full">
+            <span class="card-num-badge" data-i18n="anatomy.part1.layer">MODULE 01 • PHYSICAL DIMENSIONS & ERGONOMICS</span>
+            <div class="card-title-group">
+              <h2 data-i18n="anatomy.part1.title">01. Layout</h2>
+              <p data-i18n="anatomy.part1.summary">
+                Penjelasan ukuran fisik keyboard (persentase dari ukuran penuh/100%). Contoh umum: TKL (80%), 75%, 65%, 60%, hingga 40%. Perlu diingat bahwa ukuran persentase tidak selalu berarti jumlah switch yang sama persis.
+              </p>
+            </div>
+            <div class="card-meta-pills">
+              <span class="meta-pill" data-i18n="anatomy.part1.pill1">Full Size (100%)</span>
+              <span class="meta-pill" data-i18n="anatomy.part1.pill2">TKL (80%)</span>
+              <span class="meta-pill" data-i18n="anatomy.part1.pill3">75% Compact</span>
+              <span class="meta-pill" data-i18n="anatomy.part1.pill4">65% / 60% / 40%</span>
+            </div>
+          </div>
+
+          <!-- Zigzag Content (Video Left, Details Right) -->
+          <div class="anatomy-zigzag-content">
             <div class="zigzag-video-col">
               <div class="thoc-card-video-wrap">
                 <video class="thoc-loop-video" src="Videos/2%20Layout.mp4" autoplay loop muted playsinline disablePictureInPicture disableremoteplayback preload="auto" oncontextmenu="return false;"></video>
               </div>
             </div>
 
-            <!-- Right: Explanation -->
-            <div class="zigzag-text-col">
-              <div class="card-top">
-                <span class="card-num-badge" data-i18n="anatomy.part1.layer">MODULE 01 • PHYSICAL DIMENSIONS & ERGONOMICS</span>
-                <div class="card-title-group">
-                  <h2 data-i18n="anatomy.part1.title">01. Layout</h2>
-                  <p data-i18n="anatomy.part1.summary">
-                    Penjelasan ukuran fisik keyboard (persentase dari ukuran penuh/100%). Contoh umum: TKL (80%), 75%, 65%, 60%, hingga 40%. Perlu diingat bahwa ukuran persentase tidak selalu berarti jumlah switch yang sama persis.
-                  </p>
-                </div>
-                <div class="card-meta-pills">
-                  <span class="meta-pill" data-i18n="anatomy.part1.pill1">Full Size (100%)</span>
-                  <span class="meta-pill" data-i18n="anatomy.part1.pill2">TKL (80%)</span>
-                  <span class="meta-pill" data-i18n="anatomy.part1.pill3">75% Compact</span>
-                  <span class="meta-pill" data-i18n="anatomy.part1.pill4">65% / 60% / 40%</span>
-                </div>
-              </div>
-
+            <div class="zigzag-details-col">
               <div class="card-body-grid">
                 <div class="sub-section-box">
                   <div class="sub-box-title">
@@ -1125,38 +1376,40 @@
                   </ul>
                 </div>
               </div>
-
-              <div class="tuning-note-banner">
-                <span class="tuning-tag" data-i18n="anatomy.part1.note_tag">Tips Memilih Layout</span>
-                <p class="tuning-text" data-i18n="anatomy.part1.note_text">
-                  Untuk sesi coding dan gaming harian, form factor 75% dan 65% merupakan pilihan paling seimbang antara kelengkapan tombol esensial dan keleluasaan ruang meja.
-                </p>
-              </div>
             </div>
+          </div>
+
+          <!-- Full-Width Tips Banner -->
+          <div class="tuning-note-banner">
+            <span class="tuning-tag" data-i18n="anatomy.part1.note_tag">Tips Memilih Layout</span>
+            <p class="tuning-text" data-i18n="anatomy.part1.note_text">
+              Untuk sesi coding dan gaming harian, form factor 75% dan 65% merupakan pilihan paling seimbang antara kelengkapan tombol esensial dan keleluasaan ruang meja.
+            </p>
           </div>
         </article>
 
-        <!-- 02. PCB DAN MCU (Text Left, Video Right) -->
+        <!-- 02. PCB DAN MCU (Even: Details Left, Video Right) -->
         <article class="anatomy-card is-reverse" id="module-pcbmcu">
-          <div class="anatomy-zigzag-row">
-            <!-- Left: Explanation -->
-            <div class="zigzag-text-col">
-              <div class="card-top">
-                <span class="card-num-badge" data-i18n="anatomy.part2.layer">MODULE 02 • ELECTRONIC ARCHITECTURE & LOGIC</span>
-                <div class="card-title-group">
-                  <h2 data-i18n="anatomy.part2.title">02. PCB dan MCU</h2>
-                  <p data-i18n="anatomy.part2.summary">
-                    Printed Circuit Board sebagai "otak" keyboard yang menerjemahkan input switch menjadi sinyal ke perangkat.
-                  </p>
-                </div>
-                <div class="card-meta-pills">
-                  <span class="meta-pill" data-i18n="anatomy.part2.pill1">Microcontroller (MCU)</span>
-                  <span class="meta-pill" data-i18n="anatomy.part2.pill2">Soket Hot-Swap 5-Pin</span>
-                  <span class="meta-pill" data-i18n="anatomy.part2.pill3">South-Facing RGB</span>
-                  <span class="meta-pill" data-i18n="anatomy.part2.pill4">Driver WebHID / WebUSB</span>
-                </div>
-              </div>
+          <!-- Full-Width Header -->
+          <div class="card-header-full">
+            <span class="card-num-badge" data-i18n="anatomy.part2.layer">MODULE 02 • ELECTRONIC ARCHITECTURE & LOGIC</span>
+            <div class="card-title-group">
+              <h2 data-i18n="anatomy.part2.title">02. PCB dan MCU</h2>
+              <p data-i18n="anatomy.part2.summary">
+                Printed Circuit Board sebagai "otak" keyboard yang menerjemahkan input switch menjadi sinyal ke perangkat.
+              </p>
+            </div>
+            <div class="card-meta-pills">
+              <span class="meta-pill" data-i18n="anatomy.part2.pill1">Microcontroller (MCU)</span>
+              <span class="meta-pill" data-i18n="anatomy.part2.pill2">Soket Hot-Swap 5-Pin</span>
+              <span class="meta-pill" data-i18n="anatomy.part2.pill3">South-Facing RGB</span>
+              <span class="meta-pill" data-i18n="anatomy.part2.pill4">Driver WebHID / WebUSB</span>
+            </div>
+          </div>
 
+          <!-- Zigzag Content (Details Left, Video Right) -->
+          <div class="anatomy-zigzag-content">
+            <div class="zigzag-details-col">
               <div class="card-body-grid">
                 <div class="sub-section-box">
                   <div class="sub-box-title">
@@ -1202,52 +1455,52 @@
                   </ul>
                 </div>
               </div>
-
-              <div class="tuning-note-banner">
-                <span class="tuning-tag" data-i18n="anatomy.part2.note_tag">Keamanan PCB</span>
-                <p class="tuning-text" data-i18n="anatomy.part2.note_text">
-                  Selalu tahan soket hot-swap dari sisi belakang PCB saat memasang switch baru agar pin yang melengkung tidak merusak jalur solder PCB.
-                </p>
-              </div>
             </div>
 
-            <!-- Right: Video Showcase -->
             <div class="zigzag-video-col">
               <div class="thoc-card-video-wrap">
                 <video class="thoc-loop-video" src="Videos/3%20PCB%20MCU.mp4" autoplay loop muted playsinline disablePictureInPicture disableremoteplayback preload="auto" oncontextmenu="return false;"></video>
               </div>
             </div>
           </div>
+
+          <!-- Full-Width Tips Banner -->
+          <div class="tuning-note-banner">
+            <span class="tuning-tag" data-i18n="anatomy.part2.note_tag">Keamanan PCB</span>
+            <p class="tuning-text" data-i18n="anatomy.part2.note_text">
+              Selalu tahan soket hot-swap dari sisi belakang PCB saat memasang switch baru agar pin yang melengkung tidak merusak jalur solder PCB.
+            </p>
+          </div>
         </article>
 
-        <!-- 03. GASKET & PLAT MOUNT (Video Left, Text Right) -->
+        <!-- 03. GASKET & PLAT MOUNT (Odd: Video Left, Details Right) -->
         <article class="anatomy-card" id="module-mount">
-          <div class="anatomy-zigzag-row">
-            <!-- Left: Video Showcase -->
+          <!-- Full-Width Header -->
+          <div class="card-header-full">
+            <span class="card-num-badge" data-i18n="anatomy.part3.layer">MODULE 03 • ACOUSTIC RESONANCE & MOUNTING</span>
+            <div class="card-title-group">
+              <h2 data-i18n="anatomy.part3.title">03. Gasket & Plat Mount</h2>
+              <p data-i18n="anatomy.part3.summary">
+                Penahan switch agar tetap lurus dan memberikan feedback suara/rasa ketikan tertentu. Material bervariasi dari aluminium hingga polikarbonat.
+              </p>
+            </div>
+            <div class="card-meta-pills">
+              <span class="meta-pill" data-i18n="anatomy.part3.pill1">Gasket Poron / Silikon</span>
+              <span class="meta-pill" data-i18n="anatomy.part3.pill2">Polycarbonate (PC) / POM</span>
+              <span class="meta-pill" data-i18n="anatomy.part3.pill3">FR4 Epoxy Glass</span>
+              <span class="meta-pill" data-i18n="anatomy.part3.pill4">Plate Aluminium</span>
+            </div>
+          </div>
+
+          <!-- Zigzag Content (Video Left, Details Right) -->
+          <div class="anatomy-zigzag-content">
             <div class="zigzag-video-col">
               <div class="thoc-card-video-wrap">
                 <video class="thoc-loop-video" src="Videos/4%20Switches.mp4" autoplay loop muted playsinline disablePictureInPicture disableremoteplayback preload="auto" oncontextmenu="return false;"></video>
               </div>
             </div>
 
-            <!-- Right: Explanation -->
-            <div class="zigzag-text-col">
-              <div class="card-top">
-                <span class="card-num-badge" data-i18n="anatomy.part3.layer">MODULE 03 • ACOUSTIC RESONANCE & MOUNTING</span>
-                <div class="card-title-group">
-                  <h2 data-i18n="anatomy.part3.title">03. Gasket & Plat Mount</h2>
-                  <p data-i18n="anatomy.part3.summary">
-                    Penahan switch agar tetap lurus dan memberikan feedback suara/rasa ketikan tertentu. Material bervariasi dari aluminium hingga polikarbonat.
-                  </p>
-                </div>
-                <div class="card-meta-pills">
-                  <span class="meta-pill" data-i18n="anatomy.part3.pill1">Gasket Poron / Silikon</span>
-                  <span class="meta-pill" data-i18n="anatomy.part3.pill2">Polycarbonate (PC) / POM</span>
-                  <span class="meta-pill" data-i18n="anatomy.part3.pill3">FR4 Epoxy Glass</span>
-                  <span class="meta-pill" data-i18n="anatomy.part3.pill4">Plate Aluminium</span>
-                </div>
-              </div>
-
+            <div class="zigzag-details-col">
               <div class="card-body-grid">
                 <div class="sub-section-box">
                   <div class="sub-box-title">
@@ -1293,38 +1546,40 @@
                   </ul>
                 </div>
               </div>
-
-              <div class="tuning-note-banner">
-                <span class="tuning-tag" data-i18n="anatomy.part3.note_tag">Saran Tuning</span>
-                <p class="tuning-text" data-i18n="anatomy.part3.note_text">
-                  Padukan plat Polycarbonate (PC) dengan sistem Gasket Mount dan switch linear berpelumas Krytox untuk karakter deep thock paling maksimal.
-                </p>
-              </div>
             </div>
+          </div>
+
+          <!-- Full-Width Tips Banner -->
+          <div class="tuning-note-banner">
+            <span class="tuning-tag" data-i18n="anatomy.part3.note_tag">Saran Tuning</span>
+            <p class="tuning-text" data-i18n="anatomy.part3.note_text">
+              Padukan plat Polycarbonate (PC) dengan sistem Gasket Mount dan switch linear berpelumas Krytox untuk karakter deep thock paling maksimal.
+            </p>
           </div>
         </article>
 
-        <!-- 04. STABILIZER (Text Left, Video Right) -->
+        <!-- 04. STABILIZER (Even: Details Left, Video Right) -->
         <article class="anatomy-card is-reverse" id="module-stab">
-          <div class="anatomy-zigzag-row">
-            <!-- Left: Explanation -->
-            <div class="zigzag-text-col">
-              <div class="card-top">
-                <span class="card-num-badge" data-i18n="anatomy.part4.layer">MODULE 04 • MECHANICAL BALANCING & ANTI-RATTLE</span>
-                <div class="card-title-group">
-                  <h2 data-i18n="anatomy.part4.title">04. Stabilizer</h2>
-                  <p data-i18n="anatomy.part4.summary">
-                    Komponen untuk menstabilkan tombol besar (seperti Spacebar atau Enter) agar tidak goyang saat ditekan.
-                  </p>
-                </div>
-                <div class="card-meta-pills">
-                  <span class="meta-pill" data-i18n="anatomy.part4.pill1">PCB Screw-In Mount</span>
-                  <span class="meta-pill" data-i18n="anatomy.part4.pill2">Wire Balancing (0.00mm)</span>
-                  <span class="meta-pill" data-i18n="anatomy.part4.pill3">Krytox XHT-BDZ & 205g0</span>
-                  <span class="meta-pill" data-i18n="anatomy.part4.pill4">Anti-Rattle Holee Mod</span>
-                </div>
-              </div>
+          <!-- Full-Width Header -->
+          <div class="card-header-full">
+            <span class="card-num-badge" data-i18n="anatomy.part4.layer">MODULE 04 • MECHANICAL BALANCING & ANTI-RATTLE</span>
+            <div class="card-title-group">
+              <h2 data-i18n="anatomy.part4.title">04. Stabilizer</h2>
+              <p data-i18n="anatomy.part4.summary">
+                Komponen untuk menstabilkan tombol besar (seperti Spacebar atau Enter) agar tidak goyang saat ditekan.
+              </p>
+            </div>
+            <div class="card-meta-pills">
+              <span class="meta-pill" data-i18n="anatomy.part4.pill1">PCB Screw-In Mount</span>
+              <span class="meta-pill" data-i18n="anatomy.part4.pill2">Wire Balancing (0.00mm)</span>
+              <span class="meta-pill" data-i18n="anatomy.part4.pill3">Krytox XHT-BDZ & 205g0</span>
+              <span class="meta-pill" data-i18n="anatomy.part4.pill4">Anti-Rattle Holee Mod</span>
+            </div>
+          </div>
 
+          <!-- Zigzag Content (Details Left, Video Right) -->
+          <div class="anatomy-zigzag-content">
+            <div class="zigzag-details-col">
               <div class="card-body-grid">
                 <div class="sub-section-box">
                   <div class="sub-box-title">
@@ -1370,52 +1625,52 @@
                   </ul>
                 </div>
               </div>
-
-              <div class="tuning-note-banner">
-                <span class="tuning-tag" data-i18n="anatomy.part4.note_tag">Standar ThocKeebs</span>
-                <p class="tuning-text" data-i18n="anatomy.part4.note_text">
-                  Kualitas sebuah keyboard ditentukan oleh kestabilan tombol Spacebar-nya. Bebas rattle, tanpa suara kawat berisik, dan berkarakter thock empuk adalah komitmen utama ThocKeebs.
-                </p>
-              </div>
             </div>
 
-            <!-- Right: Video Showcase -->
             <div class="zigzag-video-col">
               <div class="thoc-card-video-wrap">
                 <video class="thoc-loop-video" src="Videos/5%20Stabilizer.mp4" autoplay loop muted playsinline disablePictureInPicture disableremoteplayback preload="auto" oncontextmenu="return false;"></video>
               </div>
             </div>
           </div>
+
+          <!-- Full-Width Tips Banner -->
+          <div class="tuning-note-banner">
+            <span class="tuning-tag" data-i18n="anatomy.part4.note_tag">Standar ThocKeebs</span>
+            <p class="tuning-text" data-i18n="anatomy.part4.note_text">
+              Kualitas sebuah keyboard ditentukan oleh kestabilan tombol Spacebar-nya. Bebas rattle, tanpa suara kawat berisik, dan berkarakter thock empuk adalah komitmen utama ThocKeebs.
+            </p>
+          </div>
         </article>
 
-        <!-- 05. KEYCAPS SIZE (Video Left, Text Right) -->
+        <!-- 05. KEYCAPS SIZE (Odd: Video Left, Details Right) -->
         <article class="anatomy-card" id="module-keycaps">
-          <div class="anatomy-zigzag-row">
-            <!-- Left: Video Showcase -->
+          <!-- Full-Width Header -->
+          <div class="card-header-full">
+            <span class="card-num-badge" data-i18n="anatomy.part5.layer">MODULE 05 • KEYCAP PROFILES & "U" METRICS</span>
+            <div class="card-title-group">
+              <h2 data-i18n="anatomy.part5.title">05. Keycaps Size</h2>
+              <p data-i18n="anatomy.part5.summary">
+                Penjelasan istilah "u" (unit) untuk mengukur panjang keycap. Tombol standar adalah 1u, dan kunci 2u ke atas memerlukan stabilizer.
+              </p>
+            </div>
+            <div class="card-meta-pills">
+              <span class="meta-pill" data-i18n="anatomy.part5.pill1">Standar 1u (19.05mm)</span>
+              <span class="meta-pill" data-i18n="anatomy.part5.pill2">2u+ Wajib Stabilizer</span>
+              <span class="meta-pill" data-i18n="anatomy.part5.pill3">Spacebar 6.25u / 7u</span>
+              <span class="meta-pill" data-i18n="anatomy.part5.pill4">PBT Double-Shot 1.6mm</span>
+            </div>
+          </div>
+
+          <!-- Zigzag Content (Video Left, Details Right) -->
+          <div class="anatomy-zigzag-content">
             <div class="zigzag-video-col">
               <div class="thoc-card-video-wrap">
                 <video class="thoc-loop-video" src="Videos/6%20Keycaps.mp4" autoplay loop muted playsinline disablePictureInPicture disableremoteplayback preload="auto" oncontextmenu="return false;"></video>
               </div>
             </div>
 
-            <!-- Right: Explanation -->
-            <div class="zigzag-text-col">
-              <div class="card-top">
-                <span class="card-num-badge" data-i18n="anatomy.part5.layer">MODULE 05 • KEYCAP PROFILES & "U" METRICS</span>
-                <div class="card-title-group">
-                  <h2 data-i18n="anatomy.part5.title">05. Keycaps Size</h2>
-                  <p data-i18n="anatomy.part5.summary">
-                    Penjelasan istilah "u" (unit) untuk mengukur panjang keycap. Tombol standar adalah 1u, dan kunci 2u ke atas memerlukan stabilizer.
-                  </p>
-                </div>
-                <div class="card-meta-pills">
-                  <span class="meta-pill" data-i18n="anatomy.part5.pill1">Standar 1u (19.05mm)</span>
-                  <span class="meta-pill" data-i18n="anatomy.part5.pill2">2u+ Wajib Stabilizer</span>
-                  <span class="meta-pill" data-i18n="anatomy.part5.pill3">Spacebar 6.25u / 7u</span>
-                  <span class="meta-pill" data-i18n="anatomy.part5.pill4">PBT Double-Shot 1.6mm</span>
-                </div>
-              </div>
-
+            <div class="zigzag-details-col">
               <div class="card-body-grid">
                 <div class="sub-section-box">
                   <div class="sub-box-title">
@@ -1461,38 +1716,40 @@
                   </ul>
                 </div>
               </div>
-
-              <div class="tuning-note-banner">
-                <span class="tuning-tag" data-i18n="anatomy.part5.note_tag">Aturan Stabilizer</span>
-                <p class="tuning-text" data-i18n="anatomy.part5.note_text">
-                  Perlu diingat: Setiap tombol dengan panjang 2u atau lebih (Backspace, Enter, Shift, Spacebar) wajib ditopang stabilizer agar tidak oleng.
-                </p>
-              </div>
             </div>
+          </div>
+
+          <!-- Full-Width Tips Banner -->
+          <div class="tuning-note-banner">
+            <span class="tuning-tag" data-i18n="anatomy.part5.note_tag">Aturan Stabilizer</span>
+            <p class="tuning-text" data-i18n="anatomy.part5.note_text">
+              Perlu diingat: Setiap tombol dengan panjang 2u atau lebih (Backspace, Enter, Shift, Spacebar) wajib ditopang stabilizer agar tidak oleng.
+            </p>
           </div>
         </article>
 
-        <!-- 06. SWITCHES TYPE (Text Left, Video Right) -->
+        <!-- 06. SWITCHES TYPE (Even: Details Left, Video Right) -->
         <article class="anatomy-card is-reverse" id="module-switches">
-          <div class="anatomy-zigzag-row">
-            <!-- Left: Explanation -->
-            <div class="zigzag-text-col">
-              <div class="card-top">
-                <span class="card-num-badge" data-i18n="anatomy.part6.layer">MODULE 06 • SWITCH ACTUATION & PIN ARCHITECTURE</span>
-                <div class="card-title-group">
-                  <h2 data-i18n="anatomy.part6.title">06. Switches Type</h2>
-                  <p data-i18n="anatomy.part6.summary">
-                    Penjelasan tiga tipe utama: Linear (halus), Tactile (ada bump), dan Clicky (ada suara klik). Juga dibahas perbedaan switch 3-pin dan 5-pin.
-                  </p>
-                </div>
-                <div class="card-meta-pills">
-                  <span class="meta-pill" data-i18n="anatomy.part6.pill1">Linear / Tactile / Clicky</span>
-                  <span class="meta-pill" data-i18n="anatomy.part6.pill2">Perbedaan 3-Pin vs 5-Pin</span>
-                  <span class="meta-pill" data-i18n="anatomy.part6.pill3">Krytox Brush Lubed</span>
-                  <span class="meta-pill" data-i18n="anatomy.part6.pill4">Long Pole Bottom-Out</span>
-                </div>
-              </div>
+          <!-- Full-Width Header -->
+          <div class="card-header-full">
+            <span class="card-num-badge" data-i18n="anatomy.part6.layer">MODULE 06 • SWITCH ACTUATION & PIN ARCHITECTURE</span>
+            <div class="card-title-group">
+              <h2 data-i18n="anatomy.part6.title">06. Switches Type</h2>
+              <p data-i18n="anatomy.part6.summary">
+                Penjelasan tiga tipe utama: Linear (halus), Tactile (ada bump), dan Clicky (ada suara klik). Juga dibahas perbedaan switch 3-pin dan 5-pin.
+              </p>
+            </div>
+            <div class="card-meta-pills">
+              <span class="meta-pill" data-i18n="anatomy.part6.pill1">Linear / Tactile / Clicky</span>
+              <span class="meta-pill" data-i18n="anatomy.part6.pill2">Perbedaan 3-Pin vs 5-Pin</span>
+              <span class="meta-pill" data-i18n="anatomy.part6.pill3">Krytox Brush Lubed</span>
+              <span class="meta-pill" data-i18n="anatomy.part6.pill4">Long Pole Bottom-Out</span>
+            </div>
+          </div>
 
+          <!-- Zigzag Content (Details Left, Video Right) -->
+          <div class="anatomy-zigzag-content">
+            <div class="zigzag-details-col">
               <div class="card-body-grid">
                 <div class="sub-section-box">
                   <div class="sub-box-title">
@@ -1538,21 +1795,21 @@
                   </ul>
                 </div>
               </div>
-
-              <div class="tuning-note-banner">
-                <span class="tuning-tag" data-i18n="anatomy.part6.note_tag">Pelumasan Krytox</span>
-                <p class="tuning-text" data-i18n="anatomy.part6.note_text">
-                  Pelumasan manual dengan Krytox GPL 205g0 pada stem rails dan bottom housing menghilangkan rasa gesekan kasar (scratchiness), menghasilkan ketukan buttery-smooth yang tenang.
-                </p>
-              </div>
             </div>
 
-            <!-- Right: Video Showcase -->
             <div class="zigzag-video-col">
               <div class="thoc-card-video-wrap">
                 <video class="thoc-loop-video" src="Videos/7%20Switches%20Type.mp4" autoplay loop muted playsinline disablePictureInPicture disableremoteplayback preload="auto" oncontextmenu="return false;"></video>
               </div>
             </div>
+          </div>
+
+          <!-- Full-Width Tips Banner -->
+          <div class="tuning-note-banner">
+            <span class="tuning-tag" data-i18n="anatomy.part6.note_tag">Pelumasan Krytox</span>
+            <p class="tuning-text" data-i18n="anatomy.part6.note_text">
+              Pelumasan manual dengan Krytox GPL 205g0 pada stem rails dan bottom housing menghilangkan rasa gesekan kasar (scratchiness), menghasilkan ketukan buttery-smooth yang tenang.
+            </p>
           </div>
         </article>
 
