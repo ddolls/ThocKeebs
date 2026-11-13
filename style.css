@@ -1179,6 +1179,403 @@ html.light-theme .lang-dropdown-menu {
 }
 
 
+/* --- THOC WORKS CONTROLS: SEARCH & DATE FILTER BAR --- */
+.thoc-works-controls {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  width: 100% !important;
+  padding: 12px 16px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  box-sizing: border-box !important;
+  margin-bottom: 8px !important;
+  flex-wrap: wrap !important;
+}
+
+body.light-theme .thoc-works-controls,
+html.light-theme .thoc-works-controls {
+  background: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+.thoc-search-wrap {
+  position: relative !important;
+  flex: 1 1 240px !important;
+  display: flex !important;
+  align-items: center !important;
+  min-width: 200px !important;
+}
+
+.thoc-search-icon {
+  position: absolute !important;
+  left: 12px !important;
+  pointer-events: none !important;
+  color: #8a8a8c !important;
+  z-index: 2 !important;
+}
+
+.thoc-works-search-input {
+  width: 100% !important;
+  height: 38px !important;
+  padding: 0 32px 0 36px !important;
+  border-radius: 8px !important;
+  font-family: 'IBM Plex Mono', monospace !important;
+  font-size: 12px !important;
+  background: rgba(0, 0, 0, 0.25) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  color: #f0f0f1 !important;
+  outline: none !important;
+  transition: all 0.2s ease !important;
+  box-sizing: border-box !important;
+}
+
+body.light-theme .thoc-works-search-input,
+html.light-theme .thoc-works-search-input {
+  background: #f7f7f8 !important;
+  border-color: rgba(0, 0, 0, 0.14) !important;
+  color: #18181b !important;
+}
+
+.thoc-works-search-input:focus {
+  border-color: rgba(255, 255, 255, 0.45) !important;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.08) !important;
+}
+
+body.light-theme .thoc-works-search-input:focus,
+html.light-theme .thoc-works-search-input:focus {
+  border-color: #18181b !important;
+  box-shadow: 0 0 0 2px rgba(24, 24, 27, 0.08) !important;
+}
+
+.thoc-works-search-input::placeholder {
+  color: #71717a !important;
+  font-size: 11.5px !important;
+}
+
+.thoc-search-clear-btn {
+  position: absolute !important;
+  right: 8px !important;
+  width: 22px !important;
+  height: 22px !important;
+  border: none !important;
+  background: transparent !important;
+  color: #9d9d9f !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 18px !important;
+  line-height: 1 !important;
+  border-radius: 50% !important;
+  transition: all 0.15s ease !important;
+  padding: 0 !important;
+  z-index: 2 !important;
+}
+
+.thoc-search-clear-btn:hover {
+  color: #f0f0f1 !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+}
+
+body.light-theme .thoc-search-clear-btn:hover,
+html.light-theme .thoc-search-clear-btn:hover {
+  color: #18181b !important;
+  background: rgba(0, 0, 0, 0.08) !important;
+}
+
+.thoc-filters-group {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+  flex: 0 0 auto !important;
+}
+
+.thoc-filter-select-wrap {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  min-width: 145px !important;
+}
+
+.thoc-filter-icon {
+  position: absolute !important;
+  left: 10px !important;
+  pointer-events: none !important;
+  color: #8a8a8c !important;
+  z-index: 2 !important;
+}
+
+.thoc-select-chevron {
+  position: absolute !important;
+  right: 10px !important;
+  pointer-events: none !important;
+  color: #8a8a8c !important;
+  z-index: 2 !important;
+}
+
+.thoc-works-select {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  width: 100% !important;
+  height: 38px !important;
+  padding: 0 28px 0 30px !important;
+  border-radius: 8px !important;
+  font-family: 'IBM Plex Mono', monospace !important;
+  font-size: 11.5px !important;
+  font-weight: 500 !important;
+  background: rgba(0, 0, 0, 0.25) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  color: #f0f0f1 !important;
+  cursor: pointer !important;
+  outline: none !important;
+  transition: all 0.2s ease !important;
+  box-sizing: border-box !important;
+}
+
+body.light-theme .thoc-works-select,
+html.light-theme .thoc-works-select {
+  background: #f7f7f8 !important;
+  border-color: rgba(0, 0, 0, 0.14) !important;
+  color: #18181b !important;
+}
+
+.thoc-works-select:focus {
+  border-color: rgba(255, 255, 255, 0.45) !important;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.08) !important;
+}
+
+body.light-theme .thoc-works-select:focus,
+html.light-theme .thoc-works-select:focus {
+  border-color: #18181b !important;
+  box-shadow: 0 0 0 2px rgba(24, 24, 27, 0.08) !important;
+}
+
+.thoc-works-select option {
+  background: #252526 !important;
+  color: #f0f0f1 !important;
+}
+
+body.light-theme .thoc-works-select option,
+html.light-theme .thoc-works-select option {
+  background: #ffffff !important;
+  color: #18181b !important;
+}
+
+.thoc-exact-date-wrap {
+  display: none !important;
+  align-items: center !important;
+}
+
+.thoc-exact-date-wrap.is-active {
+  display: inline-flex !important;
+}
+
+.thoc-works-date-input {
+  height: 38px !important;
+  padding: 0 10px !important;
+  border-radius: 8px !important;
+  font-family: 'IBM Plex Mono', monospace !important;
+  font-size: 11.5px !important;
+  background: rgba(0, 0, 0, 0.25) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  color: #f0f0f1 !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+}
+
+body.light-theme .thoc-works-date-input,
+html.light-theme .thoc-works-date-input {
+  background: #f7f7f8 !important;
+  border-color: rgba(0, 0, 0, 0.14) !important;
+  color: #18181b !important;
+}
+
+.thoc-works-reset-btn {
+  display: none !important;
+  height: 38px !important;
+  padding: 0 12px !important;
+  border-radius: 8px !important;
+  font-family: 'IBM Plex Mono', monospace !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  background: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  color: #bcbcbd !important;
+  cursor: pointer !important;
+  align-items: center !important;
+  gap: 6px !important;
+  transition: all 0.15s ease !important;
+  white-space: nowrap !important;
+}
+
+.thoc-works-reset-btn.is-active {
+  display: inline-flex !important;
+}
+
+.thoc-works-reset-btn:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  color: #ffffff !important;
+}
+
+body.light-theme .thoc-works-reset-btn,
+html.light-theme .thoc-works-reset-btn {
+  border-color: rgba(0, 0, 0, 0.18) !important;
+  color: #52525b !important;
+}
+
+body.light-theme .thoc-works-reset-btn:hover,
+html.light-theme .thoc-works-reset-btn:hover {
+  background: rgba(0, 0, 0, 0.05) !important;
+  border-color: #18181b !important;
+  color: #18181b !important;
+}
+
+.thoc-works-count-badge {
+  margin-left: auto !important;
+  padding: 6px 12px !important;
+  border-radius: 6px !important;
+  font-family: 'IBM Plex Mono', monospace !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.03em !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #9d9d9f !important;
+  white-space: nowrap !important;
+}
+
+body.light-theme .thoc-works-count-badge,
+html.light-theme .thoc-works-count-badge {
+  background: rgba(0, 0, 0, 0.04) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  color: #71717a !important;
+}
+
+/* Empty State */
+.thoc-works-empty-state {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 48px 24px !important;
+  border-radius: 12px !important;
+  border: 1px dashed rgba(255, 255, 255, 0.15) !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+  text-align: center !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  margin: 12px 0 !important;
+}
+
+body.light-theme .thoc-works-empty-state,
+html.light-theme .thoc-works-empty-state {
+  border-color: rgba(0, 0, 0, 0.15) !important;
+  background: rgba(0, 0, 0, 0.02) !important;
+}
+
+.thoc-empty-icon {
+  font-size: 32px !important;
+  margin-bottom: 12px !important;
+  opacity: 0.6 !important;
+}
+
+.thoc-empty-title {
+  font-family: 'IBM Plex Mono', monospace !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: #f0f0f1 !important;
+  margin: 0 0 6px 0 !important;
+}
+
+body.light-theme .thoc-empty-title,
+html.light-theme .thoc-empty-title {
+  color: #18181b !important;
+}
+
+.thoc-empty-desc {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 12.5px !important;
+  color: #9d9d9f !important;
+  margin: 0 0 16px 0 !important;
+}
+
+body.light-theme .thoc-empty-desc,
+html.light-theme .thoc-empty-desc {
+  color: #71717a !important;
+}
+
+.thoc-empty-reset-btn {
+  padding: 8px 18px !important;
+  border-radius: 8px !important;
+  font-family: 'IBM Plex Mono', monospace !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  background: #ffffff !important;
+  color: #252526 !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
+
+body.light-theme .thoc-empty-reset-btn,
+html.light-theme .thoc-empty-reset-btn {
+  background: #252526 !important;
+  color: #ffffff !important;
+}
+
+.thoc-empty-reset-btn:hover {
+  transform: translateY(-1px) !important;
+  opacity: 0.9 !important;
+}
+
+@media (max-width: 768px) {
+  .thoc-works-controls {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 10px 12px !important;
+    gap: 10px !important;
+  }
+  .thoc-search-wrap {
+    width: 100% !important;
+    flex: 1 1 100% !important;
+    min-width: 0 !important;
+  }
+  .thoc-filters-group {
+    width: 100% !important;
+    display: flex !important;
+    gap: 8px !important;
+  }
+  .thoc-filter-select-wrap {
+    flex: 1 1 calc(50% - 4px) !important;
+    min-width: 0 !important;
+  }
+  .thoc-works-select {
+    padding: 0 22px 0 26px !important;
+    font-size: 10.5px !important;
+  }
+  .thoc-filter-icon {
+    left: 8px !important;
+    width: 12px !important;
+    height: 12px !important;
+  }
+  .thoc-select-chevron {
+    right: 8px !important;
+    width: 8px !important;
+    height: 8px !important;
+  }
+  .thoc-works-count-badge {
+    margin-left: 0 !important;
+    width: 100% !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+}
+
 /* --- THOC WORKS TABLE & HEADER --- */
 .thoc-works-container {
   width: 100% !important;

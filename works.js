@@ -1,8 +1,9 @@
 /**
  * ThocKeebs - Dynamic Works Engine
  * 1. Menampilkan daftar works di works.html (urutan terbaru di atas)
- * 2. Menampilkan card Selected Works di index.html (Home) secara dinamis
- * 3. Membuka halaman detail penuh (works-project.html) dengan data lengkap
+ * 2. Search & Filter berdasarkan Project Name dan Tanggal
+ * 3. Menampilkan card Selected Works di index.html (Home) secara dinamis
+ * 4. Membuka halaman detail penuh (works-project.html) dengan data lengkap
  */
 
 (function () {
@@ -11,6 +12,15 @@
     : "https://script.google.com/macros/s/AKfycby-lUbeLyTLZQyMU4ZRaw0GNdfuHV4SYyg4-4ZBk8_zzmlvVmAIF44M1Ge9ea9LBGFe/exec";
 
   const CACHE_KEY = "thoc_works_cache_data";
+
+  const MONTH_NAMES = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+  const MONTH_NAMES_ID = [
+    "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+    "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+  ];
 
   // Proyek dasar / fallback jika sheet offline (urutan kronologis mundur)
   const DEFAULT_WORKS = [
@@ -21,7 +31,8 @@
       status: "Finished",
       date: "November, 02 2026",
       location: "Bandung",
-      thumbnail: "Photo/photo1.png"
+      thumbnail: "Photo/photo1.png",
+      tiktok: "https://vt.tiktok.com/ZSpUv18Pb/"
     },
     {
       title: "Lube Project #1 - Deliabluu",
@@ -30,9 +41,13 @@
       status: "Finished",
       date: "October, 24 2026",
       location: "Malang",
-      thumbnail: "Photo/Project 1/02.png"
+      thumbnail: "Photo/Project 1/02.png",
+      tiktok: "https://vt.tiktok.com/ZSpUfwdK5/"
     }
   ];
+
+  let masterWorks = [];
+  let isControlsInitialized = false;
 
   function normalizeImageUrl(url) {
     if (!url) return "Photo/photo1.png";
@@ -42,42 +57,6 @@
       return `https://lh3.googleusercontent.com/d/${gDriveMatch[1]}`;
     }
     return url;
-  }
-
-  // Penggabungan data dengan aturan:
-  // Data baru yang diinput di Google Sheets (baris terbawah) HARUS muncul paling atas (terbaru)
-  function mergeWorks(sheetItems) {
-    if (!Array.isArray(sheetItems)) return DEFAULT_WORKS;
-
-    const reversedSheet = [...sheetItems].reverse();
-    const finalItems = [...reversedSheet];
-
-    DEFAULT_WORKS.forEach(def => {
-      const defMatch = (def.title || '').match(/#(\d+)/);
-      const isAlreadyInSheet = sheetItems.some(i => {
-        const itemMatch = (i.title || '').match(/#(\d+)/);
-        if (defMatch && itemMatch) {
-          return defMatch[1] === itemMatch[1];
-        }
-        return (i.title || '').trim().toLowerCase() === def.title.toLowerCase();
-      });
-
-      if (!isAlreadyInSheet) {
-        finalItems.push(def);
-      }
-    });
-
-    // Urutkan paling baru di atas (jika ada nomor project #X, urutkan descending; jika tidak, urutan input terbaru di atas)
-    finalItems.sort((a, b) => {
-      const matchA = (a.title || '').match(/#(\d+)/);
-      const matchB = (b.title || '').match(/#(\d+)/);
-      if (matchA && matchB) {
-        return parseInt(matchB[1], 10) - parseInt(matchA[1], 10);
-      }
-      return 0;
-    });
-
-    return finalItems;
   }
 
   function escapeHtml(str) {
@@ -109,10 +88,128 @@
     return { date: date || "November 2026", location: location || "Bandung, Indonesia" };
   }
 
+  function parseDateObj(raw) {
+    if (!raw) return null;
+    let s = String(raw).split("/")[0].trim();
+    MONTH_NAMES_ID.forEach((idM, idx) => {
+      s = s.replace(new RegExp(idM, 'i'), MONTH_NAMES[idx]);
+    });
+    let d = new Date(s);
+    if (!isNaN(d.getTime())) return d;
+    let clean = s.replace(/,/g, ' ').replace(/\s+/g, ' ').trim();
+    d = new Date(clean);
+    if (!isNaN(d.getTime())) return d;
+    const parts = s.split(/[-/.]/);
+    if (parts.length === 3) {
+      if (parts[0].length === 4) {
+        d = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+      } else if (parts[2].length === 4) {
+        d = new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10));
+      }
+      if (!isNaN(d.getTime())) return d;
+    }
+    return null;
+  }
+
+  function formatMonthYearKey(d) {
+    if (!d) return "";
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, "0");
+    return `${y}-${m}`;
+  }
+
+  function formatMonthYearLabel(d, lang) {
+    if (!d) return "";
+    const m = d.getMonth();
+    const y = d.getFullYear();
+    const isId = (lang || localStorage.getItem("thockeebs-lang") || "en") === "id";
+    const name = isId ? MONTH_NAMES_ID[m] : MONTH_NAMES[m];
+    return `${name} ${y}`;
+  }
+
+  function formatIsoDate(d) {
+    if (!d) return "";
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${y}-${m}-${day}`;
+  }
+
+  // Penggabungan data dengan aturan:
+  // Data baru yang diinput di Google Sheets (baris terbawah) HARUS muncul paling atas (terbaru)
+  function mergeWorks(sheetItems) {
+    if (!Array.isArray(sheetItems)) return DEFAULT_WORKS;
+
+    const reversedSheet = [...sheetItems].reverse();
+    const finalItems = [...reversedSheet];
+
+    DEFAULT_WORKS.forEach(def => {
+      const defMatch = (def.title || '').match(/#(\d+)/);
+      const isAlreadyInSheet = sheetItems.some(i => {
+        const itemMatch = (i.title || '').match(/#(\d+)/);
+        if (defMatch && itemMatch) {
+          return defMatch[1] === itemMatch[1];
+        }
+        return (i.title || '').trim().toLowerCase() === def.title.toLowerCase();
+      });
+
+      if (!isAlreadyInSheet) {
+        finalItems.push(def);
+      }
+    });
+
+    // Urutkan default: jika ada nomor project #X urutkan descending, jika tidak urutkan berdasarkan tanggal terbaru
+    finalItems.sort((a, b) => {
+      const matchA = (a.title || '').match(/#(\d+)/);
+      const matchB = (b.title || '').match(/#(\d+)/);
+      if (matchA && matchB) {
+        return parseInt(matchB[1], 10) - parseInt(matchA[1], 10);
+      }
+      const dateA = parseDateObj(a.date);
+      const dateB = parseDateObj(b.date);
+      if (dateA && dateB) {
+        return dateB.getTime() - dateA.getTime();
+      }
+      return 0;
+    });
+
+    // Berikan metadata pencarian & filter ke tiap item
+    finalItems.forEach((it, idx) => {
+      it._origIndex = idx;
+      it._dateObj = parseDateObj(it.date);
+      it._monthYearKey = formatMonthYearKey(it._dateObj);
+      it._isoDate = formatIsoDate(it._dateObj);
+      it._year = it._dateObj ? it._dateObj.getFullYear() : null;
+      if (!it.tiktok && it.title) {
+        if (it.title.includes("Pharita")) it.tiktok = "https://vt.tiktok.com/ZSpUv18Pb/";
+        else if (it.title.includes("Deliabluu")) it.tiktok = "https://vt.tiktok.com/ZSpUfwdK5/";
+      }
+    });
+
+    return finalItems;
+  }
+
   // --- RENDER WORKS.HTML (TABLE LIST) ---
   function renderWorksList(items) {
     const container = document.getElementById("thoc-dynamic-works-list");
-    if (!container || !Array.isArray(items) || items.length === 0) return;
+    if (!container) return;
+
+    if (!Array.isArray(items) || items.length === 0) {
+      const isId = (localStorage.getItem("thockeebs-lang") || "en") === "id";
+      container.innerHTML = `
+        <div class="thoc-works-empty-state">
+          <div class="thoc-empty-icon">🔍</div>
+          <h3 class="thoc-empty-title" data-i18n="works.empty.title">${isId ? "Project tidak ditemukan" : "No projects found"}</h3>
+          <p class="thoc-empty-desc" data-i18n="works.empty.desc">${isId ? "Coba ubah kata kunci pencarian atau filter tanggal" : "Try adjusting your search query or date filter"}</p>
+          <button type="button" class="thoc-empty-reset-btn" id="thoc-empty-reset-trigger" data-i18n="works.empty.reset">${isId ? "Reset Filter" : "Reset Filters"}</button>
+        </div>
+      `;
+      const emptyReset = document.getElementById("thoc-empty-reset-trigger");
+      if (emptyReset) {
+        emptyReset.addEventListener("click", resetAllFilters);
+      }
+      return;
+    }
 
     let html = "";
     items.forEach((item, index) => {
@@ -121,8 +218,10 @@
       const dateLoc = parseDateLocation(item.date, item.location);
       const date = dateLoc.date;
 
-      // Link langsung ke halaman detail penuh (Clean URL)
-      const detailUrl = `works-project?id=${index}`;
+      // Link ke halaman detail penuh dengan referensi index asli dan judul
+      const targetId = (item._origIndex !== undefined) ? item._origIndex : index;
+      const detailUrl = `works-project?id=${targetId}&title=${encodeURIComponent(title)}`;
+      const tiktokUrl = item.tiktok || item.tiktokUrl || "";
 
       html += `
         <div class="thoc-works-row-wrap" style="position:relative; width:100%;">
@@ -154,6 +253,9 @@
             <div class="framer-zozh7o" data-framer-name="Background" style="background-color:var(--token-9a61cb06-3a3a-4375-8be8-66b9dda45d4e, rgb(46, 46, 47))"></div>
             <div class="framer-1sge75u" data-framer-name="Background" style="background-color:var(--token-f56b1214-00aa-4536-9ffd-154101bb6be0, rgb(210, 210, 210))"></div>
           </a>
+          ${tiktokUrl ? `
+            <a href="${escapeHtml(tiktokUrl)}" target="_blank" rel="noopener noreferrer" title="Watch on TikTok" onclick="event.stopPropagation();" style="position:absolute; right:16px; top:50%; transform:translateY(-50%); width:44px; height:44px; z-index:20; display:flex; align-items:center; justify-content:center; cursor:pointer;" aria-label="Watch on TikTok"></a>
+          ` : ''}
         </div>
       `;
     });
@@ -166,7 +268,6 @@
     const homeContainer = document.getElementById("thoc-home-selected-works") || document.querySelector(".framer-9dzp8s");
     if (!homeContainer || !Array.isArray(items) || items.length === 0) return;
 
-    // Ambil maksimal 4 project terbaru untuk di home
     const selectedItems = items.slice(0, 4);
     const total = items.length;
 
@@ -181,7 +282,8 @@
         : (item.specs ? item.specs.trim() : "Lube Switch, Stab and Modding");
       const imgUrl = normalizeImageUrl(item.thumbnail);
       const numVal = String(total - index).padStart(2, '0');
-      const detailUrl = `works-project?id=${index}`;
+      const targetId = (item._origIndex !== undefined) ? item._origIndex : index;
+      const detailUrl = `works-project?id=${targetId}&title=${encodeURIComponent(title)}`;
 
       html += `
         <div class="ssr-variant" style="flex:1 1 48%;min-width:300px;box-sizing:border-box;">
@@ -251,9 +353,244 @@
     homeContainer.innerHTML = html;
   }
 
+  // --- SEARCH & FILTER LOGIC ---
+  function populateDateFilterOptions(items) {
+    const dateSelect = document.getElementById("thoc-works-date-filter");
+    if (!dateSelect) return;
+
+    const currentVal = dateSelect.value || "all";
+    const isId = (localStorage.getItem("thockeebs-lang") || "en") === "id";
+
+    const monthYearMap = new Map();
+    const yearSet = new Set();
+
+    items.forEach(it => {
+      if (it._monthYearKey && it._dateObj) {
+        const prev = monthYearMap.get(it._monthYearKey);
+        const count = prev ? prev.count + 1 : 1;
+        monthYearMap.set(it._monthYearKey, {
+          key: it._monthYearKey,
+          label: formatMonthYearLabel(it._dateObj, isId ? "id" : "en"),
+          dateObj: it._dateObj,
+          count: count
+        });
+      }
+      if (it._year) {
+        yearSet.add(it._year);
+      }
+    });
+
+    const sortedMonths = Array.from(monthYearMap.values()).sort((a, b) => b.dateObj.getTime() - a.dateObj.getTime());
+
+    let optsHtml = `<option value="all" data-i18n="works.filter.all_dates">${isId ? "Semua Tanggal" : "All Dates"}</option>`;
+
+    sortedMonths.forEach(m => {
+      optsHtml += `<option value="${m.key}">${escapeHtml(m.label)} (${m.count})</option>`;
+    });
+
+    if (yearSet.size > 1) {
+      const sortedYears = Array.from(yearSet).sort((a, b) => b - a);
+      sortedYears.forEach(y => {
+        optsHtml += `<option value="year-${y}">${isId ? "Tahun" : "Year"} ${y}</option>`;
+      });
+    }
+
+    optsHtml += `<option value="custom" data-i18n="works.filter.custom_date">${isId ? "Pilih Tanggal Spesifik..." : "Pick Specific Date..."}</option>`;
+
+    dateSelect.innerHTML = optsHtml;
+
+    if (currentVal && Array.from(dateSelect.options).some(o => o.value === currentVal)) {
+      dateSelect.value = currentVal;
+    } else {
+      dateSelect.value = "all";
+    }
+  }
+
+  function filterAndRenderWorks() {
+    const searchInput = document.getElementById("thoc-works-search-input");
+    const dateSelect = document.getElementById("thoc-works-date-filter");
+    const sortSelect = document.getElementById("thoc-works-sort-filter");
+    const exactInput = document.getElementById("thoc-works-exact-date");
+    const exactWrap = document.getElementById("thoc-exact-date-wrap");
+    const clearBtn = document.getElementById("thoc-works-search-clear");
+    const resetBtn = document.getElementById("thoc-works-reset-btn");
+    const countText = document.getElementById("thoc-works-count-text");
+
+    const query = searchInput ? searchInput.value.trim().toLowerCase() : "";
+    const dateFilter = dateSelect ? dateSelect.value : "all";
+    const sortOrder = sortSelect ? sortSelect.value : "newest";
+    const exactDate = (exactInput && dateFilter === "custom") ? exactInput.value : "";
+
+    // Toggle custom date picker visibility
+    if (exactWrap) {
+      if (dateFilter === "custom") {
+        exactWrap.classList.add("is-active");
+      } else {
+        exactWrap.classList.remove("is-active");
+      }
+    }
+
+    // Toggle clear search button
+    if (clearBtn) {
+      if (query.length > 0) {
+        clearBtn.classList.add("is-active");
+        clearBtn.style.display = "flex";
+      } else {
+        clearBtn.classList.remove("is-active");
+        clearBtn.style.display = "none";
+      }
+    }
+
+    // Filter items
+    let filtered = masterWorks.filter(item => {
+      // 1. Search Query: Project Name (Title) & Specs
+      if (query) {
+        const titleMatch = (item.title || "").toLowerCase().includes(query);
+        const typeMatch = (item.type || "").toLowerCase().includes(query);
+        const specMatch = (item.specs || "").toLowerCase().includes(query);
+        if (!titleMatch && !typeMatch && !specMatch) {
+          return false;
+        }
+      }
+
+      // 2. Date Filter
+      if (dateFilter === "custom") {
+        if (exactDate && item._isoDate !== exactDate) {
+          return false;
+        }
+      } else if (dateFilter.startsWith("year-")) {
+        const yr = dateFilter.replace("year-", "");
+        if (String(item._year) !== yr) return false;
+      } else if (dateFilter !== "all") {
+        if (item._monthYearKey !== dateFilter) return false;
+      }
+
+      return true;
+    });
+
+    // Sort items by date
+    filtered.sort((a, b) => {
+      const timeA = a._dateObj ? a._dateObj.getTime() : 0;
+      const timeB = b._dateObj ? b._dateObj.getTime() : 0;
+      if (sortOrder === "oldest") {
+        return timeA - timeB;
+      }
+      return timeB - timeA;
+    });
+
+    // Render filtered list
+    renderWorksList(filtered);
+
+    // Update count badge
+    if (countText) {
+      const isId = (localStorage.getItem("thockeebs-lang") || "en") === "id";
+      const projWord = isId ? "Project" : (filtered.length === 1 ? "Project" : "Projects");
+      const ofWord = isId ? "dari" : "of";
+      if (query || dateFilter !== "all" || exactDate) {
+        countText.textContent = `${filtered.length} ${ofWord} ${masterWorks.length} ${projWord}`;
+      } else {
+        countText.textContent = `${masterWorks.length} ${projWord}`;
+      }
+    }
+
+    // Toggle reset button
+    if (resetBtn) {
+      const isFiltered = query.length > 0 || dateFilter !== "all" || sortOrder !== "newest" || exactDate !== "";
+      if (isFiltered) {
+        resetBtn.classList.add("is-active");
+        resetBtn.style.display = "inline-flex";
+      } else {
+        resetBtn.classList.remove("is-active");
+        resetBtn.style.display = "none";
+      }
+    }
+  }
+
+  function resetAllFilters() {
+    const searchInput = document.getElementById("thoc-works-search-input");
+    const dateSelect = document.getElementById("thoc-works-date-filter");
+    const sortSelect = document.getElementById("thoc-works-sort-filter");
+    const exactInput = document.getElementById("thoc-works-exact-date");
+    const exactWrap = document.getElementById("thoc-exact-date-wrap");
+
+    if (searchInput) searchInput.value = "";
+    if (dateSelect) dateSelect.value = "all";
+    if (sortSelect) sortSelect.value = "newest";
+    if (exactInput) exactInput.value = "";
+    if (exactWrap) exactWrap.style.display = "none";
+
+    filterAndRenderWorks();
+  }
+
+  function initControls() {
+    if (isControlsInitialized) return;
+
+    const searchInput = document.getElementById("thoc-works-search-input");
+    const dateSelect = document.getElementById("thoc-works-date-filter");
+    const sortSelect = document.getElementById("thoc-works-sort-filter");
+    const exactInput = document.getElementById("thoc-works-exact-date");
+    const clearBtn = document.getElementById("thoc-works-search-clear");
+    const resetBtn = document.getElementById("thoc-works-reset-btn");
+
+    if (!searchInput && !dateSelect) return;
+
+    if (searchInput) {
+      searchInput.addEventListener("input", filterAndRenderWorks);
+      searchInput.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          searchInput.value = "";
+          filterAndRenderWorks();
+        }
+      });
+    }
+
+    if (clearBtn) {
+      clearBtn.addEventListener("click", function () {
+        if (searchInput) {
+          searchInput.value = "";
+          searchInput.focus();
+        }
+        filterAndRenderWorks();
+      });
+    }
+
+    if (dateSelect) {
+      dateSelect.addEventListener("change", function () {
+        const exactWrap = document.getElementById("thoc-exact-date-wrap");
+        if (dateSelect.value === "custom") {
+          if (exactWrap) exactWrap.style.display = "inline-flex";
+          if (exactInput) exactInput.focus();
+        } else {
+          if (exactWrap) exactWrap.style.display = "none";
+          if (exactInput) exactInput.value = "";
+        }
+        filterAndRenderWorks();
+      });
+    }
+
+    if (sortSelect) {
+      sortSelect.addEventListener("change", filterAndRenderWorks);
+    }
+
+    if (exactInput) {
+      exactInput.addEventListener("change", filterAndRenderWorks);
+      exactInput.addEventListener("input", filterAndRenderWorks);
+    }
+
+    if (resetBtn) {
+      resetBtn.addEventListener("click", resetAllFilters);
+    }
+
+    isControlsInitialized = true;
+  }
+
   function applyAll(items) {
     const merged = mergeWorks(items);
-    renderWorksList(merged);
+    masterWorks = merged;
+
+    initControls();
+    populateDateFilterOptions(merged);
+    filterAndRenderWorks();
     renderHomeSelectedWorks(merged);
   }
 
@@ -267,6 +604,8 @@
           applyAll(parsed);
         }
       } catch (e) { }
+    } else {
+      applyAll(DEFAULT_WORKS);
     }
 
     // 2. Ambil data terbaru dari Google Apps Script
@@ -288,6 +627,14 @@
       console.warn("[ThocKeebs Works] Using cached or default works:", err);
     }
   }
+
+  // Re-apply filter when language is switched
+  document.addEventListener("thockeebs-lang-changed", function () {
+    if (masterWorks && masterWorks.length > 0) {
+      populateDateFilterOptions(masterWorks);
+      filterAndRenderWorks();
+    }
+  });
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", fetchWorks);
